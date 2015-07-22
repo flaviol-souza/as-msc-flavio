@@ -1,0 +1,37 @@
+\changetocdepth {4}
+\select@language {brazil}
+\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase {Introdu\IeC {\c c}\IeC {\~a}o}}{13}{chapter.1}
+\contentsline {section}{\numberline {1.1}Motiva\IeC {\c c}\IeC {\~a}o}{17}{section.1.1}
+\contentsline {section}{\numberline {1.2}Objetivo}{18}{section.1.2}
+\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Revis\IeC {\~a}o}}{19}{chapter.2}
+\contentsline {section}{\numberline {2.1}Sistemas Din\IeC {\^a}micos}{19}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}O que \IeC {\'e} um sistema din\IeC {\^a}mico ?}{19}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Sistemas Computacionais Din\IeC {\^a}micos}{20}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}An\IeC {\'a}lise de Sistemas Din\IeC {\^a}micos}{20}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}\textit {Benchmark}}{20}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Defini\IeC {\c c}\IeC {\~a}o de um \textit {benchmark}}{20}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Tipos de \textit {benchmarks}}{21}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}\textit {Benchmark} na Computa\IeC {\c c}\IeC {\~a}o em Nuvem}{21}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Propriedades de um bom \textit {benchmark}}{21}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}\textit {Benchmarks} bem sucedidos}{26}{subsection.2.2.5}
+\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Metodologia}}{27}{chapter.3}
+\contentsline {section}{\numberline {3.1}\textit {Benchmark} para Web}{27}{section.3.1}
+\contentsline {section}{\numberline {3.2}A metodologia}{27}{section.3.2}
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Desenvolvimento - Caso de estudo: Bench4Q}}{31}{chapter.4}
+\contentsline {section}{\numberline {4.1}O protocolo de caso de estudo}{31}{section.4.1}
+\contentsline {section}{\numberline {4.2}O \textit {Becnhmark}}{32}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Arquitetura}{33}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Caracter\IeC {\'\i }sticas do Bench4q}{35}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Gera\IeC {\c c}\IeC {\~a}o de carga}{40}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Implementa\IeC {\c c}\IeC {\~a}o da metodologia}{41}{section.4.3}
+\contentsline {section}{\numberline {4.4}Analise dos resultados}{43}{section.4.4}
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Conclus\IeC {\~a}o}}{45}{chapter.5}
+\vspace {\cftbeforechapterskip }
+\contentsline {chapter}{\uppercase {Refer\^encias}}{47}{section*.21}
+\contentsline {chapter}{Gloss\IeC {\'a}rio}{53}{section*.22}
+\renewcommand *{\cftappendixname }{AP\^ENDICE \space }
+\contentsline {appendix}{\chapternumberline {A}\MakeTextUppercase {Documento b\IeC {\'a}sico usando a classe \textit {icmc}}}{55}{appendix.A}
+\contentsline {appendix}{\chapternumberline {B}\MakeTextUppercase {Configura\IeC {\c c}\IeC {\~a}o do programa JabRef}}{59}{appendix.B}
+\cftinsert {AAA}
+\renewcommand *{\cftappendixname }{ANEXO \space }
+\contentsline {appendix}{\chapternumberline {A}\MakeTextUppercase {P\IeC {\'a}ginas interessantes na Internet}}{67}{appendix.anexochapback.1}

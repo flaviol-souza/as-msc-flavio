@@ -1,0 +1,82 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/W32TeX)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: abntex2-alf.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Database file #1: abntex2-options.bib
+Database file #2: ../references.bib
+Repeated entry---line 106 of file ../references.bib
+ : @book{box2011
+ :              ,
+I'm skipping whatever remains of this entry
+Warning--I'm ignoring Hellerstein2004's extra "publisher" field
+--line 309 of file ../references.bib
+Warning--I'm ignoring Inomata2011's extra "publisher" field
+--line 376 of file ../references.bib
+I was expecting a `,' or a `}'---line 527 of file ../references.bib
+ :  eprint = {http://dx.doi.org/10.1108/14635770210428992}
+ :                                                        .
+I'm skipping whatever remains of this entry
+Warning--I'm ignoring Zhang2007's extra "publisher" field
+--line 798 of file ../references.bib
+Warning--I'm ignoring Zhang2011's extra "publisher" field
+--line 814 of file ../references.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
++---------------------------------------------------------+
+| Estilo bibliográfico abntex2-alf.bst versão v-1.9.5           |
+| Em caso de dúvidas ou problemas com este estilo procure |
+| http://www.abntex.net.br/                               |
++---------------------------------------------------------+
+You've used 56 entries,
+            6714 wiz_defined-function locations,
+            1598 strings with 20683 characters,
+and the built_in function-call counts, 58399 in all, are:
+= -- 5271
+> -- 1885
+< -- 573
++ -- 1284
+- -- 551
+* -- 4156
+:= -- 7361
+add.period$ -- 238
+call.type$ -- 58
+change.case$ -- 639
+chr.to.int$ -- 121
+cite$ -- 49
+duplicate$ -- 4029
+empty$ -- 3674
+format.name$ -- 2829
+if$ -- 13387
+int.to.chr$ -- 7
+int.to.str$ -- 3
+missing$ -- 1040
+newline$ -- 262
+num.names$ -- 249
+pop$ -- 1229
+preamble$ -- 1
+purify$ -- 225
+quote$ -- 0
+skip$ -- 4086
+stack$ -- 1
+substring$ -- 2134
+swap$ -- 1750
+text.length$ -- 69
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 27
+warning$ -- 0
+while$ -- 377
+width$ -- 0
+write$ -- 834
+(There were 2 error messages)

@@ -1,0 +1,150 @@
+\ifglsentryexists{Def.1}{}%
+{%
+\gls@defglossaryentry{Def.1}%
+{%
+name={WYSIWYG:},%
+sort={WYSIWYG:},%
+type={main},%
+first={WYSIWYG:},%
+firstplural={WYSIWYG:s},%
+text={WYSIWYG:},%
+plural={WYSIWYG:s},%
+description={``What You See Is What You Get'' ou ``O que você vê é o que você obtém''. Recurso tem por objetivo permitir que um documento, enquanto manipulado na tela, tenha a mesma aparência de sua utilização, usualmente sendo considerada final. Isso facilita para o desenvolvedor que pode trabalhar visualizando a aparência do documento sem precisar salvar em vários momentos e abrir em um \textit {software} separado de visualização},%
+descriptionplural={``What You See Is What You Get'' ou ``O que você vê é o que você obtém''. Recurso tem por objetivo permitir que um documento, enquanto manipulado na tela, tenha a mesma aparência de sua utilização, usualmente sendo considerada final. Isso facilita para o desenvolvedor que pode trabalhar visualizando a aparência do documento sem precisar salvar em vários momentos e abrir em um \textit {software} separado de visualização},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Def.2}{}%
+{%
+\gls@defglossaryentry{Def.2}%
+{%
+name={Framework:},%
+sort={Framework:},%
+type={main},%
+first={Framework:},%
+firstplural={Framework:s},%
+text={Framework:},%
+plural={Framework:s},%
+description={é uma abstração que une códigos comuns entre vários projetos de \textit {software} provendo uma funcionalidade genérica. \textit {Frameworks} são projetados com a intenção de facilitar o desenvolvimento de \textit {software}, habilitando designers e programadores a gastarem mais tempo determinando as exigências do \textit {software} do que com detalhes de baixo nível do sistema},%
+descriptionplural={é uma abstração que une códigos comuns entre vários projetos de \textit {software} provendo uma funcionalidade genérica. \textit {Frameworks} são projetados com a intenção de facilitar o desenvolvimento de \textit {software}, habilitando designers e programadores a gastarem mais tempo determinando as exigências do \textit {software} do que com detalhes de baixo nível do sistema},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Def.3}{}%
+{%
+\gls@defglossaryentry{Def.3}%
+{%
+name={Template:},%
+sort={Template:},%
+type={main},%
+first={Template:},%
+firstplural={Template:s},%
+text={Template:},%
+plural={Template:s},%
+description={é um documento sem conteúdo, com apenas a apresentação visual (apenas cabeçalhos por exemplo) e instruções sobre onde e qual tipo de conteúdo deve entrar a cada parcela da apresentação},%
+descriptionplural={é um documento sem conteúdo, com apenas a apresentação visual (apenas cabeçalhos por exemplo) e instruções sobre onde e qual tipo de conteúdo deve entrar a cada parcela da apresentação},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Def.4}{}%
+{%
+\gls@defglossaryentry{Def.4}%
+{%
+name={Padrões de projeto:},%
+sort={Padrões de projeto:},%
+type={main},%
+first={Padr\IeC {\~o}es de projeto:},%
+firstplural={Padr\IeC {\~o}es de projeto:s},%
+text={Padr\IeC {\~o}es de projeto:},%
+plural={Padr\IeC {\~o}es de projeto:s},%
+description={ou \textit {Design Pattern}, descreve uma solução geral reutilizável para um problema recorrente no desenvolvimento de sistemas de \textit {software} orientados a objetos. Não é um código final, é uma descrição ou modelo de como resolver o problema do qual trata, que pode ser usada em muitas situações diferentes},%
+descriptionplural={ou \textit {Design Pattern}, descreve uma solução geral reutilizável para um problema recorrente no desenvolvimento de sistemas de \textit {software} orientados a objetos. Não é um código final, é uma descrição ou modelo de como resolver o problema do qual trata, que pode ser usada em muitas situações diferentes},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Def.5}{}%
+{%
+\gls@defglossaryentry{Def.5}%
+{%
+name={Web:},%
+sort={Web:},%
+type={main},%
+first={Web:},%
+firstplural={Web:s},%
+text={Web:},%
+plural={Web:s},%
+description={Sinônimo mais conhecido de \textit {World Wide Web} (WWW). É a interface gráfica da Internet que torna os serviços disponíveis totalmente transparentes para o usuário e ainda possibilita a manipulação multimídia da informação},%
+descriptionplural={Sinônimo mais conhecido de \textit {World Wide Web} (WWW). É a interface gráfica da Internet que torna os serviços disponíveis totalmente transparentes para o usuário e ainda possibilita a manipulação multimídia da informação},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%

@@ -1,0 +1,172 @@
+Este capítulo elenca e oferece os conceitos fundamentais e importantes relacionados a este trabalho e o entendimento necessário abordados que trazem as definições das técnicas e terminologia utilizadas, dando uma visão do estado da arte.
+
+\section{Sistemas Dinâmicos}
+\subsection{O que é um sistema dinâmico ?}
+
+Sistemas dinâmicos são objetos matemáticos usados para modelar fenômenos físicos cujo estado ou descrição instantânea muda com o tempo. Estes modelos são utilizados na previsão econômica e financeira, modelagem ambiental, diagnóstico médico, o diagnostico equipamento industrial, e uma série de outras aplicações \cite{Dean1991}.
+
+Para \cite{Scheinerman1995} a dificuldade é que qualquer coisa que evolui ao longo do tempo pode ser considerado um sistema dinâmico. Em seu livro, \cite{Scheinerman1995},  inicia descrevendo sistemas dinâmicos matemáticas, mas para o autor um sistema dinâmico tem duas partes: um vetor de estado que descreve exatamente o estado de algum sistema real ou hipotético, e uma função (ou seja, uma regra) que nos diz, dado o estado atual, o que o estado do sistema será no próximo instante de tempo.
+
+
+
+\subsection{Sistemas Computacionais Dinâmicos}
+%_____________Computer systems are dynamical systems
+%Os computadores modernos são sistemas dinâmicos não-lineares complexas. Registos microprocessador, o conteúdo da memória, e até mesmo a temperatura de diferentes regiões do chip são variáveis ​​de estado desses sistemas. A lógica programado em um computador, combinados com o software de execução em que o hardware, define a dinâmica do sistema. Sob a influência dessas dinâmicas, o estado do computador se move em uma trajetória através do seu espaço de alta dimensão estado como o progresso ciclos do relógio eo programa é executado. Chamamos isso a dinâmica de um sistema de computador de desempenho para distingui-lo a partir da dinâmica do programa: a sequência de passos que o código a seguir. Embora a dinâmica do programa são geralmente simples e fácil de entender, a dinâmica de um programa rodando em um computador moderno de desempenho pode ser complexo e até mesmo caótico. As implicações disso não são apenas interessante, mas realmente muito importante, tanto a partir de uma dinâmica stand ponto e para os efeitos de simulação computacional e design.
+%Este pensamento está em contraste gritante com as abordagens tradicionais na literatura sistemas de computadores, onde os computadores são modeladas como processos estocásticos altos-dimensional, 1,2 detalhes temporais estão aglomeradas em indicadores agregados, 3,4 e os problemas de observação e de perturbação que são inerentes em qualquer experiência do mundo real são evitados através da utilização de simuladores, em vez de hardware.5,6 real dos 364 trabalhos sobre a compreensão do desempenho de inovações microprocessador que apareceu entre 2004 e 2007, em três conferências microarquitetura importantes? ASPLOS, ISCA, e MICRO, para exemplo, apenas nove analisaram o comportamento variável no tempo o hardware real. Enquanto arquitetos de computador fazem perceber os efeitos de não-linearidade, falta-lhes um quadro verdadeiramente princípios para lidar com seus efeitos. Como uma solução parcial, o campo tem utilizado abordagens baseadas no conhecimento? Por exemplo, refs. 7-10 e técnicas fundamentadas em pesquisa e operações de investigação? Por exemplo, refs. 11-13. Mesmo assim, o resultado de um novo recurso de design rotineiramente surpreende sua creators.14 A combinação particularmente pernicioso de não-linearidade e medição perturbação só recentemente foi reconhecido como uma questão importante por computador architects.15,16 computadores modernos têm milhões de transistores que interagem em formas complexas e não-lineares, e quase qualquer medição de seu estado pode perturbar o seu comportamento. Como resultado, a dinâmica de sistemas de computadores de desempenho pode olhar aleatório dando assim origem e credibilidade à idéia de que a evolução do desempenho de um computador acontece a partir de um processo estocástico.
+%Como os leitores desta revista estão bem conscientes, no entanto, olhando aleatória e ser aleatório pode ser duas coisas diferentes. A dinâmica de um computador é ditada pelas leis físicas determinísticos de suas partes: fios, semicondutores, e assim por diante. Nem este hardware nem o código que é executado em que é estocástico, e assim parece lógico ter uma abordagem dos sistemas dinâmicos para a análise do seu comportamento acoplado.
+%Seguindo este raciocínio, nós tratamos a tarefa de compreender o comportamento de um computador como equivalente a análise da dinâmica de espaço de estado do sistema. Esta abordagem, foi pioneira na Ref. 17, não é apenas uma maneira útil de descrever e compreender estes sistemas; ele também permite-nos comparar dois sistemas desse tipo, o que é essencial para a tarefa de modelagem e validatin seu comportamento. Indo além do trabalho em Ref. 17- que calculou invariantes dinâmicos de complexos programas de computador que funcionam em computadores simulados-formulamos um modelo geral para a dinâmica de computador, sob a forma de um mapa iterado, e validá-lo usando dois tipos diferentes de computadores Intel. Estudar a dinâmica de hardware real é crítica porque simuladores raramente correspondem sistemas reais, mas levanta alguns desafios significativos aqui. Como é o caso em muitos experimentos de laboratório, é impossível medir todas as variáveis ​​de estado de um computador que executa e difícil de evitar perturbar aqueles que podem ser medidos. O delineamento experimental também é crítica; sistemas de computador são feitas de vários módulos de hardware e software, alguns dos quais não estão sob controle explícita do usuário, mantendo assim todas as condições constante requer cuidados real. Nós usamos uma infra-estrutura de medição personalizada para resolver estes problemas e coletar dados de série temporal que reflete o desempenho de um computador em funcionamento. Nós empregamos atraso de coordenar a incorporação desses dados para reconstruir a dinâmica de vários programas de computador em execução em duas máquinas físicas diferentes. Analisamos as diferentes influências sobre a dinâmica, demonstrando que tanto hardware e software jogo complicado, funções não-lineares no comportamento dos sistemas, e nós fornecemos a primeira evidência experimental de dinâmica caótica de baixa dimensionalidade em hardware de computador real.
+%Mostramos também que a dinâmica de um computador é submetido a uma série contínua de bifurcações como a execução se move através de diferentes partes do código.
+%É importante notar que nem toda essa complexidade dinâmica e manifesto riqueza a menos que alguém estuda um computador real, não apenas um simulador que imita seu comportamento-a abordagem comum em trabalhos anteriores sobre este tema, tanto na arquitetura de computadores e sistemas dinâmicos literaturas.
+%Simuladores são muito atraentes para estudar porque um pode easil medir todas as suas variáveis ​​de estado e porque o seu comportamento é repetitivo. Eles são versões de computadores reais altamente simplificada, porém, e sua partida para esses sistemas é cada vez mais posta em causa pela comunidade arquitetura de computador? Por exemplo, Ref. 5. O comportamento de hardware real não é completamente reprodutível, 16 e melhorias no projeto que são trabalhados para fora usando simuladores muitas vezes provar ter efeitos inesperados quando são implementadas em silício e metal.14 Nada disto é surpreendente; captar bem a dinâmica de um sistema de vários milhões de transistor com algumas dezenas de milhares de linhas de código? por exemplo, como nas refs. 18 e 19 é difícil, se não impossível. Por todas estas razões, é fundamental para estudar os computadores reais, não os simulados.
+%O trabalho descrito neste artigo é não só uma interessante aplicação de técnicas de dinâmica não linear para uma nova área de aplicação. Ele representa um completamente novo ângulo de ataque em alguns dos problemas mais prementes que da área de aplicação.
+%Atualmente, por exemplo, os simuladores que são empregados por arquitetos de computadores são validados apenas usando métricas fim: para-end como o tempo de execução de um programa, 4 e eles raramente são comparados em qualquer dinamicamente significativa caminho para os sistemas reais que eles deveriam imitar. Os resultados aqui apresentados deixar claro que indicadores agregados são insuficientes e os detalhes da dinâmica importa: Dois sistemas de computador devem ser tratados como semelhante, se e somente se os seus invariantes dinâmicos combinam. Isto põe em causa a noção de validação simulador e explica algumas das resultados que têm assustado os arquitetos de computadores ao longo dos anos, quando ocorre uma melhora de design que foi trabalhado em um simulador saiu mal em hardware.14 verdadeira Nossos resultados nos levam a uma vista de um computador como um dinâmico do sistema operacional sob a influência de uma série de bifurcações induzidas pelo código que está sendo executado. Isto sugere que a análise bifurcação pode ser útil na identificação de diferentes regimes de comportamentais em um programa de computador e que invariantes dinâmicos podem ser úteis para a análise do comportamento em cada regime. Este ponto de vista também explica alguns dos resultados inconclusivos em Ref. 17, como no mundo real programas de computador são uma mistura complexa de múltiplos atractores e comportamento transiente, e o cálculo de um dinâmico "invariante" de uma tal trajectória pode ser problemático. No quadro mais amplo, nossos resultados sugerem que não se pode compreender o comportamento de um computador por entender como a função de hardware e subsistemas de software e, depois, compor as suas dinâmicas. Em vez disso, deve-se tratar o sistema como uma rede de complexo, não linear, interagindo peças de CPU, cache, memória de acesso aleatório? RAM, disco, placas de vídeo, sistema operacional, programas de usuário, etc., e analisar a dinâmica resultantes como um todo .
+%Este artigo está organizado da seguinte forma. Seção apresenta II e motiva um modelo de sistemas dinâmicos de desempenho do computador.
+%Seção III usa esta estrutura como uma base para investigar a dinâmica de um simples programa em execução em uma máquina Intel Core2®. Seção IV repete os mesmos experimentos e análise usando um processador Intel Pentium 4®, demonstrando os efeitos de hardware sobre a dinâmica do sistema de hardware / software acoplado desempenho. Seção V investiga a dinâmica de outro programa simples, em seguida, combina esse programa com o programa de Secs. III e IV e as análises dos compostos dinâmica. Seção VI encerra com uma discussão sobre as implicações deste trabalho para ambos dinâmica não-linear e arquitetura de computadores.
+\subsection{Análise de Sistemas Dinâmicos}
+
+\section{\textit{Benchmark}}
+\subsection{Definição de um \textit{benchmark}}
+\textit{Benchmarking} é o principal método para medir o desempenho de uma máquina ou sistema. O \textit{benchmarking} refere-se à execução de um conjunto de programas representativos em diferentes computadores e redes, medindo os resultados. Esses resultados são utilizados para avaliar o desempenho de um determinado sistema com uma carga de trabalho bem definida \cite{Menasce2001}.
+
+O \textit{benchmarking} pode ser visto como um modelo de identificação de oportunidades com o intuito de aumentar a competitividade em ambientes gradativamente turbulentos, assim teve seu surgimento a partir da década de 70 e, tornou-se importante devido às falhas dos métodos tradicionais de fixação de metas que algumas empresas americanas adotavam para enfrentar a concorrência externa, principalmente pelos produtos japoneses \cite{Camila2008}. Para \cite{Marco2012} \textit{benchmarks} são um padrão de ferramentas que permitem avaliar e comparar diferentes sistemas ou componentes de acordo com características especificas, tais como desempenho, confiabilidade e segurança. Segundo \cite{Folkerts2013} \textit{benchmarks} são ferramentas para responder a uma pergunta "Qual é o melhor sistema em um determinado domínio?" ou "Qual é o melhor processador?" ou ainda responde à pergunta "Qual é o melhor sistema de banco de dados para OLTP?". Para \cite{Folkerts2013}, a interpretação concreta do "qual o melhor" depende do objetivo do \textit{benchmarking}, e esta deve ser a primeira pergunta que a ser respondida na concepção de um novo \textit{benchmark}. 
+
+
+Segundo \cite{Stefan2010} a definição de um \textit{benchmarking} é o ato de medir e avaliar o desempenho computacional, sob condições de referência e em relação a uma avaliação de referência. O objetivo do \textit{benchmarking} é permitir a comparação equitativa por diferentes soluções, ou entre desenvolvimentos subsequentes de um sistema em teste (SUT - \textit{System }). Estas medidas incluem métricas principais de desempenho caracterizando o ambiente em que o SUT está hospedado.
+
+A \textit{Xerox Corporation} é geralmente creditado com o início dos primeiros projetos de avaliação de desempenho global, em 1979. Alertado por uma suspeita de que os custos de produção de máquinas fotocopiadoras foram significativamente mais elevados nos EUA do que no Japão, estas iniciativas \textit{benchmarking} foram utilizados pela Xerox para obter direitos quanto aos materiais, processos e métodos utilizados pelos japoneses). Uma aplicação das lições aprendidas através de \textit{benchmarking} permitiu a \textit{Xerox} aumentar a eficiência de design e produção, e, consequentemente, para reduzir os custos de fabricação de suas máquinas fotocopiadoras. Isto não só reforça a posição de competitiva da \textit{Xerox} no mercado, mas também levou ao desenvolvimento e evolução de uma nova ferramenta gerencial, conhecido como processo de \textit{benchmarking} \cite{Mahmoud2002}.
+
+Benchmarks são ferramentas para responder a pergunta comum "Qual é o melhor sistema em um determinado domínio?". Por exemplo, o valor de referência SPECCpu [3] responde à pergunta "Qual é o melhor processador?", Eo benchmark TPC-C [4] responde à pergunta "Qual é o melhor sistema de banco de dados para OLTP?".
+A interpretação concreta do "melhor" depende do objetivo de benchmarking
+e é a primeira pergunta que deve ser respondida na concepção de um novo
+benchmark. Como uma abordagem sistemática para responder a esta pergunta, Florescu e Kossmann sugerir a olhar para as propriedades e limitações dos sistemas de ser aferido [5]. O número um propriedade tem que ser otimizada enquanto as propriedades de menor prioridade dar origem a restrições. A referência, portanto, pode ser visto como uma maneira de especificar essas prioridades e limitações de uma forma bem definida. A tarefa do benchmark, em seguida, é relatar o quão bem diferentes sistemas executar com respeito à prioridade otimizado sob as restrições dadas.
+Na prática, valores de referência são usados para auxiliar decisões sobre a estratégia de provisionamento mais econômica, bem como para obter insights sobre os gargalos de desempenho.
+
+\subsection{Tipos de \textit{benchmarks}}
+
+%There are, in general, four types of benchmarking:
+
+%1. COMPETITIVE BENCHMARKING
+%Benchmarking is performed versus competitors and data analysis is done as to what causes the superior performance of the competitor.
+%It can be, in some respects, easier than other types of benchmarking and in some respects more difficult. It is easier in the sense that many exogenic variables affecting company performance may be the same between the source and the recipient organization, since we are talking about companies of the same sector. On the other hand it is more difficult because, due to the competitive nature, data recuperation will not be straightforward. Difficulties of this type may be overcome if the two organizations have for e.g. different geographical markets.
+
+%2. INTERNAL BENCHMARKING
+%This process could be applied in organizations having multiple units (for e.g. multinationals, companies with sale offices around the country, with multiple factory locations within the same country).
+
+%3. PROCESS BENCHMARKING
+%Here we look at processes, which may be similar, but in different organizations, producing different products, for e.g. airline industry \& hospital industry looking at the process of catering their ‘clients’.
+
+%4. GENERIC BENCHMARKING
+%We would look here at the technological aspects, the implementation and deployment of technology. How else other organizations do it? Hence the source organizations may be of same industry or from another industry.
+
+\subsection{\textit{Benchmark} na Computação em Nuvem}
+
+\subsection{Propriedades de um bom \textit{benchmark}}
+O desenvolvimento de um bom \textit{benchmark} tem sido considerada uma "arte negra" por um longo tempo, devido a inumaras sutilezas que influenciam o sucesso do \textit{benchmark}. 
+No entanto, pesquisas e estudos com base em \textit{benchmarks} para sistemas computacionais não é um tema novo, para explorar o caminho que levará à uma boa metodologia de extensão, começamos por rever as propriedades pertinentes de um \textit{benchmarks}, assim a metodologia incorporará dessas boas praticas para o objetivo de extensão.
+As definições de um \textit{benchmark} são temas para uma série de trabalhos que tentam fornecer orientações sobre o assunto, as investigações relacionadas sugerem uma série de orientações amplamente aceitas e critérios de qualidade que devem ser considerados no projeto e execução de \textit{benchmark}, como os trabalhos publicados \cite{Kistowski2015, Chen2014, Folkerts2013, Marco2012, Huppler2009, Gray1992} que tem identificado as seguintes características:
+
+
+\begin{description}
+	\item[Relevância] é, talvez, a característica mais importante de um \textit{benchmark}. Mesmo que a carga de trabalho for perfeita em todos os outros aspectos, será de uso mínimo se ele não fornecer informações relevantes para seus usuários. No entanto, a relevância é também uma característica de como os resultados do \textit{benchmark} são aplicadas; \textit{benchmarks} pode ser altamente relevante para alguns cenários e ter mínima relevância para outros, para o usuário do \textit{benchmark}, uma avaliação da relevância de um ponto de referência deve ser feita no contexto da utilização prevista desses resultados para o \textit{benchmark}. \cite{Kistowski2015}
+	
+	\item[Reprodutibilidade] a capacidade de produzir os mesmos resultados de forma consistente para um ambiente de teste em particular, inclui a consistência e capacidade para um outro testador reproduzir de forma independente os resultados em outro sistema. A capacidade de reproduzir os resultados em outro ambiente de teste é em grande parte ligada à capacidade de construir um ambiente equivalente. \textit{Benchmarks} de indústria requer além de resultados uma descrição do ambiente de teste, geralmente incluindo hardware e componentes de software, bem como opções de configuração, da mesma forma que a pesquisa publicada, que inclui resultados de \textit{benchmark} geralmente inclui uma descrição do ambiente de teste que produziu esses resultados. No entanto, em ambos os casos, a descrição não pode fornecer detalhes suficientes para um laboratório independente para ser capaz de montar um ambiente equivalente. \textit{Hardware} deve ser descrito o suficiente em detalhe para uma outra pessoa possa obter um idêntico. As versões de \textit{software} deve ser indicado de modo que seja possível usar as mesmas versões ao reproduzir o resultado. Opções de ajuste e configuração devem ser documentadas para versão de \textit{firmware}, sistema operacional e aplicativo de \textit{software} para que as mesmas opções podem ser usadas quando reexecutar o teste. \cite{Kistowski2015}
+	
+	\item[Verificabilidade] Dentro da indústria, \textit{benchmarks} são normalmente executados por fornecedores que têm interesse nos resultados. Na academia, os resultados são submetidos a revisão por pares e resultados interessantes será repetido e desenvolvido por outros pesquisadores. Em ambos os casos, é importante que os resultados do \textit{benchmark} são verificáveis, de modo que os resultados podem ser considerados dignos de confiança. \cite{Kistowski2015}
+	
+	\item[Usabilidade] A maioria dos usuários de \textit{benchmarks} são normalmente técnicos, tornando a facilidade de uso uma preocupação menor do que é para aplicações pensadas e desenvolvidas para o consumidor. Existem, no entanto, várias razões por que a facilidade de utilização seja importante.
+	Isso já foi discutido em termos de fazer \textit{benchmark} verificável. Outro aspecto da facilidade de utilização é ser capaz de construir configurações práticas para a execução do \textit{benchmark}. Descrições precisas sobre o hardware do sistema e software configuração são críticas para a reprodutibilidade, mas pode ser um desafio, devido à complexidade dessas descrições.
+	\textit{Benchmarks} pode melhorar a facilidade de utilização, fornecendo ferramentas para ajudar com este processo. \cite{Kistowski2015}
+	
+	\item[Escalável] deve ser apoiada em uma maneira que preserve a relação com o cenário de negócios proxímo ao modelo real. Além disso, o usuário deve ser oferecida a possibilidade de dimensionar a carga de trabalho de forma arbitrária pela definição de um conjunto próprio de pontos de escala. \cite{Marco2012}
+	
+	\item[Simplicidade] Os elementos conceituais de \textit{benchmark} deve ser reduzida ao mínimo e feito facilmente compreensível. O \textit{benchmark} também deve abstrair detalhes que representam configurações de caso a caso, ou escolhas de administração do sistema e não afetam o desempenho. \cite{Chen2014} Um \textit{benchmark} com uma estrutura altamente complexa é muitas vezes difícil de entender e difícil confiar. Se as pessoas não confiam no \textit{benchmark}, elas não vão usá-lo. \textit{Benchmarks} deve, portanto, ser o mais simples possível. Complexidade necessária pode ser explicado em uma documentação do \textit{benchmark}.\cite{Weber2014}
+	
+	\item[Econômico] Ele é muitas vezes negligenciado durante o desenvolvimento inicial do \textit{benchmark}, pois as fases iniciais do desenvolvimento estão focados em imitar a realidade para fornecer a relevância necessária para o \textit{benchmark}. Na verdade, para ser relevante, pode-se esperar uma \textit{benchmark} realista; e ser realista, muitas vezes significa ser complexo; e complexo para ser invariavelmente significa ser caro. Esta é claramente uma outra oportunidade para o compromisso, se alguém quiser criar uma \textit{benchmark} de sucesso. O termo "econômico", não significa "barato", mas sim "vale o investimento".
+	Considere os resultados da IBM, TPC-C ou TPC-E ou TPC-H e alguns da SPEC, SPECjAppServer2004 e  SPECweb2005, todos eles selecionam apenas uma fatia da "realidade total" da indústria da informática, no retorno para o apelo de ser barato para correr, fácil de executar e fácil de verificar. Enquanto eles não são usados fora do contexto da sua intenção, eles também atendem aos requisitos para a relevância, equidade e repetibilidade. \cite{Huppler2009}
+	
+	\item[Métrica] uma métrica significativa ser compreensível e é obrigado a relatar sobre as reações do SUT referentes à carga. \cite{Folkerts2013} as métricas do \textit{benchmark} deve permitir caracterizar e quantificar o comportamento do sistema quando enfrenta perturbações (ou seja, falhas, ataques, e variações de ambiente operacional). À vista primeiro, resiliência métricas de \textit{benchmark} deve caracterizar o desempenho, confiabilidade e segurança.\cite{Marco2012}
+	
+\end{description}
+
+Nas abordagens mencionadas acima, referente as propriedades de um \textit{benchmarks} de sucesso, segundo os autores, e nenhum dos trabalhos contemplam uma metodologia de extensão em que o \textit{benchmark} pode ser desenvolvido. Na seção em sequência, este trabalho propõe tal metodologia, e nos capítulos seguintes foi ilustrado atrás vez de um caso de estudo a extensão de um \textit{benchmark} usando tal metodologia. É importante compreender as características de uma carga de trabalho e determinar se ou não é aplicável para uma situação particular. Ao desenvolver uma nova carga de trabalho, as metas devem ser definidas para que escolhas entre os critérios de projeto concorrente pode ser feita de acordo com esses objetivos para alcançar o equilíbrio desejado. \cite{Kistowski2015}
+
+Antes de definir a metodologia propriamente dita, é importante assegurar que não é qualquer \textit{benchmarks} que pode ser modificado pela extensão, existe alguns pré-requisitos e estes são apresentados. No trabalho \cite{Folkerts2013} apresenta a definição de três grupos de requisitos, com base nas propriedades apresentadas anteriormente:
+
+\begin{description}
+	\item[1. Requisitos gerais] - este grupo contém requisitos genéricos. 
+	\begin{itemize}
+		\item Relevância
+		\item Econômico
+		\item Simplicidade
+	\end{itemize}
+	
+	\item[2. Requisitos de Implementação] - este grupo contém as exigências relativas à implementação e desafios técnicos. \hfill 
+	\begin{itemize}
+		\item Fair e portáteis
+		\item Reprodutibilidade
+		\item Realista
+		\item Relevância
+	\end{itemize}
+	
+	\item[3. Requisitos de Carga de Trabalho ] - contém os requisitos quanto à definição de carga de trabalho e suas interações. \hfill 
+	\begin{itemize}
+		\item Representatividade
+		\item Escalável
+		\item Métricas
+	\end{itemize}
+	
+\end{description}
+
+Este trabalho propõe uma metodologia de extensão de analise transiente para \textit{benchmarks}, levando isso em consideração o grupo 3 (Requisitos de Carga de Trabalho - contém os requisitos quanto à definição de carga de trabalho e suas interações.) é o que melhor se adequá para as necessidade de uma analise transiente. Sendo assim todos os itens presente neste grupo 3 são pré-requisitos para metodologia de extensão. 
+Diante nas necessidades é importante incluir mais um item tão importante quando os outros, mas com intenção diferente em comparação aos outros. Será necessário alterar o código fonte do gerador de carga, logo o \textit{benchmark} deve ser \textit{Open-source} ou a equipe que aplicará as modificações e consequentemente a metodologia deve ter permissão para modificar ou ter acesso ao código fonte.
+
+
+%\begin{itemize}
+%	\item \textit{Open-source} ou ter acesso ao código fonte para as modificações
+%	\item possuir um gerador de carga
+%	\item Ter na composição ou poder incluir um sistema para avaliação	
+%	\item Ter ou possibilitar a inclusão de métrica(s) de caráter transiente
+%\end{itemize}
+
+Afim de exemplificar, a tabela \ref{table:benchmarks} lista um conjunto de \textit{benchmarks} e verificamos a existências dos pré-requisitos definidos para a metodologia, vale salientar que todos os \textit{benchmarks} não apresentam qualquer analise em regime transiente que o alvo deste trabalho.
+
+\begin{center}
+	\label{table:benchmarks}
+	%\caption{Lista de \textit{benchmark} com pré-requisitos}
+	\begin{longtable}{| m{2cm} | m{1.5cm} | m{1.7cm} | m{2cm} | m{1.5cm} | p{5.5cm} |}
+		\hline
+		\textbf{\textit{Benchmarks}} & \textbf{Open-source} & \textbf{Gerador de carga} & \textbf{Sistema de avaliação} & \textbf{Métricas} & \textbf{Resumo}
+		\\ 
+		\hline
+		\textbf{Bench4Q} & \thereIs & \thereIs & \thereIs & \thereIs & Bench4Q, é um \textit{e-commerce} orientada QoS, tem recursos para deduzir uma representação controlável e flexível de cargas de trabalho baseadas em sessão complexas, e para simular o comportamento do cliente autêntico. %Além do mais, o Bench4Q pode ser utilizado para avaliar o desempenho e escalabilidade do sistema. 
+		\\ 
+		\hline
+		\textbf{DynBench} & \thereIs & \thereIs & \thereNotIs & \thereIs & DynBench é útil para avaliação QoS e/ou Gestão de Recursos em sistemas de tempo real distribuídos. Como tal, DynBench inclui um conjunto de métricas de desempenho para a avaliação de QoS e tecnologias Gestão de Recursos.\cite{Shirazi1999}
+		\\ 
+		\hline
+		\textbf{EEMBC} & \thereIs & \thereIs & \thereNotIs & \thereIs & EEMBC atende às necessidades dos projetistas de sistemas embarcados, fornecendo um conjunto diversificado de benchmarks de processadores organizados em categorias que abrangem inúmeras aplicações do mundo real. 
+		\\ 	
+		\hline
+		\textbf{LinkBench} & \thereIs & \thereIs & \thereIs & \thereIs & LinkBench é uma referência de banco de dados desenvolvido para avaliar o desempenho do banco de dados para cargas de trabalho semelhantes às da produção implantação MySQL do Facebook 
+		\\ 	
+		\hline
+		\textbf{OLTP} & \thereIs & \thereIs & \thereNotIs & \thereIs & OLTP, é um extensível que é adaptado para o processamento on-line de transações (OLTP) e cargas de trabalho orientadas para a web.
+		\\ 	
+		\hline
+		\textbf{RUBiS} & \thereIs & \thereIs & \thereIs & \thereIs & Rubis é um protótipo de site de leilão modelado após eBay.com que é usado para avaliar os padrões de design de aplicativos e escalabilidade de desempenho de servidores de aplicação.
+		\\ 
+		\hline
+		\textbf{SWIM} & \thereIs & \thereIs & \thereNotIs & \thereIs & SWIM permite uma medição rigorosa de sistemas desenpenho de MapReduce. SWIM contém conjunto de cargas de trabalho, com dados complexos e chegada e padrões de computação. 
+		\\ 
+		\hline
+		\textbf{TPC-W} & \thereIs & \thereIs & \thereIs & \thereIs & TPC-W especifica uma carga de trabalho de comércio eletrônico que simula as atividades de um site \textit{e-commerce}.
+		Emulada usuários que podem navegar e encomendar produtos do site. \cite{Menasce2002}
+		\\ 		
+		\hline
+		\textbf{YCSB} & \thereIs & \thereIs & \thereIs & \thereIs & com o objectivo de facilitar as comparações de desempenho da nova geração de sistemas de nuvem de dados. o YCSB é uma ferramenta que ela é extensível e suporta fácil definição de novas cargas de trabalho. \cite{Cooper2010}
+		\\ 
+		\hline
+	\end{longtable}
+\end{center}
+
+\subsection{\textit{Benchmarks} bem sucedidos}
