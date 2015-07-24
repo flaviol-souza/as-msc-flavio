@@ -5,9 +5,11 @@ Este capítulo elenca e oferece os conceitos fundamentais e importantes relacion
 
 Talvez uma das primeiras definições de um sistema dinâmico foi feito por \cite{tsonis1989} , que definiu como:
 
-\aspas{Em termos simples, é um sistema cuja evolução a partir de um estado inicial pode ser descrito por alguma regra(s). Estas regras são convenientemente expressas como equações matemáticas. A evolução de um tal sistema é melhor descrito pelo chamado espaço de estado.}
+\begin{citacao}
+	Em termos simples, é um sistema cuja evolução a partir de um estado inicial pode ser descrito por alguma regra(s). Estas regras são convenientemente expressas como equações matemáticas. A evolução de um tal sistema é melhor descrito pelo chamado espaço de estado.
+\end{citacao}
 
-Já a definição de \cite{willems2013} O adjetivo dinâmico refere-se a fenómenos com uma reação retardada, fenômenos com um efeito colateral, com transientes, oscilações, e, talvez, uma abordagem para o equilíbrio. Em suma, os fenómenos em que a evolução no tempo é uma das características fundamentais. Vemos um sistema dinâmico no contexto lógico de Definição 1.2.1 simplesmente como um modelo matemático, mas um modelo matemático em que os objectos de interesse são funções do tempo: o universum é um espaço de funções. Tomamos o ponto de ver que um sistema dinâmico constrange os sinais do tempo que o sistema pode conseguir produzir.
+Já a definição de \cite{willems2013} diz que o adjetivo dinâmico refere-se aos fenômenos com uma reação retardada, fenômenos com um efeito colateral, com transientes, oscilações, e, talvez, uma abordagem para o equilíbrio. Em suma, os fenômenos em questão é a evolução no tempo. Vemos um sistema dinâmico no contexto lógico de Definição 1.2.1 simplesmente como um modelo matemático, mas um modelo matemático em que os objectos de interesse são funções do tempo: o universum é um espaço de funções. Tomamos o ponto de ver que um sistema dinâmico constrange os sinais do tempo que o sistema pode conseguir produzir.
 
 
 Sistemas dinâmicos são objetos matemáticos usados para modelar fenômenos físicos cujo estado ou descrição instantânea muda com o tempo. Estes modelos são utilizados na previsão econômica e financeira, modelagem ambiental, diagnóstico médico, o diagnostico equipamento industrial, e uma série de outras aplicações \cite{Dean1991}.
@@ -46,7 +48,7 @@ Para \cite{Scheinerman1995} a dificuldade é que qualquer coisa que evolui ao lo
 É claro que é possível representar sistemas físicos (e.g. eletrônicos, químicos e biológicos), mas para fins didáticos e em geral, é comum utilizar de sistemas mecânicos e eventos rotineiros para exemplificar a dinâmica dos sistemas:
 
 \begin{description}
-	\item[Uma chaleira em aquecimento:] Imagine uma chaleira com água em um fogão convencional em contato a uma chama (tudo sob condições normais de temperatura e pressão), a água presente dentro da chaleira não saltará imediatamente para a temperatura final da chama, pelo contrário a água do recipiente mostra um aquecimento gradual. O mesmo ocorrerá, mas de maneira inversa, quando a chama do fogo for apagada, a temperatura na água não sofrerá uma queda brusca imediatamente mas, lentamente diminuirá até a temperatura ambiente.
+	\item[Uma chaleira em aquecimento:] Imagine uma chaleira com água em um fogão convencional em contato a uma chama (tudo sob condições normais de temperatura e pressão), a água presente dentro da chaleira não saltará imediatamente para a temperatura final da chama, pelo contrário, a água do recipiente mostra um aquecimento gradual. O mesmo ocorrerá, mas de maneira inversa, quando a chama do fogo for apagada, a temperatura da água não sofrerá uma queda brusca imediatamente mas, lentamente diminuirá até a temperatura ambiente.
 		
 		\begin{figure}[htb]
 			\caption{Dinâmica e comportamento da chaleira aquecendo}
@@ -56,7 +58,7 @@ Para \cite{Scheinerman1995} a dificuldade é que qualquer coisa que evolui ao lo
 			\fdireta{Janert2013}
 		\end{figure}
 	
-	 Neste caso da chaleira em aquecimento, o aumento e a constante temperatura da chama (enquanto o fogo ligado, fornecendo calor) representa a entra do sistema, como representado pela linha verde da figura \ref{fig:chaleira}, e o aquecimento da água representa o comportamento do sistema mediante a entrada, conforme demonstrado pela linha vermelha da figura \ref{fig:chaleira}. 
+	 Neste caso da chaleira em aquecimento, o aumento e a constante temperatura da chama (enquanto o fogo ligado, fornecendo calor) representa a entra do sistema, como indicado pela linha verde da figura \ref{fig:chaleira}, e o aquecimento da água representa o comportamento do sistema mediante a entrada, conforme demonstrado pela linha vermelha da figura \ref{fig:chaleira}. 
 	
 	\item[Uma massa em uma mola:] Agora considere uma massa, em repouso, suspensa por uma mola, também em repouso e fixa em uma superfície plana. Ao deslocarmos o peso tirando-o do repouso e soltarmos após o tencionamento da mola, a massa iniciará uma oscilação até o instante em que a massa e a mola voltarem ao equilíbrio inicial.	
 		\begin{figure}[htb]
@@ -70,30 +72,48 @@ Para \cite{Scheinerman1995} a dificuldade é que qualquer coisa que evolui ao lo
 	O deslocamento inicial (entrada do sistema), por nós provocados, é representado pela linha verde na figura \ref{fig:mola} e a oscilação subsequente em resposta à força aplicada é representado pela linha vermelha no mesma figura \ref{fig:mola}.
 \end{description}
 
-Os exemplos de sistemas dinâmicos, apresentados acima, e a sua resposta ao um estímulo externo, são comportamento comuns em sistemas de computacionais e este aspecto negligenciado em muitos sistemas, pois até agora os sistemas computacionais tem respondido de maneira imperceptível. Entretanto, os atuais sistemas computacionais tem tomado tamanha proporção que já não tem respondido imediatamente a uma entrada, apresentando assim a sua dinâmica \cite{Janert2013}, como provado pelo trabalho de \cite{Nobile2013}, que demonstra que as características dinâmicas de um ambiente de computação em nuvem de larga escala tem impacto apreciável no desempenho dos mecanismos de provisão de QoS.
+Os exemplos de sistemas dinâmicos, apresentados acima, e as suas respostas aos estímulos externos, são comportamento comuns em sistemas computacionais e estes aspectos são negligenciados em muitos sistemas, pois até então os sistemas computacionais tem-se comportado com uma dinâmica imperceptível aos usuários. Entretanto, os atuais sistemas computacionais tem tomado tamanha proporção que já não tem respondido imediatamente a uma oscilação na carga de entrada, apresentando características de dinâmica \cite{Janert2013}, como demonstrado pelo trabalho de \cite{Nobile2013}, que demonstra que as características dinâmicas de um ambiente de computação em nuvem de larga escala tem impacto apreciável no desempenho dos mecanismos de provisão de QoS.
+
 
 
 \subsection{Análise de Sistemas Dinâmicos}
 Segundo \cite{Janert2013}, a resposta de um sistema a uma perturbação externa muitas vezes consiste em um componente transiente, que desaparece ao longo do tempo, e um componente de estado estacionário. Como demonstrados na seção \ref{sec:semantica}, os componentes diluem no decorrer do tempo, caracterizando-os como transitórios. 
 
-Este conjunto de exemplos tem por objetivo mostrar a importância da avaliação de desempenho principalmente quando um sistema se encontra no regime transiente, pois podem influenciar diretamente no desempenho do sistema. Na avaliação de desempenho de sistemas computacionais é muito comum a irrelevância e o desprezado quando um sistema apresenta \newword{\textit{warm-up}}{período em que o sistema se encontra em regime transiente} principalmente quando a avaliação se concentra em analisar o regime estacionário do sistema. Sendo assim, medidas de interesse de regime transientes, como a amplitude máxima atingida pela resposta do sistema e o tempo de assentamento ou ajuste são interessantes para que se possa medir e analisar o comportamento do sistema \cite{Nobile2013}.
+Este conjunto de exemplos tem por objetivo mostrar a importância da avaliação de desempenho principalmente quando um sistema se encontra no regime transiente, pois podem influenciar diretamente no desempenho do sistema. Na avaliação de desempenho de sistemas computacionais é muito comum a irrelevância e o desprezo quando um sistema apresenta \newword{\textit{warm-up}}{período em que o sistema se encontra em regime transiente} principalmente quando a avaliação se concentra em analisar o regime estacionário do sistema. Sendo assim, medidas de interesse de regime transientes, como a amplitude máxima atingida pela resposta do sistema e o tempo de assentamento ou ajuste são interessantes para que se possa medir e analisar o comportamento do sistema \cite{Nobile2013}.
+
+\begin{figure}[!htb]
+	\caption{Sinais em tempo discreto comuns, parte 1}
+	\label{fig:funcoes1}
+	\centering
+	\includegraphics[scale=0.9]{funcoes1.pdf}
+	\fdireta{Hellerstein2004}
+\end{figure}
+
+Para que seja possível apreciar e apresentar a dinâmica de um sistema e realizar a analise transitória do sistema, é preciso utilizar cargas de trabalho que possam provocar comportamentos propícios, onde as caraterísticas dinâmicas do sistema sejam claramente observadas, em \cite{Hellerstein2004}, apresenta propostas de algumas funções, ou sinais, de perturbação, por exemplo: impulso, degrau, rampa, seno, exponencial, seno modulada por uma exponencial, etc.  Essas funções são apresentadas nas figuras \ref{fig:funcoes1} e \ref{fig:funcoes2}.
+
+
+\begin{figure}[!htb]
+	\caption{Sinais em tempo discreto comuns, parte 2}
+	\label{fig:funcoes2}
+	\centering
+	\includegraphics[scale=0.9]{funcoes2.pdf}
+	\fdireta{Hellerstein2004}
+\end{figure}
+
+Para a geração de carga para sistemas existem outras propostas que permitem simular um comportamento mais realística \cite{Mi2010, Mi2009,Mi2008}. Mais especificamente, em \cite{Menasce2002}, é apresentada uma outra metodologia para geração de cargas de trabalho que emulam o fenômeno aumento temporal em uma forma controlável. Por exemplo, é de grande interesse fornecer um mecanismo que permite o teste e avaliação do desempenho do sistema sob cargas de trabalho do tipo rajadas. Esta nova metodologia permite injetar quantidades diferentes de rajada dentro do fluxo de chegada utilizando o índice de dispersão. 
 
 \section{\textit{Benchmark}}
 \subsection{Definição de um \textit{benchmark}}
 \textit{Benchmarking} é o principal método para medir o desempenho de uma máquina ou sistema. O \textit{benchmarking} refere-se à execução de um conjunto de programas representativos em diferentes computadores e redes, medindo os resultados. Esses resultados são utilizados para avaliar o desempenho de um determinado sistema com uma carga de trabalho bem definida \cite{Menasce2001}.
 
-O \textit{benchmarking} pode ser visto como um modelo de identificação de oportunidades com o intuito de aumentar a competitividade em ambientes gradativamente turbulentos, assim teve seu surgimento a partir da década de 70 e, tornou-se importante devido às falhas dos métodos tradicionais de fixação de metas que algumas empresas americanas adotavam para enfrentar a concorrência externa, principalmente pelos produtos japoneses \cite{Camila2008}. Para \cite{Marco2012} \textit{benchmarks} são um padrão de ferramentas que permitem avaliar e comparar diferentes sistemas ou componentes de acordo com características especificas, tais como desempenho, confiabilidade e segurança. Segundo \cite{Folkerts2013} \textit{benchmarks} são ferramentas para responder a uma pergunta "Qual é o melhor sistema em um determinado domínio?" ou "Qual é o melhor processador?" ou ainda responde à pergunta "Qual é o melhor sistema de banco de dados para OLTP?". Para \cite{Folkerts2013}, a interpretação concreta do "qual o melhor" depende do objetivo do \textit{benchmarking}, e esta deve ser a primeira pergunta que a ser respondida na concepção de um novo \textit{benchmark}. 
+O \textit{benchmarking} pode ser visto como um modelo de identificação de oportunidades com o intuito de aumentar a competitividade em ambientes gradativamente turbulentos, assim teve seu surgimento a partir da década de 70 e, tornou-se importante devido às falhas dos métodos tradicionais de fixação de metas que algumas empresas americanas adotavam para enfrentar a concorrência externa, principalmente pelos produtos japoneses \cite{Camila2008}. Para \cite{Marco2012} \textit{benchmarks} são um padrão de ferramentas que permitem avaliar e comparar diferentes sistemas ou componentes de acordo com características especificas, tais como desempenho, confiabilidade e segurança. Segundo \cite{Folkerts2013} \textit{benchmarks} são ferramentas para responder a uma pergunta \textit{"Qual é o melhor sistema em um determinado domínio?"} ou  \textit{"Qual é o melhor processador?"} ou ainda responde à pergunta \textit{"Qual é o melhor sistema de banco de dados para OLTP?"}. Para \cite{Folkerts2013}, a interpretação concreta do  \textit{"qual o melhor"} depende do objetivo do \textit{benchmarking}, e esta deve ser a primeira pergunta a ser respondida na concepção de um novo \textit{benchmark}. 
 
 
-Segundo \cite{Stefan2010} a definição de um \textit{benchmarking} é o ato de medir e avaliar o desempenho computacional, sob condições de referência e em relação a uma avaliação de referência. O objetivo do \textit{benchmarking} é permitir a comparação equitativa por diferentes soluções, ou entre desenvolvimentos subsequentes de um sistema em teste (SUT - \textit{System }). Estas medidas incluem métricas principais de desempenho caracterizando o ambiente em que o SUT está hospedado.
+Segundo \cite{Stefan2010} a definição de um \textit{benchmarking} é o ato de medir e avaliar o desempenho computacional, sob condições de referência e em relação a uma avaliação de referência. O objetivo do \textit{benchmarking} é permitir a comparação equitativa por diferentes soluções, ou entre desenvolvimentos subsequentes de um sistema em teste (\sigla{SUT}{System Under Test}). Estas medidas incluem métricas principais de desempenho caracterizando o ambiente em que o SUT está hospedado.
 
-A \textit{Xerox Corporation} é geralmente creditado com o início dos primeiros projetos de avaliação de desempenho global, em 1979. Alertado por uma suspeita de que os custos de produção de máquinas fotocopiadoras foram significativamente mais elevados nos EUA do que no Japão, estas iniciativas \textit{benchmarking} foram utilizados pela Xerox para obter direitos quanto aos materiais, processos e métodos utilizados pelos japoneses). Uma aplicação das lições aprendidas através de \textit{benchmarking} permitiu a \textit{Xerox} aumentar a eficiência de design e produção, e, consequentemente, para reduzir os custos de fabricação de suas máquinas fotocopiadoras. Isto não só reforça a posição de competitiva da \textit{Xerox} no mercado, mas também levou ao desenvolvimento e evolução de uma nova ferramenta gerencial, conhecido como processo de \textit{benchmarking} \cite{Mahmoud2002}.
+A \textit{Xerox Corporation} é geralmente creditado com o início dos primeiros projetos de avaliação de desempenho global, em 1979. Alertado por uma suspeita de que os custos de produção de máquinas fotocopiadoras foram significativamente mais elevados nos EUA do que no Japão, estas iniciativas \textit{benchmarking} foram utilizados pela Xerox para obter direitos quanto aos materiais, processos e métodos utilizados pelos japoneses. Uma aplicação das lições aprendidas através de \textit{benchmarking} permitiu a \textit{Xerox} aumentar a eficiência de design e produção, e, consequentemente, para reduzir os custos de fabricação de suas máquinas fotocopiadoras. Isto não só reforça a posição de competitiva da \textit{Xerox} no mercado, mas também levou ao desenvolvimento e evolução de uma nova ferramenta gerencial, conhecido como processo de \textit{benchmarking} \cite{Mahmoud2002}.
 
-Benchmarks são ferramentas para responder a pergunta comum "Qual é o melhor sistema em um determinado domínio?". Por exemplo, o valor de referência SPECCpu [3] responde à pergunta "Qual é o melhor processador?", Eo benchmark TPC-C [4] responde à pergunta "Qual é o melhor sistema de banco de dados para OLTP?".
-A interpretação concreta do "melhor" depende do objetivo de benchmarking
-e é a primeira pergunta que deve ser respondida na concepção de um novo
-benchmark. Como uma abordagem sistemática para responder a esta pergunta, Florescu e Kossmann sugerir a olhar para as propriedades e limitações dos sistemas de ser aferido [5]. O número um propriedade tem que ser otimizada enquanto as propriedades de menor prioridade dar origem a restrições. A referência, portanto, pode ser visto como uma maneira de especificar essas prioridades e limitações de uma forma bem definida. A tarefa do benchmark, em seguida, é relatar o quão bem diferentes sistemas executar com respeito à prioridade otimizado sob as restrições dadas.
-Na prática, valores de referência são usados para auxiliar decisões sobre a estratégia de provisionamento mais econômica, bem como para obter insights sobre os gargalos de desempenho.
+No contexto de sistemas de simulação, \textit{benchmark} é um software capaz de gerar carga de trabalho a ser aplicada a um sistema computacional com o objetivo de gerar dados acerca de uma métrica de forma que seja possível medir e comparar o desempenho de sistemas sob observação. Para os fabricantes de novos produtos, um \textit{benchmark} pode fornecer informações estatísticas importantes para que eles possam ser ajustados antes da sua implantação. Por outro lado, para os usuários finais, permite ter um ponto de referência na comparação entre pontos fortes e fracos de diferentes produtos. \textit{Benchmarks} ajudam em estimativas de escalabilidade em termos do número de usuários e/ou operações que um sistema pode suportar, e os tempos de resposta do sistema sob várias cargas e plataformas de implantação em hardware/software \cite{Jutla1999}.
 
 \subsection{Propriedades de um bom \textit{benchmark}}
 O desenvolvimento de um bom \textit{benchmark} tem sido considerada uma "arte negra" por um longo tempo, devido a inumaras sutilezas que influenciam o sucesso do \textit{benchmark}. 
@@ -204,4 +224,146 @@ Afim de exemplificar, a tabela \ref{table:benchmarks} lista um conjunto de \text
 	\end{longtable}
 \end{center}
 
+\subsection{\textit{Benchmark} para Computação em Nuvem}
+\label{sec-benchmark-web}
+
+\textit{E-commerce}, que é uma loja virtual de comercio eletrônico, tem se tornado cada vez mais popular e ganhado cada vez mais concorrência com o desenvolvimento e expansão da Internet.O Bench4Q é um \textit{benchmarking} que segue a metodologia de \textit{e-commerce} orientado a QoS, providos de recursos que permitem a simulação de um ambiente controlavel e flexível. Além disso, o Bench4Q pode ser usado para avaliar o desempenho de escalabilidade do sistema.
+
+O trabalho \cite{cherkasova1998}, apresenta o conceito de sessão, que define uma sequencia de requisições de um único cliente. \cite{Krishnamurthy2006}, apresenta a dependência de sessões em sistemas \textit{e-commerce} e ressalta a importância de caracterizar a carga de trabalho sintética.
+
+Apesar do grande sucesso do \sigla{TPC-W}{\textit{Transaction Processing Performance Council - Web}} \footnote{TPC-W: \url{http://www.tpc.org/tpcw/}}, existe diversos trabalhos que apresentam métricas baseadas em sessões mais úteis do quais utilizadas pelo \textit{benchmark}. Ainda assim existe outro conjunto de trabalhos concentrado em como fazer TPC-W ser mais realístico. Em geral, essa obras tem inserido \textit{burstiness} na simulação de carga. O trabalho \cite{Mi2009} de Casale, incluiu o comportamento de \textit{burstiness}. Enquanto a obra \cite{Sobel2008}, busca adaptar o TPC-W para o ambiente em nuvem.
+
+Embora a grande diversidade dos trabalhos apresentados, o Bench4Q oferece uma solução integrada para \textit{e-commerce} sensíveis a QoS. Vale salientar que, não há nenhuma solução integrada as características, especialmente, a de encontrar qualquer extensão TPC-W sensível a QoS para \textit{e-commerce}. Contudo, existem trabalhos que abordam a modelagem de rajadas no processo de chegada da carga de trabalho imposta ao sistema \textit{e-commerce}. \cite{Casale2012}, apresenta o \sigla{BURN}{\textit{BURtiness eNabling method}}, uma metodologia para gerar rajadas customizáveis como demanda de carga de trabalho afim de avaliar o desempenho de um sistemas \textit{e-commerce}. A metodologia BURN é composta de duas políticas tradicional (que gera a carga de trabalho constante a mesma gerada pelo TPC-W) e a \textit{burst} (que insere as rajadas na carga de trabalho tradicional). Durante a execução do \textit{benchmark}, BURN aplica um stress na aplicação \textit{e-commerce} alternando as duas politicas. Tais trabalhos buscam avaliar o desempenho sistemas de multi-camadas (composto por um servidor de aplicação, base de dados, etc) que hospedem um \textit{e-commerce} como é o caso do Bench4Q.
+
+\section{O \textit{Becnhmark} Bench4Q}
+
+Sistemas de \textit{e-commerce} tem uma grande preocupação com os níveis de QoS, pois estão relacionados diretamente com os lucros do website. Atualmente a maioria dos \textit{e-commerce} são desenvolvido sensível a QoS. O Bench4Q é um \textit{benchmark} de um \textit{e-commerce} sensível a QoS.  Com o desenvolvimento da tecnologia Web, o TPC-W se tornou uma referência de \textit{e-commerce}, entretanto a implementação do TPC-W é insuficiente para \textit{e-commerce} sensíveis a QoS.
+
+A maioria dos \textit{benchamarks} de \textit{e-commerce}, incluindo o TPC-W, são limitados para os sistemas sensíveis a QoS. As métricas utilizadas são baseadas em requisições \sigla{HTTP}{\textit{Hypertext Transfer Protocol}}, como a taxa de requisições atendidas com sucesso ou o tempo de resposta das requisições. Embora uma das características mais críticas de um sistema de \textit{e-commerce} sensíveis a QoS seja a integralidade do serviço prestado aos clientes, as métricas baseada em requisições podem levar a afirmações ineficientes e até mesmo erradas.
+
+O Bench4q é uma extensão do TPC-W \cite{Menasce2002}, e tem como objetivo o \textit{tuning} de servidores \textit{e-commerce} orientados a fornecer QoS aos seus clientes. As principais características do Bench4Q incluem: 
+apoio à análise de métricas baseada em sessão que simula carga sensível a QoS para uma análise da capacidade. 
+
+O \textit{benchmark} Bench4Q, é distribuído de acordo com a \sigla{GNU}{\textit{ Lesser General Public License}}, sendo um software livre ele pode ser redistribuído e/ou modificado sob os termos da licença publicas pela \textit{Free Software Foundation}. Seguindo muitas diretrizes da especificação TPC-W, o Bench4Q usa principalmente nas suas métricas de simulação de carga e garantia de QoS \cite{Bench4Q}. 
+
+
+
+
+\subsection{Arquitetura do Bench4Q}
+
+O Bench4Q oferece uma arquitetura distribuída para a geração de carga através de seus agentes que são conectados a um único console que os gerencia, entretanto é possível configurar separadamente as configurações para cada agente. Esses agentes geram carga (requisições HTTP) para o servidor de aplicação onde esta hospedado o \textit{e-commerce} como ilustrado na figura \ref{fig:arquitetura-bench4q}. Os resultados da avaliação de carga aplicada ao \textit{e-commerce} são coletados pelo console que apresenta alguns gráficos, que facilita a interpretação da avaliação mediante as diretrizes do TPC-W que são complexas \cite{Bench4Q}.
+
+A ferramenta é composta por três partes: Console, Agente e SUT, conforme apresenta a figura \ref{fig:arquitetura-bench4q}, e também disponibiliza interfaces para o monitoramento de recursos para o servidor de aplicação e para o banco de dados, este monitoramento incluem CPU, memória, rede, etc.
+
+
+\begin{figure}[htb]
+	\caption{Arquitetura Bench4Q}
+	\label{fig:arquitetura-bench4q}
+	\centering
+	\includegraphics[scale=0.4]{bench4Q.png}
+	\fdireta{Bench4Q}
+\end{figure}
+
+\begin{itemize}
+	
+	\item \textbf{Console:} A figura \ref{fig:console-bench4q} apresenta a interface do console, onde configura-se o teste, coleta e exibe os resultados. 
+	
+	\begin{figure}[!htb]
+		\caption{Console Bench4Q}
+		\label{fig:console-bench4q}
+		\centering
+		\includegraphics[scale=0.6]{console-bench4Q.png}
+		\fdireta{Bench4Q}	
+	\end{figure}
+	
+	\item \textbf{Agente:} É este que faz o trabalho real, pois gera a carga configura no console. Simula o comportamento dos usuários no \textit{website}, disparando diversas requisições para o \textit{e-commerce}. 
+	
+	\item \textbf{SUT:} O \textit{e-commerce} SUT (\textit{System Under Test}), conforme apresentado na figura \ref{fig:sut},  é quem fornece o website de compras e está organizado com um banco de dados, servidor web e servidor de aplicativos. O portal compreende todos os componentes que fazem parte de uma aplicação real, isso inclui as conexões de rede, servidores web, servidores de aplicação, servidores de banco de dados, etc.
+	
+	\begin{figure}[htb]
+		\caption{Bench4Q SUT}
+		\label{fig:sut}
+		\centering
+		\includegraphics[scale=0.51]{sut.png}
+		\fdireta{Bench4Q}
+	\end{figure}
+	
+\end{itemize}
+
+
+%\subsection{Bechmarks para computação em nuvem}
+\subsection{Características do Bench4q}
+\label{cap:caracteristicas-bench4q}
+
+
+De uma maneira mais especifica, percebe-se que os \textit{benchmarks} para aplicações computacionais típicas de computação em nuvem, como \textit{e-commerce}, por exemplo, não são atualmente orientados a suportar totalmente QoS, porque alguns recursos de QoS críticos não podem avaliados por eles \cite{Zhang2011}. Um exemplo desses recursos é a integralidade do serviço, que é geralmente expressa como uma sessão fornecido aos clientes. Nesse sentido o Bench4Q tenta abranger essa lacuna.
+
+
+O TPC-W, estendido pelo Bench4Q, é (mesmo atualmente tido como obsoleto) um \textit{ benchmark} direcionado a \textit{sites} de \textit{e-commerce} transacionais em que os consumidores são vinculados a sessões, cada cliente possui sua própria e única sessão em determinado instervalo de tempo. Trata-se de um site de venda de livros implementado em Java e hospedado em um servidor de aplicação Tomcat \footnote{Tomcat: \url{http://tomcat.apache.org/}}. Clientes, intitulados pela ferramenta como \textit{browsers}, são emulados e se comportam como consumidores dos produtos oferecidos pela loja virtual. Basicamente, os clientes podem interagir de diferentes formas: acessar a página inicial do \textit{site} (home), navegar e procurar por produtos, realizar operações que envolvam o carrinho de compras e finalizar uma compra. A carga de trabalho gerada pelo TPC-W pode ser representada por um \sigla{CBMG}{\textit{Customer Behavior Model Graph}}, um grafo orientado, em que os nós representam uma operação a ser realizada (procurar, navegar, comprar etc.) e os pesos nas arestas significam a probabilidade de transição de uma operação para outra \cite{Zhang2011}. A Figura \ref{fig:CBMG} modela o fluxo de requisições a páginas e operações que um cliente pode realizar em uma sessão, basicamente um comportamento estocástico de acesso às páginas.
+
+\begin{figure}[htb]
+	\caption{CBMG - perfil de navegação dos \textit{brwosers} do Bench4Q}
+	\label{fig:CBMG}
+	\centering
+	\includegraphics[scale=0.6]{CBMG.pdf}
+	\fdireta{}
+\end{figure}
+
+
+A carga de trabalho gerada pelo TPC-W é formada por um CBMG com 14 tipos de interação \textit{web} e três perfis de pesos para suas arestas. O resultado é uma carga em que a maioria dos clientes apenas navega nas páginas (navegação: $95\%$ e compra: $5\%$); outra em que a maioria dos clientes realiza compras de forma moderada (navegação: $80\%$ e compra: $20\%$); e a terceira composta por muitos clientes que finalizam as compras (navegação: $50\%$ e compra: $50\%$). Vale ressaltar que existe um atraso entre as requisições de uma sessão. Ao iniciar uma sessão uma requisição é disparada e após receber a respectiva resposta, a próxima requisição acontece após um tempo também estocásticos e variante. Essa especificação tem o objetivo de emular melhor o comportamento humano ao acessar \textit{sites} de \textit{ e-commerce}.
+
+Ao ser implantado em uma infraestrutura computacional que hospede todos seus componentes, os clientes emulados devem estar localizados fora de tal infraestrutura e conectados por uma rede. Os clientes começam as séries de requisições. O TPC-W implementa um modo de geração de carga conhecido como fechado (\textit{close mode}): um novo cliente chega somente após o antigo deixar o sistema \cite{Zhang2011}. As métricas disponíveis concernem basicamente sobre a quantidade de interações \textit{web}, medidas em quantidade por segundo (\sigla{WIPS}{\textit{ Web Interaction Per Second}}) e seu tempo de resposta (\sigla{WIRT}{\textit{Web Interaction Response Time}}).
+
+A motivação para a extenção do TPC-W e criação do Bench4Q começa porque, muito embora, as referidas métricas aparentem descrever bem a quantidade de acessos ao sistema, a qualidade do serviço experimentada pelo usuário pode ser desproporcional a essas mesmas métricas. Em \cite{bench4qslides} é descrito um ensaio que contempla dois cenários diferentes: um normal e outro otimizado não realisticamente. A otimização foi feita pela configuração de parâmetros no servidor Tomcat, a saber: \texttt{sessionTimeout}, \texttt{connectionTimeout} e \texttt{acceptCount}. Um das características da aplicação é a presença de operações \textit{ IO-bound}, por consequência, observar o tempo médio de resposta dessas operações permite diminuir os valores de estouro de tempo, e, com isso, forçar uma taxa de utilização de CPU. Assim, pode-se ``otimizar'' o ambiente da aplicação. Os resultados foram de $WIPS = 131$ para o cenário normal e $WIPS=199$ para aquele otimizado não realisticamente, colaborando com a hipótese. Porém, ao observar a quantidade de sessões completadas com sucesso, conforme apresentado na figura \ref{fig:seeing}, percebe-se que o cenário normal permitiu uma quantidade de erros menor do que aquele otimizado não realisticamente. Por consequência, uma espectativa de lucro maior quando da implantação: maior quantidade de sessões realizadas sem error implicaria em maior probabilidade de compras efetivas.
+
+\begin{figure}[htb]
+	\caption{Comparação da quantidade de requisições completadas com sucesso entre dois cenários: normal e otimizado não realisticamente.}
+	\label{fig:seeing}
+	\centering
+	\includegraphics[scale=0.45]{seeing.png}
+	\fdireta{Bench4Q}
+\end{figure}
+
+
+Tanto o TPC-W quando Bench4Q tem como objetivo produzir resultados que possibilitem o \textit{tuning} (sintonia do parâmetros) de servidores que compõem serviços de \textit{e-commerce} orientados a fornecer QoS aos seus clientes \cite{Menasce2002, Zhang2011}.  A ideia principal é que seja construída uma banca de testes (\textit{testbed}), haja a execução do \textit{ benchmark} e consecutiva geração dos traços de execução, seja feita a extração dos dados e, por fim, com base nos resultados, melhores valores para os parâmetros de configuração do sistema sejam aplicados. Especificamente sobre o Bench4Q, as principais funcionalidade implementadas nele tem como contexto a observância do estado das sesões.
+%}
+
+%Neste capítulo será apresentado o \textit{benchmark} Bench4q que foi desenvolvido pelo \textit{Technology Center of Software Engineering} da \textit{Chinese Academy of Sciences} no \textit{Institute of Software}.
+O \textit{ e-commerce} é um modelo de negócio bastante comum e possível principalmente por sua implantação em ambiente \textit{ web}, orientado a negociação de bens e serviços. Igualmente como o que acontece na forma tradicional de negociação, disputas por clientes e/ou fatias de mecardo surgem naturalmente, como podem ser observadas em promoções, ofertas, lançamentos de novos produtos etc. Portanto, um \textit{ website} alinhado a esses requisitos que proporcionem um desempenho melhor, ou seja, que possibilidade uma experiência melhor a seus usuários, certamente já começa melhor. Nesse sentido, o desempenho da infraestrutura que hospedará o negócio e o ajuste fino dos parâmetros operacionais da solução de \textit{ e-commerce} podem ser encarados como requisitos não-funcionais. Assim, seria possível realizar avaliações de desempenho que fomentem o projeto de tais sistemas cujo resultado sejam sistemas mais eficientes, mesmo que sejam abstraídas algumas regras específicas do negócio a ser implementado. O Bench4Q é uma ferramenta que possibilita tais projetos.
+
+\subsection{Geração de carga}
+
+A oscilação da carga de trabalho é uma característica fundamental. A simultaneidade dos acessos apresentam grandes efeitos sobre a escolha da política de ajuste de um servidor, o Bench4Q simular tal oscilação de carga atrás de seus agentes com os seguintes parâmetros:
+
+\begin{itemize}
+	\item \textit{Base Load:} Quantia fixa de \textit{threads} por agentes.
+	\item \textit{Radom Load:} Quantidade de \textit{threads} que são geradas aleatoriamente.
+	\item \textit{Rate:} O \textit{rate} (taxa de mudanças de carga), pode ser positivo, negativo ou nulo. Positivo significa que a carga de base está aumentando a cada segundo, se negativa significa que a carga de base está diminuindo a cada segundo e enquanto a taxa é zero, a carga é fixa.
+	\item \textit{Trigger Time:} O tempo para o agente de carga para começar a gerar sua carga.
+	\item \textit{Duration:} O tempo de execução do agente de carga.
+\end{itemize}
+
+As composições as cargas simuladas por diversos agentes, podem gerar as seguintes flutuações de carga típicas de empresas B2C podem ser simulados.
+
+\begin{figure}[htb]
+	\caption{Carga de trabalho gerada pelo Bench4Q}
+	\label{fig:carga-gerada}
+	\centering
+	\includegraphics[scale=0.5]{load_fluctuation.png}
+	\fdireta{Bench4Q}
+\end{figure}
+
+
+Existe dois modos de simulação de carga, o fechado e o aberto, conforme apresentado na figura \ref{fig:type-session}. No modo fechado, ilustrado na figura \ref{fig:type-session} (a), um novo cliente só acessará depois de cliente antigo deixar o sistema. Já o modo aberto, ilustrado na figura \ref{fig:type-session} (b), novos clientes vão acessar o sistemas sem se importa  com a saída dos antigos clientes. O TPC- W simula carga no modo fechado, o que faz uma suposição inexistente do mundo real \cite{Bench4Q}. 
+
+\begin{figure}[htb]
+	\caption{Tipo de sessões Bench4Q}
+	\label{fig:type-session}
+	\centering
+	\includegraphics[scale=0.6]{type_session.png}
+	\fdireta{Bench4Q}	
+\end{figure}
+
+
+Em sistemas baseados em sessões reais, como a proposta deste projeto, os clientes vêm com base em um modo aberto. Em sua utilização neste projeto, a sessão aberta é a que mais se adéqua a finalidade do objetivo proposto pelo trabalho.
 

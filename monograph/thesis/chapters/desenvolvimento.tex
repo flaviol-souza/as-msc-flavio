@@ -1,3 +1,16 @@
+\section{Arquitetura do Sistema}
+\subsection{Extensão do  \textit{becnhmark}}
+\subsection{A Arquitetura}
+\subsection{A Arquitetura}
+
+\section{Experimentos}
+\subsection{Planejamento de Experimentos}
+\subsection{Avaliação de desempenho em regime transiente}
+
+
+
+
+
 Para iniciar o desenvolvimento de extensão do Bench4Q, iniciamos por trabalhar com uma versão completa da implementação do \textit{benchmark} Bench4Q \textbf{(adicionar link de download da ferramenta)}
 ----------------------------
 
@@ -44,175 +57,6 @@ As seções a seguir mostram como estas questões podem ser respondidas por meio
 
 %Embora bastante sofisticado, o Bench4Q é primariamente um \emph{benchmark} para avaliação de desempenho em regime estacionário, uma vez que funciona a com base na pre-configuração da carga de trabalho \emph{off-line}.  A partir do início da simulação, a carga de trabalho é iniciada com as características estocásticas predeterminadas e permanece inalterada até o final do ensaio.  Não existem provisões para a introdução de perturbações controladas durante o processo, não propiciando facilidades para a exposição das propriedades dinâmicas da planta e registro dos efeitos transientes decorrentes de variações bruscas na carga --- o que é um ponto importante do sistema de controle proposto por  \citet{Nobile2013}.
 
-\section{O \textit{Becnhmark}}
-
-Sistemas de \textit{e-commerce} tem uma grande preocupação com os níveis de QoS, pois estão relacionados diretamente com os lucros do website. Atualmente a maioria dos \textit{e-commerce} são desenvolvido sensível a QoS. O Bench4Q é um \textit{benchmark} de um \textit{e-commerce} sensível a QoS.  Com o desenvolvimento da tecnologia Web, o TPC-W se tornou uma referência de \textit{e-commerce}, entretanto a implementação do TPC-W é insuficiente para \textit{e-commerce} sensíveis a QoS.
-
-A maioria dos \textit{benchamarks} de \textit{e-commerce}, incluindo o TPC-W, são limitados para os sistemas sensíveis a QoS. As métricas utilizadas são baseadas em requisições HTTP, como a taxa de requisições atendidas com sucesso ou o tempo de resposta das requisições. Embora uma das características mais críticas de um sistema de \textit{e-commerce} sensíveis a QoS seja a integralidade do serviço prestado aos clientes, as métricas baseada em requisições podem levar a afinações ineficientes ou até mesmo erradas.
-
-
-O Bench4q e é uma extensão do TPC-W (\textit{Transaction Processing Performance Council - Web})
-\cite{Menasce2002}, O Bench4q tem como objetivo o \textit{tuning} de servidores \textit{e-commerce} orientados a fornecer QoS aos seus clientes. As principais características do Bench4Q incluem: 
-apoio à análise de métricas baseada em sessão que simula carga sensível a QoS para uma análise da capacidade. 
-
-O \textit{benchmark} Bench4Q, é distribuído de acordo com a \textit{GNU Lesser General Public License}, sendo um software livre ele pode ser redistribuído e/ou modificado sob os termos da licença publicas pela \textit{Free Software Foundation}. Seguindo muitas diretrizes da especificação TPC-W (\textit{Transaction Processing Performance Council - Web}), o Bench4Q usa principalmente nas suas métricas de simulação de carga e garantia de \textit{QoS} \cite{Bench4Q}. 
-
-\textit{E-commerce}, que é uma loja virtual de comercio eletrônico, tem se tornado cada vez mais popular e ganhado cada vez mais concorrência com o desenvolvimento e expansão da Internet.vO Bench4Q é um \textit{benchmarking} que segue a metodologia de \textit{e-commerce} orientado a QoS, providos de recursos que permitem a simulação de um ambiente controlavel e flexível. Além disso, o Bench4Q pode ser usado para avaliar o desempenho de escalabilidade do sistema.
-
-O trabalho \cite{cherkasova1998}, apresenta o conceito de sessão, que define uma sequencia de requisições de um único cliente. Krishnamurthy \cite{Krishnamurthy2006}, apresenta a dependência de sessões em sistemas \textit{e-commerce} e ressalta a importância de caracterizar a carga de trabalho sintética.
-
-Apesar do grande sucesso do TPC-W, existe diversos trabalhos que apresentam métricas baseadas em sessões mais úteis do quais utilizadas pelo TPC-W. Ainda assim existe outro conjunto de trabalhos concentrado em como fazer TPC-W ser mais realístico. Em geral, essa obras tem inserido \textit{burstiness} na simulação de carga. O trabalho \cite{Mi2009} de Casale, incluiu o comportamento de \textit{burstiness}. Enquanto a obra \textbf{\cite{Sobel2008}}, busca adaptar o TPC-W para o ambiente em nuvem.
-
-Embora a grande diversidade dos trabalhos apresentados, o Bench4Q oferece uma solução integrada para \textit{e-commerce} sensíveis a QoS. Vale salientar que, não há nenhuma solução integrada as características, especialmente, a de encontrar qualquer extensão TPC-W sensível a QoS para \textit{e-commerce}. Contudo, existem trabalhos que abordam a modelagem de rajadas no processo de chegada da carga de trabalho imposta ao sistema \textit{e-commerce}. Casale em \cite{Casale2012}, apresenta o BURN (\textit{BURtiness eNabling method}), uma metodologia para gerar rajadas customizáveis como demanda de carga de trabalho afim de avaliar o desempenho de um sistemas \textit{e-commerce}. A metodologia BURN é composta de duas políticas \textit{tradicional} (que gera a carga de trabalho constante a mesma gerada pelo TPC-W) e a \textit{burst} (que insere as rajadas na carga de trabalho tradicional). Durante a execução do \textit{benchmark}, BURN aplica um stress na aplicação \textit{e-commerce} alternando as duas politicas. Tais trabalhos buscam avaliar o desempenho sistemas de multi-camadas (composto por um servidor de aplicação, base de dados, etc) que hospedem um \textit{e-commerce} como é o caso do Bench4Q.
-
-\subsection{Arquitetura}
-
-
-O Bench4Q oferece uma arquitetura distribuída para a geração de carga através de seus agentes que são conectados a um único console que os gerencia, entretanto é possível configurar separadamente as configurações para cada agente. Esses agentes geram carga (requisições HTTP) para o servidor de aplicação onde esta hospedado o \textit{e-commerce} como ilustrado na figura \ref{fig:arquitetura-bench4q}. Os resultados da avaliação de carga aplicada ao \textit{e-commerce} são coletados pelo console que apresenta alguns gráficos, que facilita a interpretação da avaliação mediante as diretrizes do TPC-W que são complexas \cite{Bench4Q}.
-
-A ferramenta é composta por três partes: Console, Agente e SUT-System Under Test, conforme apresenta a figura \ref{fig:arquitetura-bench4q}, e também disponibiliza interfaces para o monitoramento de recursos para o servidor de aplicação e para o banco de dados, este monitoramento incluem CPU, memória, rede, etc.
-
-\begin{figure}[htb]
-	\caption{Comportamento de métrica transiente}
-	\label{fig:arquitetura-bench4q}
-	\centering
-	\includegraphics[scale=0.3]{bench4Q.png}
-	\fdireta{Bench4Q}
-\end{figure}
-
-\begin{itemize}
-	
-	\item \textbf{Console:} A figura \ref{fig:console-bench4q} apresenta a interface do console, onde configura-se o teste, coleta e exibe os resultados. 
-	
-	\begin{figure}[htb]
-		\caption{Console Bench4Q}
-		\label{fig:console-bench4q}
-		\centering
-		\includegraphics[scale=0.5]{console-bench4Q.png}
-		\fdireta{Bench4Q}	
-	\end{figure}
-	
-	\item \textbf{Agente:} É este que faz o trabalho real, pois gera a carga configura no console. Simula o comportamento dos usuários no \textit{website}, disparando diversas requisições para o \textit{e-commerce}. 
-	
-	\item \textbf{SUT:} O \textit{e-commerce} SUT (\textit{System Under Test}), conforme apresentado na figura \ref{fig:sut},  é quem fornece o website de compras e está organizado com um banco de dados, servidor web e servidor de aplicativos. O portal compreende todos os componentes que fazem parte de uma aplicação real, isso inclui as conexões de rede, servidores web, servidores de aplicação, servidores de banco de dados, etc.
-	
-	\begin{figure}[htb]
-		\caption{Bench4Q SUT}
-		\label{fig:sut}
-		\centering
-		\includegraphics[scale=0.51]{sut.png}
-		\fdireta{Bench4Q}
-	\end{figure}
-	
-\end{itemize}
-
-
-%\subsection{Bechmarks para computação em nuvem}
-\subsection{Características do Bench4q}
-\label{cap:caracteristicas-bench4q}
-%\textcolor{blue}{
-No contexto de sistemas de simulação, \textit{benchmark} é um software capaz de gerar carga de trabalho a ser aplicada a um sistema computacional com o objetivo de gerar dados acerca de uma métrica de forma que seja possível medir e comparar o desempenho de sistemas sob observação. Para os fabricantes de novos produtos, um \textit{benchmark} pode fornecer informações estatísticas importantes para que eles possam ser ajustados antes da sua implantação. Por outro lado, para os usuários finais, permite ter um ponto de referência na comparação entre pontos fortes e fracos de diferentes produtos. \textit{Benchmarks} ajudam em estimativas de escalabilidade em termos do número de usuários e/ou operações que um sistema pode suportar, e os tempos de resposta do sistema sob várias cargas e plataformas de implantação em hardware/software \cite{Jutla1999}.
-%}
-
-%edwin   
-%\textcolor{blue}{
-De uma maneira mais especifica, percebe-se que os \textit{benchmarks} para aplicações computacionais típicas de computação em nuvem, como \textit{e-commerce}, por exemplo, não são autalmente orientados a suportar totalmente QoS, porque alguns recursos de QoS críticos não podem avaliados por eles \cite{Zhang2011}. Um exemplo desses recursos é a integralidade do serviço, que é geralmente expressa como uma sessão fornecido aos clientes. Nesse sentido o Bench4Q tenta abranger essa lacuna.
-%} 
-
-
-O TPC-W (\textit{Transaction Processing Performance Council - Web} \footnote{TPC-W: \url{http://www.tpc.org/tpcw/}}), estendido pelo Bench4Q, é (mesmo atualmente tido como obsoleto) um \textit{ benchmark} direcionado a \textit{sites} de \textit{e-commerce} transacionais em que os consumidores são vinculados a sessões, cada cliente possui sua própria e única sessão em determinado instervalo de tempo. Trata-se de um site de venda de livros implementado em Java e hospedado em um servidor de aplicação Tomcat \footnote{Tomcat: \url{http://tomcat.apache.org/}}. Clientes (\textit{ browsers}) são emulados e se comportam como consumidores dos produtos oferecidos pela loja. Basicamente, os clientes podem interagir de diferentes formas: acessar a página inicial do \textit{ site}, navegar e procurar por produtos, realizar operações que envolvam o carrinho de compras e finalizar uma compra. A carga de trabalho gerada pelo TPC-W pode ser representada por um \textit{Customer Behavior Model Graph} --- CBMG, um grafo orientado, em que os nós representam uma operação a ser realizada (procurar, navegar, comprar etc.) e os pesos nas arestas significam a probabilidade de transição de uma operação para outra \cite{Zhang2011}. A Figura \ref{fig:CBMG} modela o fluxo de requisições a páginas e operações que um cliente pode realizar em uma sessão, basicamente um comportamento estocástico de acesso às páginas.
-
-\begin{figure}[htb]
-	\caption{CBMG - perfil interação estocástico}
-	\label{fig:CBMG}
-	\centering
-	\includegraphics[scale=0.55]{CBMG.pdf}
-	\fdireta{}
-\end{figure}
-
-
-A carga de trabalho gerada pelo TPC-W é formada por um CBMG com 14 tipos de interação \textit{web} e três perfis de pesos para suas arestas. O resultado é uma carga em que a maioria dos clientes apenas navega nas páginas (navegação: $95\%$ e compra: $5\%$); outra em que a maioria dos clientes realiza compras de forma moderada (navegação: $80\%$ e compra: $20\%$); e a terceira composta por muitos clientes que finalizam as compras (navegação: $50\%$ e compra: $50\%$). 
-
-Vale ressaltar que existe um atraso entre as requisições de uma sessão. Ao iniciar uma sessão uma requisição é disparada e após receber a respectiva resposta, a próxima requisição acontece após um tempo também estocásticos e variante. Essa especificação tem o objetivo de emular melhor o comportamento humano ao acessar \textit{sites} de \textit{ e-commerce}.
-
-Ao ser implantado em uma infraestrutura computacional que hospede todos seus componentes, os clientes emulados devem estar localizados fora de tal infraestrutura e conectados por uma rede. Os clientes começam as séries de requisições. O TPC-W implementa um modo de geração de carga conhecido como fechado (\textit{close mode}): um novo cliente chega somente após o antigo deixar o sistema \cite{Zhang2011}. As {\textbf métricas disponíveis} concernem basicamente sobre a quantidade de interações \textit{web}, sejam elas medidas em quantidade por segundo (\textit{ Web Interaction Per Second} --- WIPS) ou seu tempo de resposta (\textit{ Web Interaction Response Time} --- WIRT).
-
-A motivação para a extenção do TPC-W e criação do Bench4Q começa porque, muito embora, as referidas métricas aparentem descrever bem a quantidade de acessos ao sistema, a qualidade do serviço experimentada pelo usuário pode ser desproporcional a essas mesmas métricas. Em \cite{bench4qslides} é descrito um ensaio que contempla dois cenários diferentes: um normal e outro otimizado não realisticamente. A otimização foi feita pela configuração de parâmetros no servidor Tomcat, a saber: {\texttt sessionTimeout}, {\texttt connectionTimeout} e {\texttt acceptCount}. Um das características da aplicação é a presença de operações \textit{ IO-bound}, por consequência, observar o tempo médio de resposta dessas operações permite diminuir os valores de estouro de tempo, e, com isso, forçar uma taxa de utilização de CPU. Assim, pode-se ``otimizar'' o ambiente da aplicação. Os resultados foram de $WIPS = 131$ para o cenário normal e $WIPS=199$ para aquele otimizado não realisticamente, corroborando com a hipótese. Porém, ao observar a quantidade de sessões completadas com sucesso (Figura \ref{fig:seeing}), percebe-se que o cenário normal permitiu uma quantidade de erros menor do que aquele otimizado não realisticamente. Por consequência, uma espectativa de lucro maior quando da implantação: maior quantidade de sessões realizadas sem error implicaria em maior probalidade de compras efetivas.
-
-\begin{figure}[htb]
-	\caption{Comparação da quantidade de requisições completadas com sucesso entre dois cenários: normal e otimizado não realisticamente.}
-	\label{fig:seeing}
-	\centering
-	\includegraphics[scale=0.45]{seeing.png}
-	\fdireta{Bench4Q}
-\end{figure}
-
-
-Tanto o TPC-W quando Bench4Q tem como objetivo produzir resultados que possibilitem o \textit{tuning} (sintonia do parâmetros) de servidores que compõem serviços de \textit{e-commerce} orientados a fornecer QoS aos seus clientes \cite{Menasce2002, Zhang2011}.  A ideia principal é que seja construída uma banca de testes (\textit{ testbed}), haja a execução do \textit{ benchmark} e consecutiva geração dos traços de execução, seja feita a extração dos dados e, por fim, com base nos resultados, melhores valores para os parâmetros de configuração do sistema sejam aplicados. Especificamente sobre o Bench4Q, as principais funcionalidade implementadas nele tem como contexto a observância do estado das sesões.
-%}
-
-%Neste capítulo será apresentado o \textit{benchmark} Bench4q que foi desenvolvido pelo \textit{Technology Center of Software Engineering} da \textit{Chinese Academy of Sciences} no \textit{Institute of Software}.
-O \textit{ e-commerce} é um modelo de negócio bastante comum e possível principalmente por sua implantação em ambiente \textit{ web}, orientado a negociação de bens e serviços. Igualmente como o que acontece na forma tradicional de negociação, disputas por clientes e/ou fatias de mecardo surgem naturalmente, como podem ser observadas em promoções, ofertas, lançamentos de novos produtos etc. Portanto, um \textit{ website} alinhado a esses requisitos que proporcionem um desempenho melhor, ou seja, que possibilidade uma experiência melhor a seus usuários, certamente já começa melhor. Nesse sentido, o desempenho da infraestrutura que hospedará o negócio e o ajuste fino dos parâmetros operacionais da solução de \textit{ e-commerce} podem ser encarados como requisitos não-funcionais. Assim, seria possível realizar avaliações de desempenho que fomentem o projeto de tais sistemas cujo resultado sejam sistemas mais eficientes, mesmo que sejam abstraídas algumas regras específicas do negócio a ser implementado. O Bench4Q é uma ferramenta que possibilita tais projetos.
-%\textit{E-commerce} (que é um \textit{website} com o proposito de vender bens como serviço) tem ganhado consideravelmente muitos adeptos a comercialização por este meio. Atualmente, existe uma competição entre \textit{e-commerces}, com promoções, ofertas e lançamento de novos produtos, assim como nas lojas físicas. O \textit{benchmark} Bench4Q, é uma ferramenta que disponibiliza uma estrutura de um comércio eletrônico para um ambiente controlável e flexível com a geração de carga de trabalho (baseada em sessão) que simula o comportamento autêntico de um usuário.
-
-%\subsection{Características do Bench4q}
-
-Sistemas de \textit{e-commerce} tem uma grande preocupação com os níveis de QoS, pois estão relacionados diretamente com os lucros do website. Atualmente a maioria dos \textit{e-commerce} são desenvolvido sensível a QoS. O Bench4Q é um \textit{benchmark} de um \textit{e-commerce} sensível a QoS.  Com o desenvolvimento da tecnologia Web, o TPC-W se tornou uma referência de \textit{e-commerce}, entretanto a implementação do TPC-W é insuficiente para \textit{e-commerce} sensíveis a QoS.
-
-A maioria dos \textit{benchamarks} de \textit{e-commerce}, incluindo o TPC-W, são limitados para os sistemas sensíveis a QoS. As métricas utilizadas são baseadas em requisições HTTP, como a taxa de requisições atendidas com sucesso ou o tempo de resposta das requisições. Embora uma das características mais críticas de um sistema de \textit{e-commerce} sensíveis a QoS seja a integralidade do serviço prestado aos clientes, as métricas baseada em requisições podem levar a afinações ineficientes ou até mesmo erradas.
-
-
-O Bench4q e é uma extensão do TPC-W (\textit{Transaction Processing Performance Council - Web})
-\cite{Menasce2002}, O Bench4q tem como objetivo o \textit{tuning} de servidores \textit{e-commerce} orientados a fornecer QoS aos seus clientes. As principais características do Bench4Q incluem: 
-apoio à análise de métricas baseada em sessão que simula carga sensível a QoS para uma análise da capacidade. 
-
-O \textit{benchmark} Bench4Q, é distribuído de acordo com a \textit{GNU Lesser General Public License}, sendo um software livre ele pode ser redistribuído e/ou modificado sob os termos da licença publicas pela \textit{Free Software Foundation}. Seguindo muitas diretrizes da especificação TPC-W (\textit{Transaction Processing Performance Council - Web}), o Bench4Q usa principalmente nas suas métricas de simulação de carga e garantia de \textit{QoS} \cite{Bench4Q}. 
-
-\textit{E-commerce}, que é uma loja virtual de comercio eletrônico, tem se tornado cada vez mais popular e ganhado cada vez mais concorrência com o desenvolvimento e expansão da Internet.vO Bench4Q é um \textit{benchmarking} que segue a metodologia de \textit{e-commerce} orientado a QoS, providos de recursos que permitem a simulação de um ambiente controlavel e flexível. Além disso, o Bench4Q pode ser usado para avaliar o desempenho de escalabilidade do sistema.
-
-%\subsection{Capacidades, limitações e evoluções do Bench4q}
-
-O trabalho \cite{cherkasova1998}, apresenta o conceito de sessão, que define uma sequencia de requisições de um único cliente. Krishnamurthy \cite{Krishnamurthy2006}, apresenta a dependência de sessões em sistemas \textit{e-commerce} e ressalta a importância de caracterizar a carga de trabalho sintética.
-
-Apesar do grande sucesso do TPC-W, existe diversos trabalhos que apresentam métricas baseadas em sessões mais úteis do quais utilizadas pelo TPC-W. Ainda assim existe outro conjunto de trabalhos concentrado em como fazer TPC-W ser mais realístico. Em geral, essa obras tem inserido \textit{burstiness} na simulação de carga. O trabalho \cite{Mi2009} de Casale, incluiu o comportamento de \textit{burstiness}. Enquanto a obra \cite{Sobel2008}, busca adaptar o TPC-W para o ambiente em nuvem.
-
-Embora a grande diversidade dos trabalhos apresentados, o Bench4Q oferece uma solução integrada para \textit{e-commerce} sensíveis a QoS. Vale salientar que, não há nenhuma solução integrada as características, especialmente, a de encontrar qualquer extensão TPC-W sensível a QoS para \textit{e-commerce}. Contudo, existem trabalhos que abordam a modelagem de rajadas no processo de chegada da carga de trabalho imposta ao sistema \textit{e-commerce}. Casale em \cite{Casale2012}, apresenta o BURN (\textit{BURtiness eNabling method}), uma metodologia para gerar rajadas customizáveis como demanda de carga de trabalho afim de avaliar o desempenho de um sistemas \textit{e-commerce}. A metodologia BURN é composta de duas políticas \textit{tradicional} (que gera a carga de trabalho constante a mesma gerada pelo TPC-W) e a \textit{burst} (que insere as rajadas na carga de trabalho tradicional). Durante a execução do \textit{benchmark}, BURN aplica um stress na aplicação \textit{e-commerce} alternando as duas politicas. Tais trabalhos buscam avaliar o desempenho sistemas de multi-camadas (composto por um servidor de aplicação, base de dados, etc) que hospedem um \textit{e-commerce} como é o caso do Bench4Q.
-
-\subsection{Geração de carga}
-
-A oscilação da carga de trabalho é uma característica fundamental. A simultaneidade dos acessos apresentam grandes efeitos sobre a escolha da política de ajuste de um servidor, o Bench4Q simular tal oscilação de carga atrás de seus agentes com os seguintes parâmetros:
-
-\begin{itemize}
-	\item \textit{Base Load:} Quantia fixa de \textit{threads} por agentes.
-	\item \textit{Radom Load:} Quantidade de \textit{threads} que são geradas aleatoriamente.
-	\item \textit{Rate:} O \textit{rate} (taxa de mudanças de carga), pode ser positivo, negativo ou nulo. Positivo significa que a carga de base está aumentando a cada segundo, se negativa significa que a carga de base está diminuindo a cada segundo e enquanto a taxa é zero, a carga é fixa.
-	\item \textit{Trigger Time:} O tempo para o agente de carga para começar a gerar sua carga.
-	\item \textit{Duration:} O tempo de execução do agente de carga.
-\end{itemize}
-
-As composições as cargas simuladas por diversos agentes, podem gerar as seguintes flutuações de carga típicas de empresas B2C podem ser simulados.
-
-\begin{figure}[htb]
-	\caption{Carga de trabalho gerada pelo Bench4Q}
-	\label{fig:carga-gerada}
-	\centering
-	\includegraphics[scale=0.5]{load_fluctuation.png}
-	\fdireta{Bench4Q}
-\end{figure}
-
-
-Existe dois modos de simulação de carga, o fechado e o aberto, conforme apresentado na figura \ref{fig:type-session}. No modo fechado, ilustrado na figura \ref{fig:type-session} (a), um novo cliente só acessará depois de cliente antigo deixar o sistema. Já o modo aberto, ilustrado na figura \ref{fig:type-session} (b), novos clientes vão acessar o sistemas sem se importa  com a saída dos antigos clientes. O TPC- W simula carga no modo fechado, o que faz uma suposição inexistente do mundo real \cite{Bench4Q}. 
-
-\begin{figure}[htb]
-	\caption{Tipo de sessões Bench4Q}
-	\label{fig:type-session}
-	\centering
-	\includegraphics[scale=0.6]{type_session.png}
-	\fdireta{Bench4Q}	
-\end{figure}
-
-
-Em sistemas baseados em sessões reais, como a proposta deste projeto, os clientes vêm com base em um modo aberto. Em sua utilização neste projeto, a sessão aberta é a que mais se adéqua a finalidade do objetivo proposto pelo trabalho.
 
 \section{Implementação da metodologia}
 
