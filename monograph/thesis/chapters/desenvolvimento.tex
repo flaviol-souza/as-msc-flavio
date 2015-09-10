@@ -1,10 +1,126 @@
 \section{Arquitetura do Sistema}
-\subsection{Extensão do  \textit{becnhmark}}
-\subsection{A Arquitetura}
+\subsection{Extensão do \textit{becnhmark}}
 \subsection{A Arquitetura}
 
+O objetivo desta arquitetura é fornecer uma estrutura de mecanismos automáticos de gerenciamento de desempenho de um conjunto de recursos físicos.
+
+, contratados junto
+a um provedor de nuvem, por um consumidor de IaaS, que utiliza a infraestrutura contratada para
+entregar algum tipo de serviço (i. e PaaS ou SaaS) a seus clientes ou usuários finais.
+Nesse formato de negócio, o provedor de nuvem detém a propriedade de recursos computacionais
+altamente escaláveis dispostos em data centers geograficamente dispersos acessíveis pela
+Internet. Comumente, o provedor aluga servidores virtualizados nessa infraestrutura física para
+seus consumidores em um modelo de pagamento por uso. Nesse modelo os consumidores são
+onerados apenas quando os recursos, frequentemente representados por máquinas virtuais, estão
+sendo utilizados. Por sua vez, o consumidor dos serviços de nuvem aplica as máquinas virtuais
+contratadas para oferecer algum tipo de serviço Web para usuários finais, eventualmente, cobrando
+esses usuários pelo acesso ao serviço dando em troca a garantia da qualidade do serviço prestado.
+Há diferenças substanciais entre os valores cobrados pelo provedor para máquinas virtuais ligadas
+e em execução, que utilizam processamento, memória e rede; e desligadas, quando utilizam
+apenas espaço em disco para armazenamento. Usualmente, os custos relativos ao armazenamento
+são mais baixos que para os demais recursos que podem ser adquiridos junto ao provedor, sendo
+dispendioso manter máquinas virtuais ligadas quando as mesmas não são necessárias no atendimento
+da demanda gerada pelas requisições enviadas pelos usuários do serviço.
+Para ter um rendimento adequado, o consumidor deve manter, ou mesmo otimizar, um ponto
+de equilíbrio entre a quantidade de recursos consumidos pelos quais está pagando e a demanda
+gerada por seus clientes pela qual está cobrando, além de que o descumprimento dos contratos
+junto aos usuários finais pode ocasionar a redução dos ganhos. Para isso, é necessário gerenciar
+o desempenho dos recursos disponíveis para que haja um mínimo perdas por descumprimentos de
+contratos. A figura 4.1 ilustra em alto nível os principais componentes da arquitetura proposta.
+A arquitetura considera um ambiente usual de computação em nuvem como mostrado na figura
+1.1, com duas formas principais de interação entre as partes envolvidas: negócio e comunicação.
+A interação que compõe a linha do negócio refere-se ao que é estabelecido por contrato entre os
+envolvidos e motiva a orientação a mercado dada para arquitetura, já que usualmente os serviços
+em nuvem são pagos. Como a arquitetura proposta é orientada ao mercado, alguns módulos são
+comuns aos propostos por Buyya et al. (2008) para um controle de admissão em data centers.
+A linha da comunicação envolve o envio de requisições pelos usuários e de respostas pelas máquinas
+virtuais no data center. O consumidor não participa dessa interação que é feita diretamente
+entre os clientes que acessam os serviços hospedados na infraestrutura contratada.
+
+\begin{figure}[!htb]
+	\caption{Arquitetura do experimento}
+	\label{fig:arquitetura-experimento}
+	\centering
+	\includegraphics[scale=0.6]{arquitetura-experimento.png}
+	\fautor
+\end{figure}
+
+Comumente a avaliação de desempenho de sistemas computacionais é realizada em regime estacionário, isto é, sob carga de trabalho constante.  O sistema inicialmente sem carga, é excitado com a entrada de interesse, e aguarda-se até que a saída estabilize-se no valor desejado, podendo ser um valor constante ou um valor dentro de um intervalo. A condição aceitável é alcançada passado o \textit{warm up} (aquecimento), período em que o sistema encontra-se em estado de inicialização. A determinação da capacidade obtém-se estimulando o sistema com carga gradativamente mais elevadas até atingir seu limite inferior de desempenho aceitável, correspondente à carga estática máxima suportada. Análise do comportamento no período de aquecimento contém informações importantes relacionadas com a capacidade do sistema operando em condições reais onde a carga não é constante.
+Em regime transiente, a quantidade de recursos necessários para garantir o desempenho especificado pode divergir substancialmente daquela definida em regime estacionário. Durante um período transiente, as consequências de uma perturbação na carga a quantidade de recursos necessários seria temporariamente superior àquela prevista para o regime de carga não variável. Isso resulta, por exemplo, em descumprimento dos níveis de serviço ou paradas no funcionamento dos sistemas.
+%Dentro de um ambiente de testes local uma das principais limitações na simulação de sistemas e-commerce é o acesso ao banco de dados. Percebe-se que o banco de dados é o principal fator limitante para a analise transiente  para níveis altos de carga os dados coletados são pouco uteis, porque aparecem claros sinais de problemas de entrada e saída. 
+
 \section{Experimentos}
+\subsection{Ambiente de Experimentação}
+O ambiente utilizado para execução dos experimentos é apresentado na Tabela \ref{tab:configuracao_maquinas}.
+Foram utilizadas oito unidades para a geração de carga \textit{workload} que atuam como clientes dos
+serviços, uma unidade de balanceamento de carga e 4 servidores atuando como provedor de serviços e uma
+unidade executando o banco de dados a ser consultado pelo provedor de serviços.
+%Considerando que há uma quantidade máxima de N clientes no sistema, cada equipamento cliente executa simultaneamente N/4 aplicações clientes ou processos
+
+\begin{table}[htb]
+	\centering
+	\caption{Especificação do ambiente de execução dos experimentos}
+	\label{tab:configuracao_maquinas}
+	\begin{tabularx}{\textwidth}{r|c|X} \hline\hline
+		\textbf{Componente}    & \textbf{Quantidade} & \textbf{Configuração} \\ \hline
+		\textit{Workload}      & 8 Unidades          & Intel Core 2 Quad Q6600 2.4GHz, 4GB de RAM \\
+		\textit{Load Balancer} & 1 Unidade           & Intel Core 2 Quad Q6600 2.4GHz, 4GB de RAM \\
+		\textit{Hosts}         & 4 Unidade           & Intel Core 2 Quad Q6600 2.4GHz, 4GB de RAM \\
+		\textit{Data base}     & 1 Unidade           & Intel Core 2 Quad Q6600 2.4GHz, 4GB de RAM \\
+		\hline
+	\end{tabularx}
+	\fdadospesquisa
+\end{table}
+
+
 \subsection{Planejamento de Experimentos}
+Os experimentos conduzidos neste trabalho consideraram três diferentes fatores de dois níveis cada, conforme aprestando na Tabela \ref{tab:fatores_niveis}. 
+
+\begin{table}[htb]
+	\centering
+	\caption{Fatores e níveis dos experimentos}
+	\label{tab:fatores_niveis}
+	\begin{tabularx}{\textwidth}{c|c|c|c} \hline\hline
+        Fatores  & \textit{Workload} & Banco de dados \\ \hline
+		Nível 1  &         			 & Postgres \\
+		Nível 2  &            		 & DB2 \\
+		\hline
+	\end{tabularx}
+	\fdadospesquisa
+\end{table}
+
+
+O primeiro fator refere-se à quantidade de clientes simultâneos requisitando serviços ao
+Serviço Web, considerando-se duas quantidades: 100 e 170 clientes. O segundo fator
+está associado ao processo de chegada das requisições, ou seja, a política de geração de
+think times a ser adotada, para situações sem ou com rajadas. O terceiro fator considera
+a demanda de serviço imposta ao Serviço Web, desconsiderando o tempo de consulta ao
+banco de dados. Esse fator representa a possibilidade de serem considerados diferentes
+tipos de serviço, com demanda computacional distintas. Para esse fator são atribuídos
+dois níveis: uma demanda de serviço básica, associada ao tempo médio de serviço para
+que as requisições sejam concluídas pelo Serviço Web e uma demanda de serviço até
+67% mais alta do que o tempo médio de serviço básico. Por último, o quarto fator
+refere-se ao tamanho da base de dados a ser consultada pelo Serviço Web, base BDLeve
+ou BDPesada. Os níveis dos fatores considerados apresentam um aumento equivalente em
+torno de 70% de um nível para o outro. Esse aumento foi escolhido com o objetivo de
+manter uma diferença equilibrada entre todos os valores dos níveis de cada fator.
+O planejamento de experimentos utilizado na avaliação de desempenho
+apresentada neste artigo segue a abordagem do planejamento fatorial completo. Esta
+abordagem foi escolhida por possibilitar que todas as combinações possíveis de
+configurações e cargas de trabalho sejam examinadas. Para todos os experimentos
+foram realizadas 5 execuções, cada uma com duração aproximada de 40 minutos,
+utilizadas para determinar a média, o desvio padrão e o intervalo de confiança de 95%
+de acordo com a tabela T-student. O número de execuções e duração foi definido
+considerando-se a necessidade de obter diferença significativa dentre os intervalos de
+confiança dos experimentos que implica em comparação dos resultados. Os
+experimentos foram conduzidos com o objetivo de avaliar aspectos relacionados ao
+desempenho do serviço, compreendendo as seguintes variáveis de resposta:
+Tempo médio de resposta: intervalo de tempo entre o envio da requisição pelo
+cliente e chegada da resposta completa processada pelo Serviço Web;
+Tempo médio de execução WS: tempo médio de execução das requisições
+processadas pelo Serviço Web, incluindo tempo médio consumido para estabelecer
+as conexões com o banco de dados; 
+
 \subsection{Avaliação de desempenho em regime transiente}
 
 
