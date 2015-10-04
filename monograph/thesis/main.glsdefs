@@ -1,0 +1,120 @@
+\ifglsentryexists{Def.1}{}%
+{%
+\gls@defglossaryentry{Def.1}%
+{%
+name={\textit {warm-up}:},%
+sort={\textit {warm-up}:},%
+type={main},%
+first={\protect \textit {warm-up}:},%
+firstplural={\protect \textit {warm-up}:s},%
+text={\protect \textit {warm-up}:},%
+plural={\protect \textit {warm-up}:s},%
+description={período em que o sistema se encontra em regime transiente},%
+descriptionplural={período em que o sistema se encontra em regime transiente},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Def.2}{}%
+{%
+\gls@defglossaryentry{Def.2}%
+{%
+name={\textit {E-commerce}:},%
+sort={\textit {E-commerce}:},%
+type={main},%
+first={\protect \textit {E-commerce}:},%
+firstplural={\protect \textit {E-commerce}:s},%
+text={\protect \textit {E-commerce}:},%
+plural={\protect \textit {E-commerce}:s},%
+description={comércio eletrônico, em português, é uma modalidade de comércio que realiza suas transações financeiras por meio de dispositivos e plataformas eletrônicas, como computadores e celulares. Um bom exemplo deste tipo de comércio é comprar ou vender produtos em lojas virtuais.},%
+descriptionplural={comércio eletrônico, em português, é uma modalidade de comércio que realiza suas transações financeiras por meio de dispositivos e plataformas eletrônicas, como computadores e celulares. Um bom exemplo deste tipo de comércio é comprar ou vender produtos em lojas virtuais.},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Def.3}{}%
+{%
+\gls@defglossaryentry{Def.3}%
+{%
+name={\textit {Testbed}:},%
+sort={\textit {Testbed}:},%
+type={main},%
+first={\protect \textit {Testbed}:},%
+firstplural={\protect \textit {Testbed}:s},%
+text={\protect \textit {Testbed}:},%
+plural={\protect \textit {Testbed}:s},%
+description={},%
+descriptionplural={},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Def.4}{}%
+{%
+\gls@defglossaryentry{Def.4}%
+{%
+name={\textit {Warn-up}:},%
+sort={\textit {Warn-up}:},%
+type={main},%
+first={\protect \textit {Warn-up}:},%
+firstplural={\protect \textit {Warn-up}:s},%
+text={\protect \textit {Warn-up}:},%
+plural={\protect \textit {Warn-up}:s},%
+description={},%
+descriptionplural={},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
