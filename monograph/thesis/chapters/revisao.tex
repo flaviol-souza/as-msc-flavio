@@ -9,11 +9,11 @@ Dentre tantos trabalhos e técnicas de alocação dinâmica de recursos, o LaSDP
 
 A teoria de controle tem se estabelecida proeminente nas áreas da engenharia e algumas ciências naturais, e conta uma vasta conjunto de ferramentas de modelagem matemáticas que auxiliam na descrição do comportamento de sistemas dinâmicos a diferentes estímulos em regime estacionário e transiente. Nesse foco, a dinâmica do sistema passa a ser um ponto chave para o planejamento e aplicação de técnicas de teoria de controle em sistemas computacionais. Dinâmica esta, que passa a ser apreciada DAR EXEMPLOS REAIS 
 
-\begin{figure}[htb]
-	\caption{Dinâmica e comportamento da chaleira aquecendo}
-	\label{fig:feedback-nobile}
+\begin{figure}[htb]	
 	\centering
 	\includegraphics[scale=0.7]{feedback-loop-3.pdf}
+	\caption{Dinâmica e comportamento da chaleira aquecendo}
+	\label{fig:feedback-nobile}	
 	\fdireta{Nobile2013}
 \end{figure}
 
@@ -36,10 +36,10 @@ Para \cite{Scheinerman1995} a dificuldade é que qualquer coisa que evolui ao lo
 	\item[Uma chaleira em aquecimento:] Imagine uma chaleira com água em um fogão convencional em contato a uma chama (tudo sob condições normais de temperatura e pressão), a água presente dentro da chaleira não saltará imediatamente para a temperatura final da chama, pelo contrário, a água do recipiente mostra um aquecimento gradual. O mesmo ocorrerá, mas de maneira inversa, quando a chama do fogo for apagada, a temperatura da água não sofrerá uma queda brusca imediatamente mas, lentamente diminuirá até a temperatura ambiente.
 	
 	\begin{figure}[htb]
-		\caption{Dinâmica e comportamento da chaleira aquecendo}
-		\label{fig:chaleira}
 		\centering
 		\includegraphics[scale=0.5]{grafico-chaleira.png}
+		\caption{Dinâmica e comportamento da chaleira aquecendo}
+		\label{fig:chaleira}
 		\fdireta{Janert2013}
 	\end{figure}
 	
@@ -48,10 +48,10 @@ Para \cite{Scheinerman1995} a dificuldade é que qualquer coisa que evolui ao lo
 	\item[Uma massa em uma mola:] Agora considere uma massa, em repouso, suspensa por uma mola, também em repouso e fixa em uma superfície plana. Ao deslocarmos o peso tirando-o do repouso e soltarmos após o tencionamento da mola, a massa iniciará uma oscilação até o instante em que a massa e a mola voltarem ao equilíbrio inicial.	
 	
 	\begin{figure}[!htb]
-		\caption{Dinâmica e comportamento da mola}
-		\label{fig:mola}
 		\centering
 		\includegraphics[scale=0.5]{grafico-mola.png}
+		\caption{Dinâmica e comportamento da mola}
+		\label{fig:mola}		
 		\fdireta{Janert2013}
 	\end{figure}
 	
@@ -91,30 +91,30 @@ Ainda no mesmo trabalho, \cite{Lourenco2015} apresenta um conjunto de requisito 
 \end{description}
 
 \begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.8]{extension-block.pdf}
 	\caption{Arquitetura conceitual MEDC}
 	\label{fig:extension-block}
-	\centering
-	\includegraphics[scale=1.0]{extension-block.pdf}
 	\fdireta{Lourenco2015}
 \end{figure}
 
 O fluxo de trabalho, esta associada a responsabilidade de controlar a geração de carga com os ciclos de simulação e, correspondentemente, no que diz respeito à capacidade. Este controle se traduz em uma política de tomada de decisão que acionar eventos que solicitam a criação ou o despedimento de novas entidades de carga de trabalho e de recursos. A ordem é efetivamente realizado pelo \textit{Effector}, que recebe as solicitações dos controladores de \textit{Demand} e \textit{Capacity} e os manipula antes de transmitir os eventos para o mecanismo de núcleo. É através do \textit{Capacity} que pode-se modelar, por exemplo, atrasos associados a alocação e deslocação, de políticas de escalonamento, enchimento do \textit{buffers}, os tempos de resposta do hardware, padrões de falha de recurso, etc. O dever do \textit{Monitor} está em alimentar a \textit{Demand} e a \textit{Capacity} de dados sobre qualquer estado, por exemplo, utilização média do sistema, tempo de permanência trabalho, relação de perder \textit{deadline}, etc. Para cada um dos quatro responsabilidades, a uma ação e é associado de forma iterativa em cada etapa do ciclo de simulação \cite{Lourenco2015}. 
 
 \begin{figure}[!htb]
-	\caption{Sinais em tempo discreto comuns, parte 1}
-	\label{fig:funcoes1}
 	\centering
 	\includegraphics[scale=1.2]{funcoes1.pdf}
+	\caption{Sinais em tempo discreto comuns, parte 1}
+	\label{fig:funcoes1}
 	\fdireta{Hellerstein2004}
 \end{figure}
 
 A fim de trazer essas propriedades dinâmicas, a experiência de simulação deve excitar o sistema com carga de trabalho não-estacionária sob condições controladas. Para que seja possível apreciar e apresentar a dinâmica de um sistema e realizar a análise transitória do sistema, é preciso utilizar cargas de trabalho que possam provocar comportamentos propícios, onde as caraterísticas dinâmicas do sistema sejam claramente observadas, em \cite{Hellerstein2004}, apresenta propostas de algumas funções, ou sinais, de perturbação, por exemplo: impulso, degrau, rampa, seno, exponencial, seno modulada por uma exponencial, etc.  Essas funções são apresentadas nas figuras \ref{fig:funcoes1} e \ref{fig:funcoes2}.
 
 \begin{figure}[!htb]
-	\caption{Sinais em tempo discreto comuns, parte 2}
-	\label{fig:funcoes2}
 	\centering
 	\includegraphics[scale=1.2]{funcoes2.pdf}
+	\caption{Sinais em tempo discreto comuns, parte 2}
+	\label{fig:funcoes2}
 	\fdireta{Hellerstein2004}
 \end{figure}
 
@@ -214,10 +214,10 @@ A ferramenta é composta por três partes: Console, Agente e SUT, conforme apres
 
 
 \begin{figure}[htb]
-	\caption{Arquitetura Bench4Q}
-	\label{fig:arquitetura-bench4q}
 	\centering
 	\includegraphics[scale=0.3]{bench4Q.png}
+	\caption{Arquitetura Bench4Q}
+	\label{fig:arquitetura-bench4q}
 	\fdireta{Bench4Q}
 \end{figure}
 
@@ -226,10 +226,10 @@ A ferramenta é composta por três partes: Console, Agente e SUT, conforme apres
 	\item \textbf{Console:} A figura \ref{fig:console-bench4q} apresenta a interface do console, onde configura-se o teste, coleta e exibe os resultados. 
 	
 	\begin{figure}[!htb]
-		\caption{Console Bench4Q}
-		\label{fig:console-bench4q}
 		\centering
 		\includegraphics[scale=0.7]{console-bench4Q.png}
+		\caption{Console Bench4Q}
+		\label{fig:console-bench4q}
 		\fdireta{Bench4Q}	
 	\end{figure}
 	
@@ -238,10 +238,10 @@ A ferramenta é composta por três partes: Console, Agente e SUT, conforme apres
 	\item \textbf{SUT:} O \textit{e-commerce} SUT (\textit{System Under Test}), conforme apresentado na figura \ref{fig:sut},  é quem fornece o website de compras e está organizado com um banco de dados, servidor web e servidor de aplicativos. O portal compreende todos os componentes que fazem parte de uma aplicação real, isso inclui as conexões de rede, servidores web, servidores de aplicação, servidores de banco de dados, etc.
 	
 	\begin{figure}[htb]
-		\caption{Bench4Q SUT}
-		\label{fig:sut}
 		\centering
 		\includegraphics[scale=0.51]{sut.png}
+		\caption{Bench4Q SUT}
+		\label{fig:sut}
 		\fdireta{Bench4Q}
 	\end{figure}
 	
@@ -253,10 +253,10 @@ De uma maneira mais especifica, percebe-se que os \textit{benchmarks} para aplic
 O TPC-W, estendido pelo Bench4Q, é (mesmo atualmente tido como obsoleto) um \textit{ benchmark} direcionado a \textit{sites} de \textit{e-commerce} transacionais em que os consumidores são vinculados a sessões, cada cliente possui sua própria e única sessão em determinado instervalo de tempo. Trata-se de um site de venda de livros implementado em Java e hospedado em um servidor de aplicação Tomcat \footnote{Tomcat: \url{http://tomcat.apache.org/}}. Clientes, intitulados pela ferramenta como \textit{browsers}, são emulados e se comportam como consumidores dos produtos oferecidos pela loja virtual. Basicamente, os clientes podem interagir de diferentes formas: acessar a página inicial do \textit{site} (home), navegar e procurar por produtos, realizar operações que envolvam o carrinho de compras e finalizar uma compra. A carga de trabalho gerada pelo TPC-W pode ser representada por um \sigla{CBMG}{\textit{Customer Behavior Model Graph}}, um grafo orientado, em que os nós representam uma operação a ser realizada (procurar, navegar, comprar etc.) e os pesos nas arestas significam a probabilidade de transição de uma operação para outra \cite{Zhang2011}. A Figura \ref{fig:CBMG} modela o fluxo de requisições a páginas e operações que um cliente pode realizar em uma sessão, basicamente um comportamento estocástico de acesso às páginas.
 
 \begin{figure}[htb]
-	\caption{CBMG - perfil de navegação dos \textit{brwosers} do Bench4Q}
-	\label{fig:CBMG}
 	\centering
 	\includegraphics[scale=0.6]{CBMG.pdf}
+	\caption{CBMG - perfil de navegação dos \textit{brwosers} do Bench4Q}
+	\label{fig:CBMG}
 	\fadaptada{Mark2007}
 \end{figure}
 
@@ -268,10 +268,10 @@ Ao ser implantado em uma infraestrutura computacional que hospede todos seus com
 A motivação para a extenção do TPC-W e criação do Bench4Q começa porque, muito embora, as referidas métricas aparentem descrever bem a quantidade de acessos ao sistema, a qualidade do serviço experimentada pelo usuário pode ser desproporcional a essas mesmas métricas. Em \cite{bench4qslides} é descrito um ensaio que contempla dois cenários diferentes: um normal e outro otimizado não realisticamente. A otimização foi feita pela configuração de parâmetros no servidor Tomcat, a saber: \texttt{sessionTimeout}, \texttt{connectionTimeout} e \texttt{acceptCount}. Um das características da aplicação é a presença de operações \textit{ IO-bound}, por consequência, observar o tempo médio de resposta dessas operações permite diminuir os valores de estouro de tempo, e, com isso, forçar uma taxa de utilização de CPU. Assim, pode-se ``otimizar'' o ambiente da aplicação. Os resultados foram de $WIPS = 131$ para o cenário normal e $WIPS=199$ para aquele otimizado não realisticamente, colaborando com a hipótese. Porém, ao observar a quantidade de sessões completadas com sucesso, conforme apresentado na figura \ref{fig:seeing}, percebe-se que o cenário normal permitiu uma quantidade de erros menor do que aquele otimizado não realisticamente. Por consequência, uma espectativa de lucro maior quando da implantação: maior quantidade de sessões realizadas sem error implicaria em maior probabilidade de compras efetivas.
 
 \begin{figure}[htb]
-	\caption{Comparação da quantidade de requisições completadas com sucesso entre dois cenários: normal e otimizado não realisticamente.}
-	\label{fig:seeing}
 	\centering
 	\includegraphics[scale=0.45]{seeing.png}
+	\caption{Comparação da quantidade de requisições completadas com sucesso entre dois cenários: normal e otimizado não realisticamente.}
+	\label{fig:seeing}
 	\fdireta{Bench4Q}
 \end{figure}
 
@@ -295,10 +295,10 @@ A oscilação da carga de trabalho é uma característica fundamental. A simulta
 As composições as cargas simuladas por diversos agentes, podem gerar as seguintes flutuações de carga típicas de empresas B2C podem ser simulados.
 
 \begin{figure}[htb]
-	\caption{Carga de trabalho gerada pelo Bench4Q}
-	\label{fig:carga-gerada}
 	\centering
 	\includegraphics[scale=0.5]{load_fluctuation.png}
+	\caption{Carga de trabalho gerada pelo Bench4Q}
+	\label{fig:carga-gerada}
 	\fdireta{Bench4Q}
 \end{figure}
 
@@ -306,10 +306,10 @@ As composições as cargas simuladas por diversos agentes, podem gerar as seguin
 Existe dois modos de simulação de carga, o fechado e o aberto, conforme apresentado na figura \ref{fig:type-session}. No modo fechado, ilustrado na figura \ref{fig:type-session} (a), um novo cliente só acessará depois de cliente antigo deixar o sistema. Já o modo aberto, ilustrado na figura \ref{fig:type-session} (b), novos clientes vão acessar o sistemas sem se importa  com a saída dos antigos clientes. O TPC- W simula carga no modo fechado, o que faz uma suposição inexistente do mundo real \cite{Bench4Q}. 
 
 \begin{figure}[htb]
-	\caption{Tipo de sessões Bench4Q}
-	\label{fig:type-session}
 	\centering
 	\includegraphics[scale=0.6]{type_session.png}
+	\caption{Tipo de sessões Bench4Q}
+	\label{fig:type-session}
 	\fdireta{Bench4Q}	
 \end{figure}
 

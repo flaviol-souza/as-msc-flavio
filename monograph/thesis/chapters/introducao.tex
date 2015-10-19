@@ -8,10 +8,10 @@ Atualmente e com o advento e crescimento das aplicações intensivas de dados, q
 Este comportamento começou a ser facilmente apresentado e apreciado em grande sistemas computacionais, como um súbito aumento de requisição para um \textit{website} onde os servidores não conseguem suportar a demanda. Como o popular caso publicado por \cite{Arlitt2000} onde ele apresentou um trabalho detalhado com os logs de requisições do \textit{website} oficial da Copa do Mundo de Futebol do ano de 1998, os dados foram coletados durante 3 meses e em 30 servidores distribuídos em 4 pontos do planeta. As requisições superaram a taxa de 1 bilhão, uma média de 11.000 requisições por minuto.
 
 \begin{figure}[htb]
-	\caption{Volume diário de tráfego para o Web Site Copa do Mundo}
-	\label{fig:log98}
 	\centering
 	\includegraphics[scale=0.7]{log-world-98.png}
+	\caption{Volume diário de tráfego para o Web Site Copa do Mundo}
+	\label{fig:log98}		
 	\fadaptada{Arlitt2000}
 \end{figure}
 
@@ -20,10 +20,10 @@ A figura \ref{fig:log98} apresenta o volume de requisições diária recebida pe
 O \textit{Burstiness} no fluxo de requisições são frequentemente encontrados em sistemas cliente-servidor. Esses \textit{burstiness} pode impactar de forma inesperada o desempenho de diferentes mecanismos de alocação de recursos projetados para o gerenciamento de um sistema adaptativo, e, portanto, testar e avaliar esses mecanismos sob cargas de trabalho reproduzíveis e controláveis é fundamental para o projeto do sistema.  Como ilustração, durante o evento promocional de \textit{e-commerce} conhecido como \textit{Black Friday}, na edição de 2012, Foi constatado que o tempo de resposta médio aos dias que antecederam o evento, que começou no dia 23 de Novembro de 2012, era de 5.3 segundos. A partir das 7 horas do dia 23 de Novembro de 2012, observou-se um aumento significativo no tempo de resposta conforme apresentado no gráfico da figura \ref{fig:grafico-black-friday}. Apesar de estar hospedado na \textit{Cloud Computing} e ciente de que o volume de requisições aumentaria, devido ao evento, não foi possível manter a qualidade de respostas aos clientes.
 
 \begin{figure}[htb]
-	\caption{Tempo de resposta do \textit{Black Friday} Brasil 2012}
-	\label{fig:grafico-black-friday}
 	\centering
 	\includegraphics[scale=0.45]{grafico-black-friday.jpg}
+	\caption{Tempo de resposta do \textit{Black Friday} Brasil 2012}
+	\label{fig:grafico-black-friday}
 	\fadaptada{blackfridayNews}
 \end{figure}
 
