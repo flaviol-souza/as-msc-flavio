@@ -1,19 +1,25 @@
 O \textit{benchmark} bench4Q define uma carga de trabalho, incluindo banco de dados, transações, regras de execução e de taxa de transferência e métricas de resposta.  Para expor a dinâmica de um sistema é necessário estimulá-lo através da carga de trabalho, que é o componente responsável por estimular o sistema através de cenários ou fenômenos de \textit{burstiness}. Essa implementação é composta por classes e métodos, esse conjunto de código é um componente básico do \textit{benchmark} que refere-se a uma unidade de trabalho genérico que envia a carga para o sistema. O \textit{burstiness} incluem solicitações HTTP, chamadas de procedimento remoto, invocações de serviços Web, transações de banco de dados, comandos interativos ou também mesmo poderia ser composto de múltiplas tarefas de processamento, por exemplo sessões de cliente que compreendem várias solicitações ao sistema, etc \cite{Kounev2005}. Segundo \cite{Nobile2013} uma alteração na entrada (carga de trabalho) fará com que o sistema saia do estado de regime estacionário e entre em um período de regime transiente que descreve a dinâmica de um sistema, o regime transiente é calculado para uma entrada degrau unitário.
 
-O objetivo deste trabalho é estender a carga de trabalho do \textit{benchmark} de tal maneira que permite-se estimular o sistemas a apresentar a sua dinâmica, assim possibilitando a analise transiente do sistema. 
+O objetivo deste trabalho é estender a carga de trabalho do \textit{benchmark} Bench4Q de tal maneira que permite-se estimular o sistemas a apresentar a sua dinâmica, assim possibilitando a analise transiente do sistema. 
 
-Conforme apresentado no capitulo \ref{chapter:revisao}, o \textit{benchmark} Bench4Q oferece uma interface gráfica para configuração e colete dos dados, o que facilita a sua operação e analise. A proposta da extensão deste trabalho é possibilitar a modulação da carga, também, via interface gráfica, onde será necessário o preenchimento alguns conjuntos de parâmetros para a geração da carga.
+Conforme apresentado no capitulo \ref{chapter:revisao}, o \textit{benchmark} Bench4Q oferece uma interface gráfica para configuração e colete dos dados, o que facilita a sua operação e analise. A proposta da extensão deste trabalho é possibilitar a modulação da carga, também, via interface gráfica, onde será necessário o preenchimento alguns conjuntos de parâmetros para a geração da carga, com os descritos a seguir:
+\begin{itemize}
+	\item \textbf{tempo de planejamento de carga:} Um período de tempo em que a carga de trabalho é modulada, caracterizado a mudança do comportamento das requisições de maneira programada;
+	\item \textbf{tipo de modulação:} conforme apresentado no \ref{chapter:revisao}, a modulação será apresenta conforme as funções ou sinais proposto por \cite{Hellerstein2004};
+	\item \textbf{quantidade de clientes na modulação:} reservar uma quantidade de clientes (EBs, para o caso do Bench4Q) que estão com dedicação exclusiva para a modulação da carga
+\end{itemize}
+
 
 \cite{Binnig2009} os serviços em nuvem de hoje diferem entre outros pelo custo, desempenho, garantias de consistência, balanceamento de carga, \textit{caching}, tolerância a falhas, SLA e linguagem de programação. Para a discussão deste trabalho, assumimos um sistema de \textit{n-tiers} que consiste nos seguintes componentes:
 
 \begin{itemize}
-	\item \textbf{Gerador de Carga (\textit{Workload}) :}
-	\item \textbf{Balanceador de carga (\textit{Load Balancer}):}
-	\item \textbf{Servidor Físico (\textit{Hypervisor}):}
-	\item \textbf{Servidor de dados (\textit{Data base}):}
+	\item Gerador de Carga (\textit{Workload})
+	\item Balanceador de carga (\textit{Load Balancer})
+	\item Servidor Físico (\textit{Hypervisor})
+	\item Servidor de dados (\textit{Data base})
 \end{itemize}
 
-Para o desenvolvimento deste trabalho, assumimos uma arquitetura composto conforme a figura\ref{fig:arquitetura-experimento}.
+
 
 \begin{figure}[!htb]
 	\centering
@@ -23,8 +29,7 @@ Para o desenvolvimento deste trabalho, assumimos uma arquitetura composto confor
 	\fautor
 \end{figure}
 
-
-O ambiente utilizado para execução dos experimentos é apresentado na Tabela \ref{tab:configuracao_maquinas}.
+A arquitetura definida reflete no ambiente composto conforme a figura\ref{fig:arquitetura-experimento}. O ambiente utilizado para execução dos experimentos é apresentado na Tabela \ref{tab:configuracao_maquinas}.
 Foram utilizadas oito unidades para a geração de carga (\textit{workload}) que atuam como clientes dos serviços, uma unidade de balanceamento de carga e 4 servidores atuando como provedor de serviços e uma unidade executando o banco de dados a ser consultado pelo provedor de serviços.
 
 \begin{table}[htb]
@@ -42,15 +47,7 @@ Foram utilizadas oito unidades para a geração de carga (\textit{workload}) que
 	\fdadospesquisa
 \end{table}
 
-Neste trabalho vamos nos concentrar na modulação correta da carga de trabalho, assim.a carga de abranger os seguintes cenários:
-\begin{itemize}
-	\item \textbf{tempo de sobrecarga planejada:} Um período de tempo em que a carga de trabalho é máxima, caracterizado o crescimento de requisições inesperada,
-	\item \textbf{tipo de modulação:}
-	\item \textbf{quantidade de agentes da sobrecarga:}
-\end{itemize}
-
-
-A metodologia de extensão descreve as etapas necessárias para as modificações, a presente metodologia permite que se obtenha uma carga de trabalho que estimule o sistemas a apresentar a sua dinâmica, assim possibilita a analise transiente do sistema. De acordo com \cite{KaiSachs2010}, uma metodologia de desenvolvimento de \textit{benchmarks} deve incluir em seu processo de desenvolvimento, bem como a sua execução e a análise dos seus resultados. Para tanto é necessário medir o comportamento do sistema com a base me métricas. A métrica é uma função que transforma resultados medidos em uma forma facilmente compreendida. \cite{Folkerts2013} As métricas de referência deve permitir caracterizar e quantificar o comportamento do sistema quando enfrenta perturbações (ou seja, falhas, ataques, e variações de ambiente operacional) \cite{Marco2012}. As métricas tradicionais, de analise estacionaria, não podem capturar os comportamentos transitórios do sistema em resposta às variações de carga implementada no primeiro passo dessa metodologia.
+De acordo com \cite{KaiSachs2010}, uma metodologia de desenvolvimento de \textit{benchmarks} deve incluir em seu processo de desenvolvimento, bem como a sua execução e a análise dos seus resultados. Para tanto é necessário medir o comportamento do sistema com a base me métricas. A métrica é uma função que transforma resultados medidos em uma forma facilmente compreendida. \cite{Folkerts2013} As métricas de referência deve permitir caracterizar e quantificar o comportamento do sistema quando enfrenta perturbações (ou seja, falhas, ataques, e variações de ambiente operacional) \cite{Marco2012}. As métricas tradicionais, de analise estacionaria, não podem capturar os comportamentos transitórios do sistema em resposta a modulação da carga de trabalho definida na primeira parte desta metodologia.
 
 No contexto de avaliação transiente, \cite{Rosu1997} afirma que a reatividade da métrica é muitas vezes mais importante do que a otimização da mesma, no mesmo trabalho, \cite{Rosu1997} apresenta a característica e comportamento de uma métrica transiente, conforme ilustrado pela figura \ref{fig:transient-metric}, que são: 
 \begin{itemize}
@@ -71,18 +68,17 @@ No contexto de avaliação transiente, \cite{Rosu1997} afirma que a reatividade 
 \end{figure}
 
 
-A métrica em questão deve ser identifica dentro da realidade e necessidade em que se encontra o sistemas a ser avaliado. Logo será de uma ingenuidade fixar uma métrica para um sistema desconhecido, o importante é que ela tenha o comportamento e as características apresentadas anteriormente nesse passo da metodologia de extensão. Existem diversos trabalhos dedicados que identificam métricas transiente em vários contextos como o \cite{Binnig2009, Lu2000, Rosu1997}.
-
+A métrica em questão deve ser identifica dentro da realidade e necessidade em que se encontra o sistemas a ser avaliado. Logo será de uma ingenuidade fixar um conjunto de métricas para um sistema desconhecido, o importante é que ela tenha o comportamento e as características apresentadas. Existem diversos trabalhos dedicados que identificam métricas transiente em vários contextos como o \cite{Binnig2009, Lu2000, Rosu1997}.
 \cite{Binnig2009} afirma que os \textit{benchmarks} tradicionais são principalmente preocupados com o desempenho e o custo de sistemas estáticos e essas métricas ainda tem relevância para as aplicações em nuvem, mas é necessário medir diferentes métricas para sistemas escaláveis (ou seja, dinâmico) onde os recursos vêm e vão. Ainda \cite{Binnig2009} enfatiza que os novos \textit{benchmarks} devem relatar métricas diferentes do que os benchmarks existentes: 
 \begin{citacao}
 	Em vez de medir o desempenho médio de um sistema estático em carga máxima, as novas métricas devem refletir a capacidade dos serviços em nuvem para se adaptar a uma mudança de carga com relação ao desempenho e custos. Além disso, uma métrica adicional também deve cobrir a robustez desses serviços contra falhas de nós individuais.
 \end{citacao}
 
-As métricas definidas precisam refletir o cenários de dinâmica do sistema, que inclui três aspectos principais:
+As métricas definidas precisam refletir o cenário de dinâmica do sistema, logo é interessante cobrir cada um dos níveis da arquitetura proposta:
 \begin{itemize}
-	\item \textbf{Conexões por segundo (Load Balancer):} Conforme sugerido por \cite{Binnig2009}, medir a escalabilidade através do aumento dos interações web emitidos por segundo ao longo do tempo e de forma contínua contando o interação web que são respondidas em um intervalo de tempo de resposta.
-	\item \textbf{Tempo de resposta (\textit{browsers}):}
-	\item \textbf{Consumo de CPU (VMs):}
+	\item \textbf{Conexões por segundo (Load Balancer):} Conforme sugerido por \cite{Binnig2009}, medir a escalabilidade através do aumento dos interações web emitidos por segundo ao longo do tempo e de forma contínua contando o interação web que são respondidas em um intervalo de tempo de resposta,
+	\item \textbf{Tempo de resposta (\textit{browsers}):} \cite{helder2014}, em um sistema dinâmico, cuja transformação entrada-saída não ocorre em tempo zero, mas é sujeita a uma inércia advinda dos processos físicos associados, possuem uma inércia intrínseca que atrasa o efeito que uma entrada terá na saída, esses efeitos refletem na consequência comportamentos diversos que incluem retardo no tempo de resposta e possíveis oscilações e definem a estabilidade do sistema, 
+	\item \textbf{Taxa de utilização da CPU (VMs):} \cite{Nobile2013} afirma que diversas métricas podem ser analisadas para verificar o desempenho das máquinas virtuais, e cita alguns exemplos, como o tempo de inicialização, a taxa de utilização de CPU, o tempo médio de resposta e o \textit{throughput}, e usualmente, as máquinas virtuais hospedam serviços de interesse ao cliente que e respondem a uma carga de trabalho imposta por usuários através de requisições.
 	\item \textbf{Alguma na base de dados}
 \end{itemize}
 %• custo de capital: O custo de hardware e software adicional necessário para um sistema de HA em comparação com um sistema não-HA outra forma equivalente.
@@ -97,17 +93,16 @@ Os experimentos conduzidos neste trabalho consideraram três diferentes fatores 
 	\caption{Fatores e níveis dos experimentos}
 	\label{tab:fatores_niveis}
 	\begin{tabularx}{\textwidth}{|c|c|c|c|} \hline\hline
-		Fatores  & \textit{Workload} & Banco de dados & Politica de Alocação de recursos\\ \hline
-		Nível 1  &         			 & Postgres 	  & Estática                        \\
-		Nível 2  &            		 & DB2 			  & Dinâmica                        \\
+		\textbf{Fator}		& \textbf{\textit{Workload}} & \textbf{Banco de dados}  & \textbf{Politica de alocação de recursos} \\ \hline
+		\textit{Nível 1}	&							 & Postgres					& Estática									\\
+		\textit{Nível 2}	&							 & DB2						& Dinâmica									\\		
 		\hline
 	\end{tabularx}
 	\fdadospesquisa
 \end{table}
 
+O primeiro fator refere-se à quantidade de clientes simultâneos requisitando o serviço Web, esses clientes são modulados conforme a configuração feita, sendo assim essa carga de trabalha estimulará o sistema a apresentar a sua dinâmica. O segundo fator associado a possibilidade de serem considerados diferentes tipos de serviço, assim este fator terá dois níveis de bancos de dados o Postgres e o DB2, o Bench4Q oferece o \textit{script} de criação de bando para ambos. O último e o terceiro fator, se refere a política de alocação de recursos, neste caso são dois níveis \textit{estática} (onde os servidores \textit{host} estão desde o princípio em execução e disponíveis.) e \textit{dinâmica} (onde os servidores são colocados à disposição conforme a oscilação da carga de trabalho), apesar deste tema não ter sido abordado neste trabalho, a utilização desse fator esta relacionada a analise em todos os níveis da solução.
 
-O primeiro fator refere-se à quantidade de clientes simultâneos requisitando serviços ao Serviço Web, esses clientes são modulados conforme a configuração feita, sendo assim essa carga de trabalha estimulará o sistema a apresentar a sua dinâmica. O segundo fator associado a possibilidade de serem considerados diferentes tipos de serviço, assim este fator terá dois níveis de bancos de dados o Postgres e o DB2, o Bench4Q oferece o \textit{script} de criação de bando para ambos. O último e o terceiro fator, se refere a política de alocação de recursos, neste caso são dois níveis \textit{estática} (onde os servidores \textit{host} estão desde o princípio em execução e disponíveis.) e \textit{dinâmica} (onde os servidores são colocados à disposição conforme a oscilação da carga de trabalho).
-
-O planejamento de experimento e utilizado neste trabalho como avaliação de desempenho segue a abordagem do planejamento fatorial completo. Logo, possibilita que todas as combinações possíveis dos fatores sejam examinados. Para cada experimento serão 5 repetições, utilizadas para determinar a média, o desvio padrão e o intervalo de confiança de 95% .
+O planejamento de experimento e utilizado neste trabalho como avaliação de desempenho segue a abordagem do planejamento fatorial completo, em um total de 9 combinações. Logo, possibilita que todas as combinações possíveis dos fatores sejam examinados. Para cada experimento serão 5 repetições, totalizando 45 execuções dos experimentos, que utilizadas para determinar a média, o desvio padrão e o intervalo de confiança de 95\% .
 
 Durante a execução dos experimentos pequenas aplicações, monitores, em cada um dos níveis da arquitetura são responsáveis por coletar algumas informações de interesse disponíveis, como a taxa de utilização de CPU e a quantidade de requisições simultâneas. Os valores produzidos pela experimentação foram adicionados em arquivos Excel (\textit{.xls}), esses dados foram processados pelo R \footnote{\url{https://www.r-project.org/}}.
