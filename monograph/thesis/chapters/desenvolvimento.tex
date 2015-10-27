@@ -22,23 +22,34 @@ Este conjunto de classes as quais lidam, manipulam, gerenciam e modulam a carga 
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.5]{console-bench4Q-usp.png}
+	\includegraphics[scale=0.6
+	]{console-bench4Q-usp.png}
 	\caption{Console de programação de carga de trabalho.}
 	\label{fig:interface-criada-beanch4q}
 	\fautor
 \end{figure}
 
-Informar previamente a execução os parâmetros da modulação, como por exemplo, ao escolher a opção degrau, é necessário informar quantos EBs geram o degrau, em que instante de tempo, e qual o tempo de duração e por fim qual a sua polaridade (com base em um pulso elétrico a positiva sairia de zero e chega a um, a negativa, sairia de um e chegaria a zero), é possível obter resultados conforme a figura \ref{fig:grafico-carga-modulada}.
+Informar previamente a execução os parâmetros da modulação, como por exemplo, ao escolher a opção degrau, é necessário informar quantos EBs geram o degrau, em que instante de tempo, e qual o tempo de duração e por fim qual a sua polaridade (com base em um pulso elétrico a positiva sairia de zero e chega a um, a negativa, sairia de um e chegaria a zero), é possível obter resultados conforme a figura \ref{fig:grafico-carga-modulada-teste}.
 
-
-\begin{figure}[htb]
+\begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.5]{console-bench4Q-usp.png}
-	\caption{Carga modula mediante a extensão}
-	\label{fig:grafico-carga-modulada}
+	\begin{subfigure}{\linewidth}
+		\centering
+		\includegraphics[scale=0.7]{condiguracao-carga-modulada1.png}
+		\caption{Teste de configuração da carga a ser modulada}
+		\label{fig:configuracao-carga-modulada-teste}
+	\end{subfigure}
+	
+	\begin{subfigure}{\linewidth}
+		\centering
+		\includegraphics[scale=0.6]{grafico-carga-modulada-teste.png}
+		\caption{Carga gerada com base na configuração teste}
+		\label{fig:grafico-carga-modulada-teste}
+	\end{subfigure}  
+	\caption{Teste de modulação da carga}  
+	\label{fig:carga-modulada-teste}
 	\fautor
-\end{figure}
-
+\end{figure}  
 
 A carga de trabalho é imposta ao sistema por meio de requisições HTTP enviadas pelos EBs (usuários finais) ao SUT (serviço Web) que são executadas nos servidores de aplicação das máquinas virtuais instanciadas no \textit{host}. Essas requisições exigem que as máquinas virtuais se ocupem pelo tempo necessário para processá-las, alterando o desempenho experimentado pelo sistema.
 Segundo \cite{Nobile2013}, dois fatores que envolvem uma requisição e que afetam diretamente o desempenho do sistema:
@@ -46,3 +57,5 @@ Segundo \cite{Nobile2013}, dois fatores que envolvem uma requisição e que afet
 	o tempo de processamento e a quantidade de carga imposta pelas requisições, dados pelo tempo de processamento e pela taxa de chegada de novas requisições, respectivamente. Com o tempo, a quantidade e o tamanho das requisições podem se alterar, dependendo do perfil de utilização dos usuários que utilizam o serviço naquele momento. Havendo um aumento em algum desses fatores é possível que o desempenho do sistema sofra degradação, podendo, e casos extremos, entrar em colapso.
 \end{citacao}
 %- ilustrar com os graficos do proprio bench4Q
+
+A figura \ref{fig:carga-modulada-teste} ilustra uma carga teste modulado já pela extensão, na \ref{fig:configuracao-carga-modulada-teste} apresenta os parâmetro utilizado para fazer o teste, a carga modulada atuará a partir do 10º segundo de experimentação e com uma duração de 20 segundos, com 30 segundo de experimentação ocorrerá uma pausa de 7 segundos e um novo degrau será gerado em seguida, que se manterá até o final do experimento. Para este exemplo fora fixados 40 EBs para modulara o comportamento da carga. Este comportamento pode ser apreciado no item \ref{fig:grafico-carga-modulada-teste} da mesma figura \ref{fig:carga-modulada-teste}. Vale salientar que o gráfico gerado e apresentado na figura \ref{fig:carga-modulada-teste} de item \ref{fig:grafico-carga-modulada-teste}, é uma característica nativa ao \textit{benchmark}.
