@@ -9,6 +9,32 @@ Conforme apresentado no capitulo \ref{chapter:revisao}, o \textit{benchmark} Ben
 	\item \textbf{quantidade de clientes na modulação:} reservar uma quantidade de clientes (EBs, para o caso do Bench4Q) que estão com dedicação exclusiva para a modulação da carga
 \end{itemize}
 
+Através da nova interface, que recebe os parâmetros para a modulação da carga, espera-se a modular cargas conforme os exemplos apresentados na figura	\ref{fig:cargas-moduladas-exemplos}, esses exemplos são derivados das funções apresentadas por \cite{Hellerstein2004}, com esse tipo de variação da carga no decorrer do tempo é possível admirar a dinâmica do sistema.  Para \cite{Feitelson2015} o objetivo é, de ser capaz de criar cargas de trabalho que pode ser utilizado em estudos de avaliação de desempenho. 
+A carga de trabalho \ref{fig:degrau-positivo}, talvez seja a de maior interesse e impacto para o trabalho de Choquehuanca, ela se inicia piano porém terá um crescimento repentino e brusco podendo se manter perene, porem terá uma queda voltando ao patamar inicial. Já carga \ref{fig:degrau-negativo}, tem comportamento oposto a \ref{fig:degrau-positivo}, inicialmente a carga esta é seu mais alto nível e potência, porém tem uma queda brusca e repentina levando a carga a um baixo próximo do zero, esta carga se mantem neste nível por um período e da mesma maneira que caiu, subirá nas mesmas inversas proporções. Por fim, carga modulada conforme a figura \ref{fig:onda-gradrada}, esta carga oscila da uma intensidade baixa a máxima de maneira brusca e repentina sempre com os mesmos intervalos.
+ 
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{carga-sintetica1.png}
+		\caption{Degrau positivo}
+		\label{fig:degrau-positivo}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{carga-sintetica2.png}
+		\caption{Degrau negativo}
+		\label{fig:degrau-negativo}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{carga-sintetica3.png}
+		\caption{Onda quadrada}
+		\label{fig:onda-gradrada}
+	\end{subfigure}
+	\caption{Possibilidade de cargas moduláveis}
+	\label{fig:cargas-moduladas-exemplos}
+\end{figure}
+
 
 \cite{Binnig2009} os serviços em nuvem de hoje diferem entre outros pelo custo, desempenho, garantias de consistência, balanceamento de carga, \textit{caching}, tolerância a falhas, SLA e linguagem de programação. Para a discussão deste trabalho, assumimos um sistema de \textit{n-tiers} que consiste nos seguintes componentes:
 
@@ -18,7 +44,6 @@ Conforme apresentado no capitulo \ref{chapter:revisao}, o \textit{benchmark} Ben
 	\item Servidor Físico (\textit{Hypervisor})
 	\item Servidor de dados (\textit{Data base})
 \end{itemize}
-
 
 
 \begin{figure}[!htb]
