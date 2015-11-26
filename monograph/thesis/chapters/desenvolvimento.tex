@@ -6,7 +6,7 @@ Para distribuir a submissão da carga de trabalho ao longo da simulação, uma e
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.4]{diagrama-classes-beanch4Q.png}	
+	\includegraphics[angle=90, scale=0.55]{diagrama-classes-beanch4Q.png}	
 	\caption{Diagrama de classes da extensão do Bench4Q.}
 	\label{fig:diagrama-classes}
 	\fautor
@@ -18,17 +18,32 @@ A princípio foi identificado o modulo de geração de carga do Bench4Q e este p
 
 O Bench4Q fornece uma estrutura e componentes compartilhados para a comunicação entre os dois módulos da carga de trabalho, \textbf{Console} e \textbf{Agente}. Apesar de trabalharem em conjunto e para um mesmo fim, cada modulo (Console e Agente) são executados em máquinas distintas.  A extensão é construída inicialmente sob a classe \textsf{MLoadSimulatorPanel}, que orquestra toda a interatividade gráfica do Bench4Q. O novo painel de configuração, que modula a carga, \textsf{MLoadFrequencyPanel} estende da classe original \textsf{Bench4QTreeModel}, adicionando os parâmetros para a modulação: tipo da carga, o instante em que a carga se inicia, o tempo de atuação da carga e a quantidade de EBs que atuaram nessa carga. O parâmetro \textit{"tipos de carga"}, utiliza da classe enum \textsf{TypeFrequency} que define as constantes dos tipos de modulações programadas para esta extensão.  Todos os parâmetros inseridos na \textsf{MLoadSimulatorPanel} são armazenados na classe \textsf{TestFrequency} que se tornou um propriedade da classe nativa \textsf{TestPhase}, que posteriormente são repassadas para a classe \textsf{PropertiesEB} através da \textsf{FrequencySettings}. Já nas classes \textsf{Agent}, \textsf{EB}, \textsf{EBClose}, \textsf{EBOpen}, \textsf{Workers}, \textsf{WorkersClosed} e \textsf{WorkersOpen} foram modificadas para receber os novos parâmetros da \textsf{PropertiesEB} e compreendê-los correspondentemente a modulação configurada na interface gráfica e gerando a carga programada durante a execução.
 
+No pseudo-código \ref{code:modelworkload}, ilustra um esqueleto de maneira simplificada do \textit{core} da geração da carga referente a construção da modulação da carga.
+
+\begin{codigo}[caption={Algoritmo da extensão para geração e modulação da carga}, label={code:modelworkload}, language=Java, breaklines=true]
+	public static String Leitura(){
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			return reader.readLine(); // Lê uma linha pelo teclado
+		} catch (IOException e) {
+		e.printStackTrace();
+		return "";
+	}
+}
+\end{codigo}
+
+
 Este conjunto de classes as quais lidam, manipulam, gerenciam e modulam a carga de trabalha gerada pelo Bench4Q, utilizam de um excelente console para configurar, monitorar e analisar todo o experimento. Todo o desenvolvimento, referente à modificação e implementação de novas classes, mantiveram e respeitaram o padrão de desenvolvimento do \textit{benchmark}. A figura \ref{fig:interface-criada-beanch4q} ilustra a interface gráfica por onde é possível modular a carga de trabalho do Bench4Q. 
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.6
-	]{console-bench4Q-usp.png}
+	\includegraphics[scale=0.6]{console-bench4Q-usp.png}
 	\caption{Console de programação de carga de trabalho.}
 	\label{fig:interface-criada-beanch4q}
 	\fautor
 \end{figure}
 
+No console principal do Bench4Q, onde configura a execução do experimento, foi incluído uma nova opção \textit{LoadFrequency} referente ao parâmetros da extensão da geração da carga modulada. Por esta opção, \textit{LoadFrequency}, deve-se preencher os campos (\textit{Start Time}, \textit{Duration Step}, \textit{Pause} e \textit{Quantity}) que irão gerar a carga modulada conforme a programação. A caracteristica de todos os resultados de desempenho de cada agente de carga são agregados para o console de carga para análise e demonstração, se mantem conforme a versão original.
 Informar previamente a execução os parâmetros da modulação, como por exemplo, ao escolher a opção degrau, é necessário informar quantos EBs geram o degrau, em que instante de tempo, e qual o tempo de duração e por fim qual a sua polaridade (com base em um pulso elétrico a positiva sairia de zero e chega a um, a negativa, sairia de um e chegaria a zero), é possível obter resultados conforme a figura \ref{fig:grafico-carga-modulada-teste}.
 
 \begin{figure}[!htb]
@@ -56,6 +71,8 @@ Segundo \citeonline{Nobile2013}, dois fatores que envolvem uma requisição e qu
 \begin{citacao}
 	o tempo de processamento e a quantidade de carga imposta pelas requisições, dados pelo tempo de processamento e pela taxa de chegada de novas requisições, respectivamente. Com o tempo, a quantidade e o tamanho das requisições podem se alterar, dependendo do perfil de utilização dos usuários que utilizam o serviço naquele momento. Havendo um aumento em algum desses fatores é possível que o desempenho do sistema sofra degradação, podendo, e casos extremos, entrar em colapso.
 \end{citacao}
-%- ilustrar com os graficos do proprio bench4Q
+
 
 A figura \ref{fig:carga-modulada-teste} ilustra uma carga teste modulado já pela extensão, na \ref{fig:configuracao-carga-modulada-teste} apresenta os parâmetro utilizado para fazer o teste, a carga modulada atuará a partir do 10º segundo de experimentação e com uma duração de 20 segundos, com 30 segundo de experimentação ocorrerá uma pausa de 7 segundos e um novo degrau será gerado em seguida, que se manterá até o final do experimento. Para este exemplo fora fixados 40 EBs para modulara o comportamento da carga. Este comportamento pode ser apreciado no item \ref{fig:grafico-carga-modulada-teste} da mesma figura \ref{fig:carga-modulada-teste}. Vale salientar que o gráfico gerado e apresentado na figura \ref{fig:carga-modulada-teste} de item \ref{fig:grafico-carga-modulada-teste}, é uma característica nativa ao \textit{benchmark}.
+
+O Bench4Q, possui uma documentação sobre a ferramenta. Devido a extensão do \textit{benchmark} foi elabora uma documentação seguindo os padrões da última versão origina e esta pode ser conferida no apêndice A desse trabalho, que traz informações descrição do programa e qual seu objetivo, entradas suportadas e saídas esperadas, exemplo de como executar o programa e tabela descrevendo as principais características do programa.

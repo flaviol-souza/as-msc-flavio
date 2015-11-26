@@ -105,31 +105,26 @@ As métricas definidas precisam refletir o cenário de dinâmica do sistema, log
 	\item \textbf{Conexões por segundo (Load Balancer):} Conforme sugerido por \citeonline{Binnig2009}, medir a escalabilidade através do aumento dos interações web emitidos por segundo ao longo do tempo e de forma contínua contando o interação web que são respondidas em um intervalo de tempo de resposta,
 	\item \textbf{Tempo de resposta (\textit{browsers}):} \citeonline{helder2014}, em um sistema dinâmico, cuja transformação entrada-saída não ocorre em tempo zero, mas é sujeita a uma inércia advinda dos processos físicos associados, possuem uma inércia intrínseca que atrasa o efeito que uma entrada terá na saída, esses efeitos refletem na consequência comportamentos diversos que incluem retardo no tempo de resposta e possíveis oscilações e definem a estabilidade do sistema, 
 	\item \textbf{Taxa de utilização da CPU (VMs):} \citeonline{Nobile2013} afirma que diversas métricas podem ser analisadas para verificar o desempenho das máquinas virtuais, e cita alguns exemplos, como o tempo de inicialização, a taxa de utilização de CPU, o tempo médio de resposta e o \textit{throughput}, e usualmente, as máquinas virtuais hospedam serviços de interesse ao cliente que e respondem a uma carga de trabalho imposta por usuários através de requisições.
-	\item \textbf{Taxa de utilização da CPU e taxa de transferência de I/O:} O trabalho apresentado por \citeonline{wang2009}, que lida com uma carga de trabalho variante no tempo e de intensiva demonstrando que CPU e I/O podem ser utilizadas para prever as necessidades dos recursos de um banco de dados e para orientar a alocação de recursos \textit{on-demand} de acordo com a exigência de carga de trabalho.
+	\item \textbf{Taxa de utilização da CPU:} O trabalho apresentado por \citeonline{wang2009}, que lida com uma carga de trabalho variante no tempo e de intensiva demonstrando que CPU e I/O podem ser utilizadas para prever as necessidades dos recursos de um banco de dados e para orientar a alocação de recursos \textit{on-demand} de acordo com a exigência de carga de trabalho. Entretanto iremos somente considerar em nossos experimento a taxa de utilização do banco de dados.
 \end{itemize}
-%• custo de capital: O custo de hardware e software adicional necessário para um sistema de HA em comparação com um sistema não-HA outra forma equivalente.
-%• impacto Performance: O impacto para o desempenho de recursos de alta disponibilidade durante as operações normais em comparação com o sistema de não-HA.
-%• Tempo de recuperação: O tempo para restaurar o serviço de banco de dados após a ocorrência de uma falha.
 
 
-Os experimentos conduzidos neste trabalho consideraram três diferentes fatores de dois níveis cada, conforme aprestando na Tabela \ref{tab:fatores_niveis}. 
+Uma vez que a extensão é desenvolvida e a configuração física do ambiente é estabelecida, a configuração lógica do ambiente de medição tem de ser especificada. Nesse contexto, é de interesse analisar o impacto da carga de trabalho no ambiente. Logo, se faz necessário efetuar experimentos uma carga de trabalho modelada, bem como a formulação subsequente do experimento. 
+O principal objetivo de estudo dessa analise, tem como objeto o impacto de uma carga de trabalho modela pela extensão feita no \textit{benchmark} no ambiente.
 
+Considerando a utilização de um ambiente fisica real e controlado juntamente com o objetivo experimental, utilizamos um unico fator a carga de trabalho (\textit{workload}) conforme apresentado na tabela \ref{tab:fatores_niveis}.
 \begin{table}[htb]
 	\centering
 	\caption{Fatores e níveis dos experimentos}
 	\label{tab:fatores_niveis}
-	\begin{tabularx}{\textwidth}{|r|c|c|X|} \hline\hline
-		\textbf{Fator}		& \textbf{\textit{Workload}} & \textbf{Banco de dados}  & \textbf{Politica de alocação de recursos} \\ \hline
-		\textit{Nível 1}	&							 & Postgres					& Estática									\\
-		\textit{Nível 2}	&							 & DB2						& Dinâmica									\\		
+	\begin{tabularx}{\textwidth}{|r|X|} \hline\hline
+		\textbf{Fator}		& \textbf{\textit{Workload}} \\ \hline
+		\textit{Nível 1}	&		20 EBs				 \\
+		\textit{Nível 2}	&		60 EBs				 \\		
 		\hline
 	\end{tabularx}
 	\fdadospesquisa
 \end{table}
 
-
-O primeiro fator refere-se à quantidade de clientes simultâneos requisitando o serviço Web, esses clientes são modulados conforme a configuração feita, sendo assim essa carga de trabalha estimulará o sistema a apresentar a sua dinâmica. O segundo fator associado a possibilidade de serem considerados diferentes tipos de serviço, assim este fator terá dois níveis de bancos de dados o Postgres e o DB2, o Bench4Q oferece o \textit{script} de criação de bando para ambos. O último e o terceiro fator, se refere a política de alocação de recursos, neste caso são dois níveis \textit{estática} (onde os servidores \textit{host} estão desde o princípio em execução e disponíveis.) e \textit{dinâmica} (onde os servidores são colocados à disposição conforme a oscilação da carga de trabalho), apesar deste tema não ter sido abordado neste trabalho, a utilização desse fator está relacionada a analise em todos os níveis da solução.
-
-O planejamento de experimento e utilizado neste trabalho como avaliação de desempenho segue a abordagem do planejamento fatorial completo, em um total de 9 combinações. Logo, possibilita que todas as combinações possíveis dos fatores sejam examinados. Para cada experimento serão 5 repetições, totalizando 45 execuções dos experimentos, que utilizadas para determinar a média, o desvio padrão e o intervalo de confiança de 95\% .
-
+O único fator refere-se à quantidade de clientes simultâneos requisitando o serviço Web, esses clientes são modulados conforme a configuração feita, sendo assim essa carga de trabalha estimulará o sistema a apresentar a sua dinâmica. Neste estudo, 3 repetições para cada experiência têm sido utilizadas.
 Durante a execução dos experimentos pequenas aplicações, monitores, em cada um dos níveis da arquitetura são responsáveis por coletar algumas informações de interesse disponíveis, como a taxa de utilização de CPU e a quantidade de requisições simultâneas. Os valores produzidos pela experimentação foram adicionados em arquivos Excel (\textit{.xls}), esses dados foram processados pelo R \footnote{\url{https://www.r-project.org/}}.
