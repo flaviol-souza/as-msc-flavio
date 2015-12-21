@@ -29,6 +29,7 @@
 \usepackage{graphicx,pifont}
 \usepackage{listings}
 \usepackage{subcaption}
+\usepackage{pdfpages}
 
 \let\oldding\ding% Store old \ding in \oldding
 \renewcommand{\ding}[2][1]{\scalebox{#1}{\oldding{#2}}}% Scale \oldding via optional argument
@@ -206,17 +207,17 @@
 % ---
 % Inicia os apêndices
 % ---
-%\begin{apendicesenv}
+\begin{apendicesenv}
 
-%    \chapter{Documento básico usando a classe \textit{icmc}}
-%    \label{chapter:documento-basico}
-%    \input{appendix/documento-basico}
+    \chapter{Documentação da extensão do Bench4Q}
+    \label{chapter:documentacao}
+    \input{appendix/documentacao}
     
 %    \chapter{Configuração do programa JabRef}
 %    \label{chapter:configuracao-jabref}
 %    \input{appendix/configuracao-jabref}
 
-%\end{apendicesenv}
+\end{apendicesenv}
 % ---
 
 
