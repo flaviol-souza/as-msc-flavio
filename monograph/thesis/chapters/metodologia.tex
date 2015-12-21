@@ -1,6 +1,6 @@
-O \textit{benchmark} bench4Q define uma carga de trabalho, incluindo banco de dados, transações, regras de execução e de taxa de transferência e métricas de resposta.  Para expor a dinâmica de um sistema é necessário estimulá-lo através da carga de trabalho. Este componente é responsável por estimular o sistema através de cenários ou fenômenos de \textit{burstiness}. Essa implementação é composta por classes e métodos, esse conjunto de código é um componente básico do \textit{benchmark} que refere-se a uma unidade de trabalho genérica que envia a carga para o sistema. O \textit{burstiness} inclue solicitações HTTP, chamadas de procedimento remoto, invocações de \textit{web services}, transações de banco de dados, comandos interativos ou também poderia ser composto de múltiplas tarefas de processamento, por exemplo sessões de cliente que compreendem várias solicitações ao sistema, etc \cite{Kounev2005}. Segundo \citeonline{Nobile2013} uma alteração na entrada (carga de trabalho) fará com que o sistema saia do estado de regime estacionário e entre em um período de regime transiente que descreve a dinâmica de um sistema, o regime transiente é calculado para uma entrada degrau unitário.
+O \textit{benchmark} Bench4Q define uma carga de trabalho, incluindo banco de dados, transações, regras de execução e de taxa de transferência e métricas de resposta.  Para expor a dinâmica de um sistema é necessário estimulá-lo através da carga de trabalho. Este componente é responsável por estimular o sistema através de cenários ou fenômenos \textit{burstiness}. Essa implementação é composta por classes e métodos, esse conjunto de código é um componente básico do \textit{benchmark} que refere-se a uma unidade de trabalho genérica que envia a carga para o sistema. O \textit{burstiness} inclue solicitações HTTP, chamadas de procedimento remoto, invocações de \textit{web services}, transações de banco de dados, comandos interativos ou também poderia ser composto de múltiplas tarefas de processamento, por exemplo sessões de cliente que compreendem várias solicitações ao sistema, etc \cite{Kounev2005}. Segundo \citeonline{Nobile2013} uma alteração na entrada (carga de trabalho) fará com que o sistema saia do estado de regime estacionário e entre em um período de regime transiente que descreve a dinâmica de um sistema, o regime transiente é calculado para uma entrada degrau unitário.
 
-O objetivo deste trabalho é estender a carga de trabalho do \textit{benchmark} Bench4Q para que seja possível estimular o sistema a apresentar a sua dinâmica, assim possibilitando a analise transiente do sistema. 
+O objetivo deste trabalho é estender a carga de trabalho do \textit{benchmark} Bench4Q para que seja possível estimular o sistema a apresentar a sua dinâmica, assim possibilitando a analise transiente do sistema, incorporando o modulo \textit{Demand} da arquitetura conceitual MEDC. 
 
 Conforme apresentado no Capitulo \ref{chapter:revisao}, o \textit{benchmark} Bench4Q oferece uma interface gráfica para configuração e coleta dos dados, o que facilita a sua operação e analise. A proposta da extensão deste trabalho é manter o padrão de usabilidade e possibilitar a modulação da carga de trabalho. Sendo assim, com o preenchimento de um conjunto de parâmetros será possível a geração modulada da carga:
 \begin{itemize}
@@ -10,11 +10,11 @@ Conforme apresentado no Capitulo \ref{chapter:revisao}, o \textit{benchmark} Ben
 	
 	\item \textbf{Tempo de interrupções:} Período de interrupções/pausa após o \textit{Tempo de planejamento de carga};
 	
-	\item \textbf{Quantidade de clientes na modulação:} reservar uma quantidade de clientes (\sigla{EBs}{\textit{Emulate Browsers}}, para o caso do Bench4Q) que estão com dedicação exclusiva para a modulação da carga.
+	\item \textbf{Quantidade de clientes na modulação:} reservar uma quantidade de clientes EBs, para o caso do Bench4Q) que estão com dedicação exclusiva para a modulação da carga.
 \end{itemize}
 
-Através da nova interface, que recebe os parâmetros para a modulação da carga, espera-se modular a cargas conforme os exemplos apresentados na figura	\ref{fig:cargas-moduladas-exemplos}, esses exemplos são derivados das funções apresentadas por \citeonline{Hellerstein2004}. Com esse tipo de variação da carga no decorrer do tempo é possível estimular o sistema de maneira a admirar a sua dinâmica.  Para \citeonline{Feitelson2015} o objetivo é ser capaz de criar cargas de trabalho que pode ser utilizado em estudos de avaliação de desempenho. 
-A carga de trabalho Figura \ref{fig:degrau-positivo}, talvez seja a de maior interesse e impacto para o trabalho de \citeonline{Edwin2015}. Pois a carga se inicia piano e moderada, porém terá um crescimento repentino e brusco podendo se manter perene, porem terá uma queda voltando ao patamar inicial. Já carga representada pela Figura \ref{fig:degrau-negativo}, tem comportamento oposto a Figura \ref{fig:degrau-positivo}, inicialmente a carga está em seu mais alto nível e com potência máxima, porém tem uma queda brusca e repentina levando a carga a um baixo nível se mantendo por um período e, da mesma maneira que caiu, subirá nas mesmas inversas proporções, mantendo-se até o final. Por fim, a carga modulada conforme a Figura \ref{fig:onda-gradrada}, oscila da uma baixa intensidade à máxima intensidade. sempre com alterações bruscas, repentinas e com os mesmos intervalos de unidade de tempo.
+Através da nova interface, que recebe os parâmetros para a modulação da carga, espera-se modular a cargas conforme os exemplos apresentados na Figura	\ref{fig:cargas-moduladas-exemplos}, esses exemplos são derivados das funções apresentadas por \citeonline{Hellerstein2004}. Com esse tipo de variação da carga no decorrer do tempo é possível estimular o sistema de maneira a admirar a sua dinâmica.  Para \citeonline{Feitelson2015} o objetivo é ser capaz de criar cargas de trabalho que pode ser utilizado em estudos de avaliação de desempenho. 
+A carga de trabalho Figura \ref{fig:degrau-positivo}, talvez seja a de maior interesse e impacto para o trabalho de \citeonline{Edwin2015}. Pois a carga se inicia piano e moderada, porém terá um crescimento repentino e brusco podendo se manter perene, porem terá uma queda voltando ao patamar inicial. Já carga representada pela Figura \ref{fig:degrau-negativo}, tem comportamento oposto a Figura \ref{fig:degrau-positivo}, inicialmente a carga está em seu mais alto nível e com sua potência máxima, porém tem uma queda brusca e repentina levando a carga a um baixo nível se mantendo por um período e, da mesma maneira que caiu, subirá nas mesmas inversas proporções, mantendo-se até o final. Por fim, a carga modulada conforme a Figura \ref{fig:onda-gradrada}, oscila da uma baixa intensidade à máxima intensidade. sempre com alterações bruscas, repentinas e com os mesmos intervalos de unidade de tempo.
  
 \begin{figure}[!htb]
 	\centering
@@ -35,12 +35,12 @@ A carga de trabalho Figura \ref{fig:degrau-positivo}, talvez seja a de maior int
 		\caption{Onda quadrada}
 		\label{fig:onda-gradrada}
 	\end{subfigure}
-	\caption{Possibilidade de cargas moduláveis}
+	\caption{Possibilidade de cargas moduláveis pela extensão}
 	\label{fig:cargas-moduladas-exemplos}
 \end{figure}
 
 
-Para \citeonline{Binnig2009} os serviços em nuvem de hoje diferem entre outros pelo custo, desempenho, garantias de consistência, balanceamento de carga, \textit{caching}, tolerância a falhas, \sigla{SLA}{\textit{Service Level Agreement}} e linguagem de programação. O Bench4Q trata-se de um \textit{website} de um \textit{e-commerce}, segundo \citeonline{Dong2014} a maioria dos sites modernos usam uma arquitetura \textit{multi-tier}. Esta arquitetura particiona o processo de aplicação em múltiplas camadas, onde cada camada fornece uma determinada funcionalidade. Uma vantagem de tal arquitetura é que pode proporcionar um elevado nível de escalabilidade e flexibilidade. No entanto, a alocação de recursos entre esses níveis será mais difícil devido à interdependência entre as camadas. Para a discussão deste trabalho, assumimos um sistema de \textit{multi-tiers} que consiste nos seguintes componentes:
+Para \citeonline{Binnig2009} os serviços em nuvem de hoje diferem entre outros pelo custo, desempenho, garantias de consistência, balanceamento de carga, \textit{caching}, tolerância a falhas, \sigla{SLA}{\textit{Service Level Agreement}} e linguagem de programação. O Bench4Q trata-se de um \textit{website} de um \textit{e-commerce}, segundo \citeonline{Dong2014} a maioria dos \textit{website} modernos usam uma arquitetura \textit{multi-tier}. Esta arquitetura particiona o processo de aplicação em \textit{multi-tiers}, onde cada camada fornece uma determinada funcionalidade. Uma vantagem de tal arquitetura é que pode proporcionar um elevado nível de escalabilidade e flexibilidade. No entanto, a alocação de recursos entre esses níveis será mais difícil devido à interdependência entre as camadas. Para a discussão deste trabalho, assumimos um sistema de \textit{multi-tiers} que consiste nos seguintes componentes:
 
 \begin{itemize}
 	\item Gerador de Carga (\textit{Workload})
@@ -58,8 +58,8 @@ Para \citeonline{Binnig2009} os serviços em nuvem de hoje diferem entre outros 
 	\fautor
 \end{figure}
 
-A arquitetura definida reflete no ambiente composto conforme a Figura \ref{fig:arquitetura-experimento}. O ambiente utilizado para execução dos experimentos é apresentado na Tabela \ref{tab:configuracao_maquinas}.
-Foram utilizadas oito unidades para a geração de carga de trabalho (\textit{workload}) que atuam como clientes dos serviços, uma unidade de balanceamento de carga, 4 servidores atuando como provedor de serviços e uma unidade executando o banco de dados a ser consultado pelo provedor de serviços.
+A arquitetura definida reflete no ambiente composto conforme a Figura \ref{fig:arquitetura-experimento}. O ambiente utilizado para execução dos experimentos é apresentado na Tabela \ref{tab:configuracao_maquinas}, onde é possível verificar a configuração do ambiente.
+Foram utilizadas oito unidades para a geração de carga de trabalho (\textit{workload}) que atuam como clientes dos serviços, 1 unidade de balanceamento de carga, 4 servidores atuando como provedor de serviços e 1 unidade executando o banco de dados a ser consultado pelo provedor de serviços.
 
 \begin{table}[htb]
 	\centering
@@ -98,13 +98,13 @@ No contexto de avaliação transiente, \citeonline{Rosu1997} afirma que a reativ
 \end{figure}
 
 
-A métrica em questão deve ser identificada dentro da realidade e necessidade em que se encontra o sistema a ser avaliado. Logo seria uma ingenuidade fixar um conjunto de métricas para um sistema desconhecido, o importante é que ela tenha o comportamento e as características apresentadas. Existem diversos trabalhos dedicados que identificam métricas transientes em vários contextos como o \citeonline{Binnig2009}, \citeonline{Lu2000} e \citeonline{Rosu1997}.
-\citeonline{Binnig2009} afirmam que os \textit{benchmarks} tradicionais são principalmente preocupados com o desempenho e o custo de sistemas estáticos e essas métricas ainda têm relevância para as aplicações em nuvem, mas é necessário medir diferentes métricas para sistemas escaláveis (ou seja, dinâmicos) onde os recursos vêm e vão. Ainda \citeonline{Binnig2009} enfatiza que os novos \textit{benchmarks} devem relatar métricas diferentes do que os \textit{benchmarks} existentes: 
+A métrica em questão deve ser identificada dentro da realidade e necessidade em que se encontra o sistema a ser avaliado. Logo seria uma ingenuidade fixar um conjunto de métricas para um sistema desconhecido, o importante é que ela tenha o comportamento e as características apresentadas por \citeonline{Rosu1997}. Existem diversos trabalhos dedicados a  identificarem métricas transientes em vários contextos como o \citeonline{Binnig2009}, \citeonline{Lu2000} e \citeonline{Rosu1997}.
+\citeonline{Binnig2009} afirmam que os \textit{benchmarks} tradicionais estão principalmente preocupados com o desempenho e o custo de sistemas estáticos e essas métricas ainda têm relevância para as aplicações em nuvem, mas é necessário medir diferentes métricas para sistemas escaláveis (ou seja, dinâmicos) onde os recursos vêm e vão. Ainda \citeonline{Binnig2009} enfatiza que os novos \textit{benchmarks} devem relatar métricas diferentes do que os \textit{benchmarks} existentes: 
 \begin{citacao}
 	Em vez de medir o desempenho médio de um sistema estático em carga máxima, as novas métricas devem refletir a capacidade dos serviços em nuvem para se adaptar a uma mudança de carga com relação ao desempenho e custos. Além disso, uma métrica adicional também deve cobrir a robustez desses serviços contra falhas de nós individuais.
 \end{citacao}
 
-As métricas definidas precisam refletir o cenário de dinâmica do sistema, logo é interessante cobrir cada um dos níveis da arquitetura proposta:
+As métricas definidas precisam refletir o cenário de dinâmica do sistema, é interessante também cobrir cada um dos níveis da arquitetura proposta:
 \begin{itemize}
 	\item \textbf{Conexões por segundo (\textit{Load Balancer}):} Conforme sugerido por \citeonline{Binnig2009}, medir a escalabilidade através do aumento dos interações web emitidos por segundo ao longo do tempo e de forma contínua contando a interação web que são respondidas em um intervalo de tempo de resposta,
 	
@@ -133,5 +133,5 @@ Considerando a utilização de um ambiente físico real e controlado juntamente 
 	\fdadospesquisa
 \end{table}
 
-O único fator refere-se à quantidade de clientes simultâneos requisitando o serviço Web, esses clientes são modulados conforme a configuração feita, sendo assim essa carga de trabalho estimulará o sistema a apresentar a sua dinâmica. Neste estudo, 3 repetições para cada experimento.
+O único fator refere-se à quantidade de clientes simultâneos requisitando o serviço do \textit{e-commerce}, esses clientes são modulados conforme a configuração feita, sendo assim essa carga de trabalho estimulará o sistema a apresentar a sua dinâmica. Neste estudo, 3 replicações para cada experimento.
 Durante a execução dos experimentos, pequenas aplicações, monitores, em cada um dos níveis da arquitetura são responsáveis por coletar algumas informações de interesse disponíveis, como a taxa de utilização de CPU e a quantidade de requisições simultâneas. Os valores produzidos pela experimentação foram adicionados em arquivos Excel (\textit{.xls}) e processados pelo R \footnote{\url{https://www.r-project.org/}}.
