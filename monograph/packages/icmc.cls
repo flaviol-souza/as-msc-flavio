@@ -21,7 +21,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{packages/icmc}[2015/05/05 v1.1.7 Classe ICMC baseado em abnTeX2 - Teses e Dissertações dos  
+\ProvidesClass{packages/icmc}[2015/09/21 v1.2.0 Classe ICMC baseado em abnTeX2 - Teses e Dissertações dos  
 Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Computação]
 \RequirePackage{xifthen}
 
@@ -106,10 +106,9 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
                                     % (utilizado no título)
 \RequirePackage{graphicx}			% Inclusão de gráficos
 \RequirePackage{caption}            % Pacote para definição dos captions
+\RequirePackage{subcaption}         % Pacote para definição dos subcaptions (ambientes de subfigures)
 \RequirePackage{microtype} 		    % para melhorias de justificação
 \RequirePackage{pdfpages}           % inclusão de arquivos PDF
-%\RequirePackage{xifthen}            % fornece o uso \isempty (pacote utilizado
-                                    % nesse estilo para configurações diversas)
 \RequirePackage{ifxetex}            % verifica se a compilação ocorre por xetex
 \RequirePackage{ifluatex}           % verifica se a compilação ocorre por luatex
 \RequirePackage{hyphenat}           % Pacote para retirar a hifenização do
@@ -126,7 +125,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \RequirePackage{pgffor}             % Pacote utilizado para gerar as
                                     % palavras-chave da ficha catalográfica
 \RequirePackage{nomencl}            % Pacote para criação da Lista de Siglas
-\RequirePackage[translate=babel,nonumberlist,style=altlist,toc]{glossaries}	 % Pacote para gerar o glossário
+\RequirePackage[noredefwarn,translate=babel,nonumberlist,style=altlist,toc]{glossaries}	 % Pacote para gerar o glossário
 \RequirePackage[brazilian,hyperpageref]{backref} % Paginas com as citações na bibl
 \RequirePackage[alf,bibjustif,abnt-last-names=abnt,abnt-etal-text=it,abnt-repeated-title-omit=yes,abnt-emphasize=bf,abnt-etal-cite=3,abnt-etal-list=0]{abntex2cite}   % Citações padrão ABNT
 
@@ -136,69 +135,87 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 % Comando para configuração do tipo de trabalho
 %================================================================================
 
+\providecommand*{\tipoexemplar}{}
+\providecommand*{\degree}{}
+\providecommand*{\tipodocurso}{}
+\providecommand*{\exam}{}
+\providecommand*{\arealabel}{}
+
+% Configuração do texto do preâmbulo
+\addto\captionsenglish{% ingles
+    \renewcommand{\exam}{ in partial fulfillment of the requirements for the degree}
+}
+\addto\captionsbrazil{% portugues-brasil
+    \renewcommand{\exam}{ como parte dos requisitos para obten{\c c}{\~a}o do t{\'i}tulo de}
+}
+
 % Configuração da situação do trabalho entregue
 \ifthenelse{\boolean{opt-pre-defesa}}{
-    \iflanguage{english}
-        {\newcommand{\tipoexemplar}{\textit{EXAMINATION BOARD PRESENTATION COPY}.}}
-        {\newcommand{\tipoexemplar}{\textit{EXEMPLAR DE DEFESA}.}}
+    \addto\captionsenglish{% ingles
+        \renewcommand{\tipoexemplar}{EXAMINATION BOARD PRESENTATION COPY}
+    }
+    \addto\captionsbrazil{% portugues-brasil
+        \renewcommand{\tipoexemplar}{EXEMPLAR DE DEFESA}
+    }
 }{
-    \iflanguage{english}
-        {\newcommand{\tipoexemplar}{\textit{FINAL VERSION}.}}
-        {\newcommand{\tipoexemplar}{\textit{VERS{\~A}O REVISADA}.}}
+    \addto\captionsenglish{% ingles
+        \renewcommand*{\tipoexemplar}{FINAL VERSION}
+    }
+    \addto\captionsbrazil{% portugues-brasil
+        \renewcommand{\tipoexemplar}{VERS{\~A}O REVISADA}
+    }
 }
 
 % Configuração do tipo de trabalho para DOUTORADO ou MESTRADO
 \ifthenelse{\boolean{opt-doutorado}}{
-    \iflanguage {english}
-        {
-            \tipotrabalho{Doctoral dissertation}
-            \newcommand{\degree}{Doctorate}
-            \newcommand{\tipodocurso}{Doctorate Candidate}
-        }
-        {
-            \tipotrabalho{Tese}
-            \newcommand{\degree}{Doutor}
-            \newcommand{\tipodocurso}{Doutorado}
-        }
+    \addto\captionsenglish{% ingles
+        \renewcommand{\degree}{of the Doctorate}
+        \renewcommand{\tipodocurso}{Doctorate Candidate}
+        \tipotrabalho{Doctoral dissertation}
+    }
+    \addto\captionsbrazil{% portugues-brasil
+        \ifthenelse{\equal{\imprimirgenero}{M}}{\renewcommand{\degree}{Doutor}}{\renewcommand{\degree}{Doutora}}
+        \renewcommand{\tipodocurso}{Doutorado}
+        \tipotrabalho{Tese}
+    }
 }{
-    \iflanguage {english}
-        {
-            \tipotrabalho{Master dissertation}
-            \newcommand{\degree}{Master}
-            \newcommand{\tipodocurso}{Master student}
-        }
-        {   
-            \tipotrabalho{Disserta{\c c}{\~a}o}
-            \newcommand{\degree}{Mestre}
-            \newcommand{\tipodocurso}{Mestrado}
-        }
+    \addto\captionsenglish{% ingles
+        \renewcommand{\degree}{of the Master}
+        \renewcommand{\tipodocurso}{Master student}
+        \tipotrabalho{Master dissertation}
+    }
+    \addto\captionsbrazil{% portugues-brasil
+        \ifthenelse{\equal{\imprimirgenero}{M}}{\renewcommand{\degree}{Mestre}}{\renewcommand{\degree}{Mestra}}
+        \renewcommand{\tipodocurso}{Mestrado}
+        \tipotrabalho{Disserta{\c c}{\~a}o}
+    }
 }
 
 % Configuração do tipo de trabalho como QUALIFICAÇAO de DOUTORADO ou MESTRADO
 \ifthenelse{\boolean{opt-qualificacao}}{
-    \iflanguage{english}
-        {
-            \tipotrabalho{Monograph}
-            \newcommand{\exam}{ for the Qualification Exam,}
-        }
-        {
-            \tipotrabalho{Monografia}
-            \newcommand{\exam}{ para o Exame de Qualifica{\c c}{\~a}o,}
-        }
-    \renewcommand{\tipoexemplar}{}
-}{
-    \newcommand{\exam}{}
-}
+    \addto\captionsenglish{% ingles
+        \renewcommand{\exam}{ as part of the qualifying exam requisites of the}
+        \tipotrabalho{Monograph}
+        \renewcommand{\tipoexemplar}{}
+    }
+    \addto\captionsbrazil{% portugues-brasil
+        \renewcommand{\exam}{ para o Exame de Qualifica{\c c}{\~a}o, como parte dos requisitos para obten{\c c}{\~a}o do t{\'i}tulo de}
+        \tipotrabalho{Monografia}
+        \renewcommand{\tipoexemplar}{}
+    }
+}{}
 
 % Configuração do texto impresso no Preambulo
-\iflanguage{english}
-    { % Preambulo em ingles
-        \renewcommand{\imprimirpreambulo}{\nohyphens{\imprimirtipotrabalho~submitted to the \imprimirinstituicao,\exam~in partial fulfillment of the requirements for the degree of the \degree~\imprimirespecialidade. \tipoexemplar}}
-    }
-    { % Preambulo em português
-        \renewcommand{\imprimirpreambulo}{\nohyphens{\imprimirtipotrabalho~apresentada ao \imprimirinstituicao,\exam~como parte dos requisitos para obten{\c c}{\~a}o do t{\'i}tulo de \degree~\imprimirespecialidade. \tipoexemplar}}
-    }
-    
+\addto\captionsenglish{% ingles
+    \renewcommand{\imprimirpreambulo}{\nohyphens{\imprimirtipotrabalho~submitted to the \imprimirinstituicao,\exam~\degree~\imprimirespecialidade. \textit{\tipoexemplar}}}
+    \renewcommand{\arealabel}{Concentration Area}
+}
+\addto\captionsbrazil{% portugues-brasil
+    \renewcommand{\imprimirpreambulo}{\nohyphens{\imprimirtipotrabalho~apresentada ao \imprimirinstituicao,\exam~\degree~\imprimirespecialidade. \textit{\tipoexemplar}}}
+    \renewcommand{\arealabel}{{\'A}rea de Concentra{\c c}{\~a}o}
+}
+
+
 
 %================================================================================
 % Configuração da fonte utilizada na capa exigida pelo ICMC
@@ -208,68 +225,56 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 
 \ifxetex % Configuração da fonte para a compilação por XETEX
   \RequirePackage{fontspec}
-  \newfontfamily{\timesnewroman}[
+    \newfontfamily{\arial}[
+        Ligatures=TeX, % recommended
         Mapping         = tex-text,
         Path            = packages/fonts/,
-        BoldFont        = *Bold,
-        ItalicFont      = *Italic,
-        BoldItalicFont  = *BoldItalic]{TimesNewRoman}
-        
-    \newfontfamily{\tahoma}[
-        Mapping         = tex-text,
-        Path            = packages/fonts/,
-        BoldFont        = *Bold,
-        ItalicFont      = *Italic,
-        BoldItalicFont  = *BoldItalic]{Tahoma}
+        BoldFont        = *bd,
+        ItalicFont      = *i,
+        BoldItalicFont  = *bi]{arial}
     
-    \newcommand\@icmcTitulo{\@icmcFont{17}\tahoma}
-    \newcommand\@icmcAutorCapa{\@icmcFont{15}\timesnewroman\bfseries\itshape}
-    \newcommand\@icmcAutorFolhaRosto{\@icmcFont{14}\timesnewroman\bfseries}
-    \newcommand\@icmcOrientadorLabel{\@icmcFont{12}\timesnewroman\bfseries\itshape}
-    \newcommand\@icmcOrientadorName{\@icmcFont{12}\timesnewroman\bfseries}
-    \newcommand\@icmcPreambulo{\@icmcFont{11}\timesnewroman\mdseries}
-    \newcommand\@icmcLocalData{\@icmcFont{12}\timesnewroman\bfseries}
-    \newcommand\@icmcCarimbo{\@icmcFont{12}\timesnewroman}
-    \newcommand\@icmcSVPG{\@icmcFont{9}\timesnewroman}
+    \newcommand\@icmcTitulo{\@icmcFont{18}\arial}
+    \newcommand\@icmcAutorCapa{\@icmcFont{13}\arial\bfseries\itshape}
+    \newcommand\@icmcAutorFolhaRosto{\@icmcFont{13}\arial\bfseries}
+    \newcommand\@icmcTituloFolhaRosto{\@icmcFont{17}\arial}
+    \newcommand\@icmcOrientador{\@icmcFont{10}\arial}
+    \newcommand\@icmcPreambulo{\@icmcFont{10}\arial}
+    \newcommand\@icmcLocalData{\@icmcFont{11}\arial\bfseries}
+    \newcommand\@icmcCarimbo{\@icmcFont{11}\arial}
+    \newcommand\@icmcSVPG{\@icmcFont{8}\arial}
 \else
     \ifluatex % Configuração da fonte para a compilação por LUATEX
       \RequirePackage{fontspec}
-      \newfontfamily{\timesnewroman}[
+        \newfontfamily{\arial}[
+        Ligatures=TeX, % recommended
         Mapping         = tex-text,
         Path            = packages/fonts/,
-        BoldFont        = *Bold,
-        ItalicFont      = *Italic,
-        BoldItalicFont  = *BoldItalic]{TimesNewRoman}
-        
-        \newfontfamily{\tahoma}[
-        Mapping         = tex-text,
-        Path            = packages/fonts/,
-        BoldFont        = *Bold,
-        ItalicFont      = *Italic,
-        BoldItalicFont  = *BoldItalic]{Tahoma}
+        BoldFont        = *bd,
+        ItalicFont      = *i,
+        BoldItalicFont  = *bi]{arial}
       
-      \newcommand\@icmcTitulo{\@icmcFont{17}\tahoma}
-      \newcommand\@icmcAutorCapa{\@icmcFont{15}\timesnewroman\bfseries\itshape}
-      \newcommand\@icmcAutorFolhaRosto{\@icmcFont{14}\timesnewroman\bfseries}
-      \newcommand\@icmcOrientadorLabel{\@icmcFont{12}\timesnewroman\bfseries\itshape}
-      \newcommand\@icmcOrientadorName{\@icmcFont{12}\timesnewroman\bfseries}
-      \newcommand\@icmcPreambulo{\@icmcFont{11}\timesnewroman\mdseries}
-      \newcommand\@icmcLocalData{\@icmcFont{12}\timesnewroman\bfseries}
-      \newcommand\@icmcCarimbo{\@icmcFont{12}\timesnewroman}
-      \newcommand\@icmcSVPG{\@icmcFont{9}\timesnewroman}
+        \newcommand\@icmcTitulo{\@icmcFont{18}\arial}
+        \newcommand\@icmcAutorCapa{\@icmcFont{13}\arial\bfseries\itshape}
+        \newcommand\@icmcAutorFolhaRosto{\@icmcFont{13}\arial\bfseries}
+        \newcommand\@icmcTituloFolhaRosto{\@icmcFont{17}\arial}
+        \newcommand\@icmcOrientador{\@icmcFont{10}\arial}
+        \newcommand\@icmcPreambulo{\@icmcFont{10}\arial}
+        \newcommand\@icmcLocalData{\@icmcFont{11}\arial\bfseries}
+        \newcommand\@icmcCarimbo{\@icmcFont{11}\arial}
+        \newcommand\@icmcSVPG{\@icmcFont{8}\arial}
     
     \else % Configuração da fonte para a compilação por PDFLATEX
       \RequirePackage[T1]{fontenc}	    	% Selecao de codigos de fonte.
       \RequirePackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
-      \newcommand\@icmcTitulo{\sffamily\Large}
-      \newcommand\@icmcAutorCapa{\rmfamily\large\bfseries\itshape}
-      \newcommand\@icmcAutorFolhaRosto{\rmfamily\large\bfseries}
-      \newcommand\@icmcOrientadorLabel{\rmfamily\normalsize\bfseries\itshape}
-      \newcommand\@icmcOrientadorName{\rmfamily\normalsize\bfseries}
-      \newcommand\@icmcPreambulo{\SingleSpacing\rmfamily\small\mdseries}
-      \newcommand\@icmcLocalData{\rmfamily\normalsize\bfseries}
-      \newcommand\@icmcCarimbo{\rmfamily\normalsize}
-      \newcommand\@icmcSVPG{\rmfamily\scriptsize}
+      \newcommand\@icmcTitulo{\fontsize{18pt}{1em}\selectfont\usefont{T1}{phv}{m}{n}}
+      \newcommand\@icmcAutorCapa{\fontsize{13pt}{1em}\selectfont\usefont{T1}{phv}{b}{it}}
+      \newcommand\@icmcAutorFolhaRosto{\fontsize{13pt}{1em}\selectfont\usefont{T1}{phv}{b}{n}}
+      \newcommand\@icmcTituloFolhaRosto{\fontsize{17pt}{1em}\selectfont\usefont{T1}{phv}{m}{n}}
+      \newcommand\@icmcOrientador{\fontsize{10pt}{1em}\selectfont\usefont{T1}{phv}{m}{n}}
+      \newcommand\@icmcPreambulo{\fontsize{10pt}{1em}\selectfont\usefont{T1}{phv}{m}{n}}
+      \newcommand\@icmcLocalData{\fontsize{11pt}{1em}\selectfont\usefont{T1}{phv}{b}{n}}
+      \newcommand\@icmcCarimbo{\fontsize{11pt}{1em}\selectfont\usefont{T1}{phv}{m}{n}}
+      \newcommand\@icmcSVPG{\fontsize{8pt}{1em}\selectfont\usefont{T1}{phv}{m}{n}}
     \fi
 \fi
 
@@ -355,7 +360,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \setlength{\parskip}{0.2cm}  % tente também \onelineskip
 
 % Pasta padrão para as imagens
-\graphicspath{{../images/}}
+\graphicspath{{images/}}
 
 % Nome do local do instituto
 \local{São Carlos -- SP}
@@ -393,7 +398,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
     \renewcommand{\glossaryname}{Glossário}
 }
 % Estilo de apresentação do glossário
-\glossarystyle{list}
+\setglossarystyle{list}
 
 % Contador de definições do Glossário
 \newcounter{count_glossario}
@@ -447,6 +452,29 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 % Permite comandos com @ no nome
 \makeatletter
 
+% Comando para definir o título em português
+\providecommand{\imprimirtituloPT}{}
+\newcommand{\tituloPT}[1]{\renewcommand{\imprimirtituloPT}{#1}}%
+
+% Comando para definir o título em inglês
+\providecommand{\imprimirtituloEN}{}
+\newcommand{\tituloEN}[1]{\renewcommand{\imprimirtituloEN}{#1}}%
+
+\providecommand{\imprimirmaintitle}{}
+\iflanguage{english}{\renewcommand{\imprimirmaintitle}{\imprimirtituloEN}}{\renewcommand{\imprimirmaintitle}{\imprimirtituloPT}}
+
+\addto\captionsenglish{% ingles
+    \titulo{\imprimirtituloEN}
+}
+\addto\captionsbrazil{% portugues-brasil
+   \titulo{\imprimirtituloPT}
+}
+
+
+% Comando para definir o gênero do autor (M = Masculino / F = Feminino)
+\providecommand{\imprimirgenero}{M}
+\newcommand{\genero}[1]{\renewcommand{\imprimirgenero}{#1}}
+
 % Comando para definição do nome e sobrenome do author
 \renewcommand\autor[2][Nome para Referência]{
     
@@ -463,8 +491,10 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 }
 
 % Retira os dois pontos (:) que vem por padrão da classe Abntex2
-\renewcommand{\orientadorname}{Orientador}
-\renewcommand{\coorientadorname}{Coorientador}
+\addto\captionsbrazil{% portugues-brasil
+    \renewcommand{\orientadorname}{Orientador}
+    \renewcommand{\coorientadorname}{Coorientador}
+}
 \addto\captionsenglish{% ingles
     %% adjusts names from abnTeX2
     \renewcommand{\orientadorname}{Advisor}
@@ -477,7 +507,12 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
     \StrCount{#3}{\space}[\nbmatch]%
     \StrCut[\nbmatch]{#3}{\space}\strfirstorientador\strsecondorientador
     
-    \renewcommand{\imprimirorientadorRotulo}{#1}
+    \addto\captionsbrazil{% portugues-brasil
+        \renewcommand{\imprimirorientadorRotulo}{#1}
+    }
+    \addto\captionsenglish{
+        \renewcommand{\imprimirorientadorRotulo}{\orientadorname}
+    }
     \newcommand{\titulacaoorientador}{#2}
     \def\ABNTorientadordatabib{\strsecondorientador, \strfirstorientador}
     \renewcommand{\imprimirorientador}{\strfirstorientador~\strsecondorientador}
@@ -489,11 +524,20 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
     \StrCount{#3}{\space}[\nbmatch]%
     \StrCut[\nbmatch]{#3}{\space}\strfirstcoorientador\strsecondcoorientador
     
-    \renewcommand{\imprimircoorientadorRotulo}{#1}
+    \addto\captionsbrazil{% portugues-brasil
+        \renewcommand{\imprimircoorientadorRotulo}{#1}
+    }
+    \addto\captionsenglish{
+        \renewcommand{\imprimircoorientadorRotulo}{\coorientadorname}
+    }
     \newcommand{\titulacaocoorientador}{#2}
     \def\ABNTcoorientadordatabib{\strsecondcoorientador, \strfirstcoorientador}
     \renewcommand{\imprimircoorientador}{\strfirstcoorientador~\strsecondcoorientador}
 }
+
+% Comando para definição da área de concentração
+\providecommand{\imprimirarea}{}
+\newcommand{\area}[1]{\renewcommand{\imprimirarea}{#1}}
 
 % Comando para definição da especialidade do Título
 \providecommand{\imprimirespecialidade}{}
@@ -512,56 +556,74 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 
 \universidade{USP}
 \instituicao{Instituto de Ciências Matemáticas e de Computação -- ICMC-USP}
-\addto\captionsenglish{% ingles
-    \instituicao{\textit{Instituto de Ciências Matemáticas e de Computação} -- ICMC-USP}
-}
 
 % CCMC ==========================================================================
     \ifthenelse{\equal{#1}{CCMC}}{
-        \programa{Programa de Pós-Graduação em Ciências de Computação e Matemática Computacional}
-        \especialidade{em Ciências -- Ciências de Computação e Matemática Computacional}
+        \addto\captionsbrazil{
+            \area{Ciências de Computação e Matemática Computacional}
+            \programa{Programa de Pós-Graduação em Ciências de Computação e Matemática Computacional}
+            \especialidade{em Ciências -- Ciências de Computação e Matemática Computacional}
+        }
         \addto\captionsenglish{% ingles
+            \area{Computer Science and Computational Mathematics}
             %\programa{Programa de Pós-Graduação em Ciências de Computação e Matemática Computacional}
             \especialidade{Program in Computer Science and Computational Mathematics}
         }
     }{
 % MAT ===========================================================================
         \ifthenelse{\equal{#1}{MAT}}{
-            \programa{Programa de Pós-Graduação em Matemática}
-            \especialidade{em Ciências -- Matemática}
+            \addto\captionsbrazil{
+                \area{Matemática}
+                \programa{Programa de Pós-Graduação em Matemática}
+                \especialidade{em Ciências -- Matemática}
+            }
             \addto\captionsenglish{% ingles
+                \area{Mathematics}
                 %\programa{Programa de Pós-Graduação em Matemática}
                 \especialidade{Program in Mathematics}
             }
         }{
 % PIPGES ========================================================================     
             \ifthenelse{\equal{#1}{PIPGES}}{
-                \universidade{USP/UFSCar}
-                \instituicao{Instituto de Ciências Matemáticas e de Computação -- ICMC-USP e ao Departamento de Estatística -- DEs-UFSCar}
-                \programa{Programa Interinstitucional de Pós-Graduação em Estatística}
-                \especialidade{em Estatística -- Programa Interinstitucional de Pós-Graduação em Estatística}
+                \addto\captionsbrazil{
+                    \universidade{USP/UFSCar}
+                    \instituicao{Instituto de Ciências Matemáticas e de Computação -- ICMC-USP e ao Departamento de Estatística -- DEs-UFSCar}
+                    \area{Estatística}
+                    \programa{Programa Interinstitucional de Pós-Graduação em Estatística}
+                    \especialidade{em Estatística -- Interinstitucional de Pós-Graduação em Estatística}
+                }
                 \addto\captionsenglish{% ingles
-                    \instituicao{\textit{Instituto de Ciências Matemáticas e de Computação} -- ICMC-USP and to the \textit{Departamento de Estatística} -- DEs-UFSCar}
+                    \instituicao{Instituto de Ciências Matemáticas e de Computação -- ICMC-USP and to the Departamento de Estatística -- DEs-UFSCar}
+                    \area{Statistics}
                     %\programa{Programa Interinstitucional de Pós-Graduação em Estatística}
                     \especialidade{joint Graduate Program in Statistics DEs-UFSCar/ICMC-USP}
                 }
             }{
 % PROFMAT =======================================================================
                 \ifthenelse{\equal{#1}{PROFMAT}}{
-                    \programa{Programa de Pós-graduação em Mestrado Profissional em Matemática em Rede Nacional}
-                    \especialidade{-- Programa de Mestrado Profissional em Matemática}
+                    \addto\captionsbrazil{
+                        \area{Matemática}
+                        \programa{Programa de Pós-graduação em Mestrado Profissional em Matemática em Rede Nacional}
+                        \especialidade{em Ciências -- Programa de Mestrado Profissional em Matemática}
+                    }
                     \addto\captionsenglish{% ingles
+                        \area{Mathematics}
                         %\programa{Programa de Pós-graduação em Mestrado Profissional em Matemática em Rede Nacional}
-                        \especialidade{-- Programa de Mestrado Profissional em Matemática}
+                        \especialidade{of Mathematics Professional Master’s Program}
+                        \renewcommand{\imprimirpreambulo}{\nohyphens{\imprimirtipotrabalho~submitted to the \imprimirinstituicao,\exam~\imprimirespecialidade. \textit{\tipoexemplar}}}
                     }
                 }{
 % MECAI =========================================================================
                     \ifthenelse{\equal{#1}{MECAI}}{
-                        \programa{Programa de Pós-graduação em Mestrado Profissional em Matemática, Estatística e Computação Aplicadas à Indústria}
-                        \especialidade{-- Programa de Mestrado Profissional em Matemática, Estatística e Computação Aplicadas à Indústria}
-                        \addto\captionsenglish{% ingles
-                            %\programa{Programa de Pós-graduação em Mestrado Profissional em Matemática, Estatística e Computação Aplicadas à Indústria}
+                        \addto\captionsbrazil{
+                            \area{Matemática, Estatística e Computação Aplicadas à Indústria}
+                            \programa{Programa de Pós-graduação em Mestrado Profissional em Matemática, Estatística e Computação Aplicadas à Indústria}
                             \especialidade{-- Programa de Mestrado Profissional em Matemática, Estatística e Computação Aplicadas à Indústria}
+                        }
+                        \addto\captionsenglish{% ingles
+                            \area{Mathematics, Statistics and Computing Applied to Industry}
+                            %\programa{Programa de Pós-graduação em Mestrado Profissional em Matemática, Estatística e Computação Aplicadas à Indústria}
+                            \especialidade{-- Program in Mathematics, Statistics and Computing Applied to Industry}
                         }
                     }{
 % Outros ========================================================================
@@ -591,21 +653,24 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 }
 
 % Nome do Mês
-\newcommand\Monthname[1][EMPTY]{%
-    \begin{switch}{#1}%
-        \case{1}{Janeiro}%
-        \case{2}{Fevereiro}%
-        \case{3}{Março}%
-        \case{4}{Abril}%
-        \case{5}{Maio}%
-        \case{6}{Junho}%
-        \case{7}{Julho}%
-        \case{8}{Agosto}%
-        \case{9}{Setembro}%
-        \case{10}{Outubro}%
-        \case{11}{Novembro}%
-        \case{12}{Dezembro}%
-    \end{switch}%
+\providecommand*{\Monthname}{}
+\addto\captionsbrazil{
+    \renewcommand\Monthname[1][EMPTY]{%
+        \begin{switch}{#1}%
+            \case{1}{Janeiro}%
+            \case{2}{Fevereiro}%
+            \case{3}{Março}%
+            \case{4}{Abril}%
+            \case{5}{Maio}%
+            \case{6}{Junho}%
+            \case{7}{Julho}%
+            \case{8}{Agosto}%
+            \case{9}{Setembro}%
+            \case{10}{Outubro}%
+            \case{11}{Novembro}%
+            \case{12}{Dezembro}%
+        \end{switch}%
+    }
 }
 \addto\captionsenglish{% ingles
     \renewcommand\Monthname[1][EMPTY]{%
@@ -674,11 +739,13 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 }
 
 % Comando para inclusão da ficha catalográfica
+\newboolean{opt-fichacatalografica}
+\setboolean{opt-fichacatalografica}{false}
 \def\incluifichacatalografica{\@ifstar\@incluifichacatalografica\@@incluifichacatalografica}
 % Incluir um arquivo externo como ficha catalográfica
-\def\@incluifichacatalografica#1{\gdef\@incluifichacatalografica{true}\gdef\@arquivofichacatalografica{#1}}          % \incluifichacatalografica*{}{} 
+\def\@incluifichacatalografica#1{\setboolean{opt-fichacatalografica}{true}\gdef\@arquivofichacatalografica{#1}}          % \incluifichacatalografica*{}
 % Gera a ficha catalográfica automaticamente de acordo com o número da Tabela de Cutter http://www.davignon.qc.ca/cutter1.html
-\def\@@incluifichacatalografica#1{\gdef\@incluifichacatalografica{true}\gdef\@codigocutter{#1}}  % \incluifichacatalografica{}{}
+\def\@@incluifichacatalografica#1{\setboolean{opt-fichacatalografica}{true}\gdef\@codigocutter{#1}}  % \incluifichacatalografica{}
 
 
 %================================================================================
@@ -936,7 +1003,7 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
 \arabic{count}.\enspace\i.\ %
     }%
 }
-    
+
 \newcommand{\inserefichacatalografica}
 {
     \@ifundefined{@arquivofichacatalografica}
@@ -949,28 +1016,32 @@ Programas de Pós-graduação do Instituto de Ciências Matemáticas e de Comput
     
         \begin{fichacatalografica}
         	\vspace*{\fill}					% Posição vertical
-
+ 
 	% Conteúdo
-	\begin{tabular}{c|p{1.6cm}p{10.5cm}|}
+	\begin{otherlanguage}{brazil}
+	\begin{tabular}{c|p{1.4cm}p{10.1cm}|}
 	
 	\multicolumn{3}{c}{\sffamily\small Ficha catalográfica elaborada pela Biblioteca Prof. Achille Bassi} \\
 	\multicolumn{3}{c}{\sffamily\small e Seção Técnica de Informática, ICMC/USP,} \\
 	\multicolumn{3}{c}{\sffamily\small com os dados fornecidos pelo(a) autor(a)} \\ \cline{2-3}
 	& & \\
-	& & \texttt{\ABNTautordatabib}\\
-	& {\ttfamily \MakeUppercase{\firstletterauthor}\@codigocutter}\MakeLowercase{\firstlettertitle}
-	&  {\ttfamily~~~\imprimirtitulo{} / \imprimirautor; \MakeLowercase{\imprimirorientadorRotulo}~\imprimirorientador \abntex@ifnotempty{\imprimircoorientador}{; \MakeLowercase{\imprimircoorientadorRotulo}~\imprimircoorientador}. -- \imprimirlocal, \@year.} \\ 
-	& & {\ttfamily~~~\pageref{LastPage} p.}\\
-	& &\\
-	& & {\ttfamily~~~\imprimirtipotrabalho~(\tipodocurso~-- \imprimirprograma) -- Instituto de Ciências Matemáticas
-e de Computação, Universidade de São Paulo, \@year.}\\
 	& & \\
-	& & \texttt{~~~\expandafter\PROCESS\expandafter{\palavraschave}I. \ABNTorientadordatabib, orient.\ II.\ \abntex@ifnotempty{\imprimircoorientador}{%
+	& & {\fontsize{10.3pt}{1em}\selectfont\ttfamily\ABNTautordatabib} \\ 
+	& {\fontsize{10.3pt}{1em}\selectfont\ttfamily \MakeUppercase{\firstletterauthor}\@codigocutter}\MakeLowercase{\firstlettertitle}%
+	& {\fontsize{10.3pt}{1em}\selectfont\ttfamily~~~\imprimirmaintitle\ / \imprimirautor; \MakeLowercase{\imprimirorientadorRotulo} \imprimirorientador \abntex@ifnotempty{\imprimircoorientador}{; \MakeLowercase{\imprimircoorientadorRotulo}~\imprimircoorientador}. -- \imprimirlocal, \@year.} \\ 
+	& & {\fontsize{10.3pt}{1em}\selectfont\ttfamily~~~\pageref{LastPage} p.}\\
+	& &\\
+	& & {\fontsize{10.3pt}{1em}\selectfont\ttfamily~~~\imprimirtipotrabalho~(\tipodocurso~- \imprimirprograma) -- Instituto de Ciências Matemáticas e de Computação, Universidade de São Paulo, \@year.}\\
+	& & \\ 
+	& & {\fontsize{10.3pt}{1em}\selectfont\ttfamily~~~\expandafter\PROCESS\expandafter{\palavraschave}I. \ABNTorientadordatabib, orient.\ II.\ \abntex@ifnotempty{\imprimircoorientador}{%
 	\ABNTcoorientadordatabib, coorient.\ III.\ }Título.} \\
 	& & \\
 	& & \\ \cline{2-3}
 	%& & ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CDU: 681.3.01:621.39 \\ \cline{2-3}
+	
 	\end{tabular}
+	\end{otherlanguage}
+	\vspace{1.5cm}
 
         \end{fichacatalografica}
     }{
@@ -1011,7 +1082,7 @@ e de Computação, Universidade de São Paulo, \@year.}\\
         \begin{resumo}[\csuse{res-title-\csuse{res-language-\thecount}}]
             \begin{otherlanguage*}{\csuse{res-language-\thecount}}
                 \begin{SingleSpace}
-                    {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{\imprimirtitulo}.} \@year. \pageref{LastPage} f. \imprimirtipotrabalho~(\tipodocurso~em \imprimirespecialidade) -- Instituto de Ciências Matemáticas e de Computação (ICMC/USP), \imprimirlocal.
+                    {\MakeUppercase{\ABNTautorreferencia}}. {\textbf{\imprimirtitulo}.} \@year. \pageref{LastPage} f. \imprimirtipotrabalho~(\tipodocurso~\imprimirespecialidade) -- Instituto de Ciências Matemáticas e de Computação (ICMC/USP), \imprimirlocal.
                 \end{SingleSpace}
                 %\end{flushleft}
                 \vskip 20pt
@@ -1104,19 +1175,19 @@ e de Computação, Universidade de São Paulo, \@year.}\\
   \begin{capa}%
     \center
     ~\\
-    \vspace{6.5cm}
+    \vspace{7.1cm}
+    \begin{minipage}{14.8cm}
+    \center
     \rule{\textwidth}{1pt} \\
-    %\vspace{5mm}
-    \vspace{18pt}
+    \vspace{8mm}
     \begin{Spacing}{1.5}
-        {\@icmcTitulo\imprimirtitulo} \\
+        {\@icmcTitulo\nohyphens{\imprimirtitulo}} \\
     \end{Spacing}
-    \vspace{\fill}\vspace{\fill}
-    {\@icmcAutorCapa\imprimirautor} \\
-    %\vspace{4mm}
-    \vspace{12pt}
+    \vspace{8mm}
+    {\@icmcAutorCapa\nohyphens{\imprimirautor}} \\
+    \vspace{5mm}
     \rule{\textwidth}{1pt} \\
-    \vspace*{12.15cm}
+    \end{minipage}%
     ~\\
   \end{capa}
 }
@@ -1124,66 +1195,60 @@ e de Computação, Universidade de São Paulo, \@year.}\\
 % folha de rosto
 \renewcommand{\folhaderostocontent}{
 
-\vspace*{-13.2mm}
-\makebox[16.2cm][r]{\fbox{\parbox{7.5cm}{
-\makebox[\linewidth][c]{\@icmcSVPG{SERVIÇO DE PÓS-GRADUAÇÃO DO ICMC-USP}}
-  
-  {
-      \@icmcCarimbo
-      \vspace{12pt}
-      \hspace{3pt} Data de Depósito:
-      
-      \vspace{10pt}
-      \hspace{3pt} Assinatura: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-      \vspace{3pt}
-  }
-}}}
+\vspace*{-6.2mm}
+\iflanguage{english}{\vspace{2.95cm}}
+    {
+        \makebox[14.9cm][r]{\fbox{\parbox{7.2cm}{
+        \vspace{0.3cm}
+        \makebox[\linewidth][c]{\@icmcSVPG{SERVIÇO DE PÓS-GRADUAÇÃO DO ICMC-USP}}
+          
+          {
+              \@icmcCarimbo
+              \vspace{12pt}
+              \hspace{2pt} Data de Depósito:
+              
+              \vspace{9pt}
+              \hspace{2pt} Assinatura: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+              \vspace{9pt}
+          }
+        }}}
+    }
 \begin{center}
 
-\vspace{2.6cm}
+\vspace{0.5cm}
+
+{\@icmcAutorFolhaRosto\nohyphens{\imprimirautor}}
+
+\vfill
 
 \begin{Spacing}{1.5}
-{\@icmcTitulo\imprimirtitulo}
+{\@icmcTituloFolhaRosto\nohyphens{\imprimirtitulo}}
 \end{Spacing}
 
-%\vspace{3cm}
-\vspace{\fill}
-\vspace{\fill}
-
-{\@icmcAutorFolhaRosto\imprimirautor}
-
-%\vspace{2cm}
-\vspace{\fill}
-\vspace{\fill}
-
-{\@icmcOrientadorLabel\imprimirorientadorRotulo:}
-{\@icmcOrientadorName\titulacaoorientador~\imprimirorientador}
-
-\abntex@ifnotempty{\imprimircoorientador}{%
-    \addvspace{1pt}
-    {\@icmcOrientadorLabel\imprimircoorientadorRotulo:}
-    {\@icmcOrientadorName\titulacaocoorientador~\imprimircoorientador}
-}%
-
-\vspace{\fill}
-\vspace{\fill}
-\vspace{\fill}
+\vfill
 
 \abntex@ifnotempty{\imprimirpreambulo}{%
-  \hspace{.45\textwidth}
-  %\begin{minipage}{.54\textwidth}
-  \begin{minipage}{8.6cm}
-    \begin{SingleSpace}
-    {\@icmcPreambulo
-    \imprimirpreambulo}
-    \end{SingleSpace}
+  \hspace{.43\textwidth}
+  \begin{minipage}{8.4cm}
+    \begin{Spacing}{0.9}
+        {\@icmcPreambulo\imprimirpreambulo}%
+        
+        \vspace{5pt}
+        {\@icmcPreambulo\arealabel: \nohyphens{\imprimirarea}}%
+        
+        \vspace{5pt}
+        {\@icmcOrientador\imprimirorientadorRotulo: \titulacaoorientador{} \nohyphens{\imprimirorientador}}%
+        \abntex@ifnotempty{\imprimircoorientador}{%
+            \\{\@icmcOrientador\imprimircoorientadorRotulo: \titulacaocoorientador{} \nohyphens{\imprimircoorientador}}
+        }%
+    \end{Spacing}
   \end{minipage}%
 }%
 
 
-\vspace{\fill}
-\vspace{\fill}
-\vspace{\fill}
+\vspace{1cm}
+%\vspace{\fill}
+%\vspace{\fill}
 
 {\@icmcLocalData
 \imprimiruniversidade~-- São Carlos\\
@@ -1193,8 +1258,8 @@ e de Computação, Universidade de São Paulo, \@year.}\\
 }
 \vspace*{1.2cm}
 \end{center}
-} %folha de rosto
 
+} %folha de rosto
 
 %================================================================================
 % Configuração dos Estilo dos Capítulo
@@ -1312,14 +1377,24 @@ e de Computação, Universidade de São Paulo, \@year.}\\
     \imprimircapa
 
     % Folha de rosto e Ficha catalográfica (se houver)
-    \@ifundefined{@incluifichacatalografica}{
-        \imprimirfolhaderosto{}
-    }{
+    \ifthenelse{\boolean{opt-fichacatalografica}}{
         % (o * indica que haverá a ficha bibliográfica)
-        \imprimirfolhaderosto*{} 
+        \begin{otherlanguage}{brazil}
+            \imprimirfolhaderosto*{}
+        \end{otherlanguage}
 		\inserefichacatalografica
 		\newpage
+    }{
+        \begin{otherlanguage}{brazil}
+            \imprimirfolhaderosto{}
+        \end{otherlanguage}
     }
+    
+    \begin{otherlanguage}{english}
+        \imprimirfolhaderosto{}
+    \end{otherlanguage}
+    
+    %\renewcommand{\rmdefault}{cmr}
 
     % DEDICATÓRIA / AGRADECIMENTO / EPÍGRAFE
     \inserededicatoria

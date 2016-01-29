@@ -1,0 +1,224 @@
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% ICMC: Modelo de Trabalho Acadêmico (tese de doutorado, dissertação de
+% mestrado e trabalhos monográficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informação e documentação - Trabalhos acadêmicos -
+% Apresentação
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+% Opções: 
+%   Qualificação         = qualificacao 
+%   Curso                = doutorado/mestrado
+%   Situação do trabalho = pre-defesa/pos-defesa (exceto para qualificação)
+% -- opções do pacote babel --
+% Idioma padrão = brazil
+%spanish,			% idioma adicional para hifenização
+%english,			% idioma adicional para hifenização
+%brazil				% o último idioma é o principal do documento
+\documentclass[mestrado, pre-defesa, spanish, english, brazil]{packages/icmc}
+
+% ---
+% Pacotes Opcionais
+% ---
+\usepackage{rotating}           % Usado para rotacionar o texto
+\usepackage[all,knot,arc,import,poly]{xy}   % Pacote para desenhos gráficos
+% Este pacote pode conflitar com outros pacotes gráficos como o ``pictex''
+% Então é necessário usar apenas um dos pacotes conflitantes
+\usepackage{graphicx,pifont}
+\usepackage{listings}
+\usepackage{subcaption}
+\usepackage{pdfpages}
+
+\newcommand{\VerbL}{0.52\textwidth}
+\newcommand{\LatL}{0.42\textwidth}
+
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+% Tanto na capa quanto nas folhas de rosto apenas a primeira letra da primeira palavra (ou nomes próprios) devem estar em letra maiúscula, todas as demais devem ser em letra minúscula.
+\tituloPT{Extensão da geração de carga do Bench4Q para \textit{benchmark} de desempenho em regime transiente.}
+\tituloEN{Extension of the load generation for Bench4Q benchmark performance transient regime.}
+\autor[Souza, F. L.]{Flavio Luiz dos Santos de Souza}
+\genero{M} % Gênero do autor (M = Masculino / F = Feminino)
+\orientador[Orientador]{Prof. Dr.}{Francisco José Monaco}
+%\coorientador{Prof. Dr.}{Fulano de Tal}
+\curso{CCMC}
+\data{\the\day}{\the\month}{\the\year} % Data do depósito
+% ---
+
+
+% ---
+% RESUMOS
+% ---
+
+% Resumo em PORTUGUÊS
+% conter no máximo 500 palavras
+% conter no mínimo 1 e no máximo 5 palavras-chave
+\textoresumo[brazil]{
+	Este trabalho de mestrado apresenta o desenvolvimento de uma extensão no \textit{benchmark} Bench4Q. O referido \textit{framework} \textit{benchmark} é utilizado para gerar carga sintética para um sistema \textit{e-commerce} acoplado ao \textit{benchmark}. Seu principal emprego na literatura tem sido em avaliação de desempenho sob carga estacionária.  Contudo, recentes pesquisas  tem apresentado interesse no estudo de arquiteturas adaptativas de autogerenciamento de recursos, o que implica em responder à perturbações e atender a requisitos de desempenho em regime transiente.  No entanto, este \textit{benchmark} não abrange os estados transiente do sistema. O presente trabalho tem por objetivo estender o \textit{benchmark} Bench4Q acrescentando-lhe capacidades de excitar a resposta transiente do sistema mediante a perturbações da carga de trabalho.  Para isso, o \textit{software} foi acrescido de funcionalidade capaz de gerenciar a modulação da carga de trabalho. E experimentos foram executados em um ambiente multicamadas que apresentou resultados compatíveis ao objetivo, representando contribuições para a área de avaliação de desempenho. A motivação da pesquisa, inserção em outros trabalhos em andamento e direções futuras são introduzidas.
+}{Avaliação de Desempenho, \textit{Benchmark}, Computação em Nuvem, Modelagem}
+
+
+% resumo em INGLÊS
+% conter no máximo 500 palavras
+% conter no mínimo 1 e no máximo 5 palavras-chave
+\textoresumo[english]{
+	This master thesis introduces the development of an extension for the Bench4Q benchmark. The referred framwork is utilized to generate sinthetic workload for a companion e-commerce benchmark. The software package Bench4q is a benchmark for cloud computing applications which simulates various aspects of conventional architectures and workloads in this kind of environment. It is mainly referenced in the literature in works on performance evaluation under stationary load.  Recent research works have broaden its interest to the study of adaptive architectures of resource self-management, what implies in responding to disturbances and meeting performance requirements in transient regime.  This work aims at extending Bench4q adding it capabilities to excite the transient response of the system by means of applying disturbances during execution time. To this end, the piece of software shall be enriched with functionalities for generating non-stationary workload and programmed disturbances. Experients have  been carried out in a multi-layer enviroment and have  yielded positive result, representing contributions to the state of the art. The motivation of this piece of work, insertion in other ongoing research and directions are introduced. 
+}{Performance Evaluation, Benchmark, Cloud Computing, Model}
+
+% ---
+% Configurações de aparência do PDF final
+% ---
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+	pdftitle={\@title}, 
+	pdfauthor={\@author},
+	pdfsubject={\imprimirpreambulo},
+	pdfcreator={LaTeX with abnTeX2/ICMC-USP},
+	pdfkeywords={\palavraschave}, 
+	colorlinks=true,       		% false: boxed links; true: colored links
+	linkcolor=blue,          	% color of internal links
+	citecolor=blue,        		% color of links to bibliography
+	filecolor=magenta,      	% color of file links
+	urlcolor=blue,
+	bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+
+% Inserir a ficha catalográfica
+%\incluifichacatalografica*{tex/fichaCatalografica.pdf}
+\incluifichacatalografica{634} % Código Cutter: número atribuído ao sobrenome do autor. Para obtê-lo, consulte a tabela Cutter Sanborn (em http://203.241.185.12/asd/board/Author/upfile/abcd.htm), procure pelo sobrenome ou forma mais próxima ao sobrenome completo e coloque o número indicado como parâmetro.
+
+
+% DEDICATÓRIA / AGRADECIMENTO / EPÍGRAFE
+\textodedicatoria*{tex/pre-textual/dedicatoria}
+\textoagradecimentos*{tex/pre-textual/agradecimentos}
+\textoepigrafe*{tex/pre-textual/epigrafe}
+
+% Inclui a lista de figuras
+\incluilistadefiguras
+
+% Inclui a lista de tabelas
+\incluilistadetabelas
+
+% Inclui a lista de quadros
+%\incluilistadequadros
+
+% Inclui a lista de algoritmos
+%\incluilistadealgoritmos
+
+% Inclui a lista de códigos
+\incluilistadecodigos
+
+% Inclui a lista de siglas e abreviaturas
+\incluilistadesiglas
+
+% Inclui a lista de símbolos
+%\incluilistadesimbolos
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+	% ----------------------------------------------------------
+	% ELEMENTOS TEXTUAIS
+	% ----------------------------------------------------------
+	\textual
+	
+	\chapter{Introdução}
+	\label{chapter:introducao}
+	\input{tex/chapters/introducao}
+	
+	\chapter{Estado da Arte}
+	\label{chapter:revisao}
+	\input{tex/chapters/revisao}
+	
+	\chapter{Metodologia}
+	\label{chapter:metodologia}
+	\input{tex/chapters/metodologia}
+	
+	\chapter{Desenvolvimento}
+	\label{chapter:desenvolvimento}
+	\input{tex/chapters/desenvolvimento}
+	
+	\chapter{Resultados}
+	\label{chapter:resultados}
+	\input{tex/chapters/resultados}
+	
+	\chapter{Conclusão}
+	\label{chapter:conclusao}
+	\input{tex/chapters/conclusao}
+	
+	
+	% ---
+	% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+	% ---
+	\bookmarksetup{startatroot}% 
+	% ---
+	
+	% ----------------------------------------------------------
+	% ELEMENTOS PÓS-TEXTUAIS
+	% ----------------------------------------------------------
+	\postextual
+	
+	% ----------------------------------------------------------
+	% Referências bibliográficas
+	% ----------------------------------------------------------
+	\bibliography{references}
+	
+	% ---------------------------------------------------------------------
+	% GLOSSÁRIO
+	% ---------------------------------------------------------------------
+	
+	% Arquivo que contém as definições que vão aparecer no glossário
+	\input{tex/glossario}
+	% Comando para incluir todas as definições do arquivo glossario.tex
+	\glsaddall
+	% Impressão do glossário
+	\printglossaries
+	
+	% ----------------------------------------------------------
+	% Apêndices
+	% ----------------------------------------------------------
+	
+	% ---
+	% Inicia os apêndices
+	% ---
+	\begin{apendicesenv}
+		
+		\chapter{Documentação da extensão do Bench4Q}
+		\label{chapter:documentacao}
+		\input{tex/appendix/documentacao}
+		
+	\end{apendicesenv}
+	% ---
+	
+	
+	% ----------------------------------------------------------
+	% Anexos
+	% ----------------------------------------------------------
+	
+	% ---
+	% Inicia os anexos
+	% ---
+	%\begin{anexosenv}
+	
+	%    \chapter{Páginas interessantes na Internet} 
+	%    \label{chapter:paginas-interessantes}
+	%    \input{tex/annex/paginas-interessantes}
+	
+	%\end{anexosenv}
+	% ---
+	
+\end{document}
