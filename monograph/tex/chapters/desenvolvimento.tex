@@ -1,25 +1,25 @@
-Nesta seção são descrevemos em detalhes a implementação aplicada ao \textit{benchmark} Bench4Q e como ele pode ser estendido. Descrevemos também algumas das complexidades na produção de distribuições para a carga de trabalho. Essa ferramenta também está disponível sob uma licença de código aberto, para que outros possam usar e estender o \textit{benchmark}, e contribuir com novos tipos de modulação de cargas de trabalho. O código fonte esta disponível em \href{URL}{http://gitlab.lasdpc.icmc.usp.br/edwin/bench4q}. A Figura \ref{fig:diagrama-classes} mostra o diagrama de classes envolvido na extensão do Bench4Q. As classes sinalizadas na cor azul, representam as já existentes mas que passaram por adaptações e modificações, já as classes na cor verde, referem-se as novas classes criadas para possibilitar a modulação da carga do \textit{benchmark}.
+Nesta seção descrevemos em detalhes a implementação aplicada ao \textit{benchmark} Bench4Q e como ele pode ser estendido. Descrevemos também algumas das distribuições da carga de trabalho que está disponível sob uma licença de código aberto, para que outros possam usar e estender o \textit{benchmark}, e contribuir com novos tipos de modulação de cargas de trabalho. O código fonte está disponível em \href{URL}{http://gitlab.lasdpc.icmc.usp.br/edwin/bench4q}.
 
 Apesar de permitir a geração de carga para o sistema SUT, o Bench4Q possui algumas limitações na sua versão original que dificultam a experimentação e analise de cenários de interesse ao trabalho de \citeonline{Edwin2015} e \citeonline{Lourenco2015}.
 As classes disponíveis no \textit{benchmark} original não permitem a modulação de carga de trabalho. Essa limitação implica, por exemplo, na dificuldade de projetar um controlador para o gerenciamento de recursos, pois para esta atividade é necessário uma análise de resultados transientes mediante a modulação da carga de trabalho. A simulação de uma carga de trabalho em que há a alteração introduzida ao longo da simulação é o foco deste trabalho.
 
-O modelo de referencia MEDC define um conjunto de requisitos a qual esta extensão deve seguir e respeitar o requisito \textit{Demand}. Segundo \citeonline{Edwin2015}, o requisito \textit{Demand} visa a avaliação de desempenho de sistemas computacionais considerando mudanças na carga de trabalho que chega ao sistema. Para o contexto do Bench4Q, a carga de trabalho são requisições Web que são submetidas à camada de aplicação. 
+O modelo de referência MEDC define um conjunto de requisitos a qual está extensão deve seguir e respeitar o requisito \textit{Demand}. Segundo \citeonline{Edwin2015}, o requisito \textit{Demand} visa a avaliação de desempenho de sistemas computacionais considerando mudanças na carga de trabalho que chega ao sistema. Para o contexto do Bench4Q, a carga de trabalho são requisições Web que são submetidas à camada de aplicação. 
 
 O Console do Bench4Q é um programa Java que gerencia EBs para gerar uma série sequencial programada de requisições a serem enviadas para o SUT. 
-Os tópicos aqui é controlar a taxa em que os EBs geram as requisições, para que seja possível controlar diretamente, de forma programada, a carga de trabalho oferecida para o SUT. Nativamente o Bench4Q, coleta informações sobre a taxa requisições e o comportamento do SUT, e relata esses dados no final da experimento. A Figura \ref{fig:experimental-setup} ilustra este contexto.
+O tópico aqui é controlar a taxa em que os EBs geram as requisições, para que seja possível controlar diretamente, de forma programada, a carga de trabalho oferecida para o SUT. Nativamente o Bench4Q, coleta informações sobre a taxa requisições e o comportamento do SUT, e relata esses dados no final da experimento. A Figura \ref{fig:experimental-setup} ilustra o fluxo deste contexto.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.6]{experimental-setup.png}	
+	\includegraphics[scale=0.4]{experimental-setup.png}	
 	\caption{Configuração experimental Bench4Q.}
 	\label{fig:experimental-setup}
 	\fadaptada{Vieira2003}
 \end{figure}
 
-A extensão implementada na geração de carga do Bench4Q segue a orientação do requisito \textit{Demand} do MEDC, modificando algumas classes da versão original do \textit{benchmark}. Conforme o diagrama de classes na Figura \ref{fig:diagrama-classes}, é possível ter uma ideia do trabalho de extensão realizado no \textit{benchmark}. Vale  salientar que o Bench4Q é uma ferramenta completa e extensa, e diagramar todas as suas classes seria difícil e aumentaria consideravelmente a complexidade de entendimento. Sendo assim, aqui apresentamos somente as classes já existem no Bench4Q e que passaram por modificações para atender aos requisitos da proposta, juntamente com as novas classes que foram necessárias para o mesmo objetivo.
- 
+A extensão implementada na geração de carga do Bench4Q segue a orientação do requisito \textit{Demand} do MEDC, modificando algumas classes da versão original do \textit{benchmark}. Conforme o diagrama de classes na Figura \ref{fig:diagrama-classes}, é possível ter uma ideia do trabalho de extensão realizado no \textit{benchmark}. Vale salientar que o Bench4Q é uma ferramenta completa e extensa, e diagramar todas as suas classes seria difícil e aumentaria consideravelmente a complexidade de entendimento. Sendo assim, aqui apresentamos somente as classes já existem no Bench4Q e que passaram por modificações para atender aos requisitos da proposta, juntamente com as novas classes que foram necessárias para o mesmo objetivo. A Figura \ref{fig:diagrama-classes} mostra o diagrama de classes envolvido na extensão do Bench4Q. As classes sinalizadas na cor azul representam as já existentes, mas que passaram por adaptações e modificações, já as classes na cor verde referem-se as novas classes criadas para possibilitar a modulação da carga do \textit{benchmark}.
+
 O Bench4Q fornece uma estrutura e componentes compartilhados para a comunicação entre os dois módulos da carga de trabalho: \textbf{Console} e \textbf{Agente}. Apesar de trabalharem em conjunto e para um mesmo fim, os módulos (Console e Agente) são executados em máquinas distintas.  A extensão é construída inicialmente sob a classe \textsf{MLoadSimulatorPanel}, que orquestra toda a interatividade gráfica do Bench4Q. O novo painel de configuração, que modula a carga, \textsf{MLoadFrequencyPanel} estende da classe original \textsf{Bench4QTreeModel}, adicionando os parâmetros para a modulação: tipo da carga, o instante em que a carga se inicia, o tempo de atuação da carga e a quantidade de EBs que atuaram nessa carga. O parâmetro \textit{"tipos de carga"}, utiliza da classe enum \textsf{TypeFrequency} que define as constantes dos tipos de modulações programadas para esta extensão.  Todos os parâmetros inseridos na \textsf{MLoadSimulatorPanel} são armazenados na classe \textsf{TestFrequency} que se tornou uma propriedade da classe nativa \textsf{TestPhase}, e que posteriormente são repassadas para a classe \textsf{PropertiesEB} através da \textsf{FrequencySettings}. Já as classes \textsf{Agent}, \textsf{EB}, \textsf{EBClose}, \textsf{EBOpen}, \textsf{Workers}, \textsf{WorkersClosed} e \textsf{WorkersOpen} foram modificadas para receber os novos parâmetros da \textsf{PropertiesEB} e compreendê-los correspondentemente a modulação configurada na interface gráfica, gerando a carga programada durante a execução.
- 
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[angle=90, scale=0.6]{diagrama-classes-beanch4Q.png}	
@@ -34,7 +34,9 @@ O trabalho de desenvolver a extensão compreendeu extensivas modificações no c
 O Agente do Bench4Q é um cliente conectado ao modulo Console do \textit{benchmark}, a ferramenta permite que diversos clientes em diferentes máquinas estejam conectados em um mesmo Console.
 O Cliente é um programa Java para gerar as operações que compõem a carga de trabalho. Cada \textit{thread} executa uma série sequencial de operações, fazendo chamadas para o SUT. Para distribuir e controlar a submissão da carga de trabalho ao longo da simulação, uma estratégia utilizada é a modulação da mesma através de parâmetros que configuram o comportamento da carga. O cliente tem uma série de propriedades que definem o seu funcionamento e o comportamento resultante da carga de trabalho, apresentados no Capítulo \ref{chapter:metodologia}. 
 
-O código \ref{code:createProperties} apresentado na integra, esta presente na classe \textit{FrequencySettings} criada para a extensão, que contém o algoritmo responsável por calcular os tempos de inicialização, pause e termino de cada um dos clientes. Este código é ponto central que resulta no comportamento final da modulação da carga de trabalho.
+O código \ref{code:createProperties} apresentado na integra, refere-se a classe \textsf{FrequencySettings} criada para a extensão, que contém o algoritmo responsável por calcular os tempos de inicialização, pause e termino de cada um dos clientes. Este código é ponto central que resulta no comportamento final da modulação da carga de trabalho. Em suma, esta código define os períodos de execução e interrupção para cada EBs, como um planejamento de tarefas. Para calcular os períodos de execução e interrupção são utilizados outros parâmetros nativo ao Bench4Q como o Tempo de Experimento.
+
+Como mostrado no algoritmo, no princípio um conjunto de variáveis ( \textsf{timeStart}, \textsf{timeEnd}, \textsf{timePause} e \textsf{timeExperiment}) são incia lizadas, em geral com valores informados previamente e com tempo em milesegundos. A condição IF verifica o tipo de modulação a ser gerada. Em seguida, outra condicional IF verifica, através do index, se o EBs é configurável para a modulação e calculando os tempos de inicializações e interrupções do EBs.
 
 \begin{codigo}[caption={Algoritmo calcula os tempos de iniciaçização e termino para cada um dos Clientes}, label={code:createProperties}, breaklines=true]
 	public static PropertiesEB createProperties(int index, TestPhase testPhase, TypeFrequency type, long beginTime) {
@@ -56,68 +58,71 @@ O código \ref{code:createProperties} apresentado na integra, esta presente na c
 				propertiesEB.setEndExperimentTime(timeExperiment);
 				Logger.getLogger().debug("Normal: " + index);
 			} else {
-				propertiesEB.setStartTime(timeStart);
-				propertiesEB.setEndTime(timeEnd);
-				propertiesEB.setEndExperimentTime(timeExperiment);
-				Logger.getLogger().debug("To Step: " + index);
-			}
-		} else if (TypeFrequency.PULSE.equals(type)) {
-			if (index >= testPhase.getFrequency().getQuantity()) {
-				propertiesEB.setStartTime(beginTime);
-				propertiesEB.setEndTime(timeExperiment);
-				propertiesEB.setEndExperimentTime(timeExperiment);
-				Logger.getLogger().debug("Normal: " + index);
-			} else {
-				propertiesEB.setStartTime(timeStart);
-				propertiesEB.setPauseTime(timePause);
-				propertiesEB.setEndTime(timeEnd);
-				propertiesEB.setEndExperimentTime(timeExperiment);
-				Logger.getLogger().debug("To Pulse: " + index);
-			}
+			propertiesEB.setStartTime(timeStart);
+			propertiesEB.setEndTime(timeEnd);
+			propertiesEB.setEndExperimentTime(timeExperiment);
+			Logger.getLogger().debug("To Step: " + index);
 		}
+	} else if (TypeFrequency.PULSE.equals(type)) {
+	if (index >= testPhase.getFrequency().getQuantity()) {
+		propertiesEB.setStartTime(beginTime);
+		propertiesEB.setEndTime(timeExperiment);
+		propertiesEB.setEndExperimentTime(timeExperiment);
+		Logger.getLogger().debug("Normal: " + index);
+	} else {
+	propertiesEB.setStartTime(timeStart);
+	propertiesEB.setPauseTime(timePause);
+	propertiesEB.setEndTime(timeEnd);
+	propertiesEB.setEndExperimentTime(timeExperiment);
+	Logger.getLogger().debug("To Pulse: " + index);
+}
+}
 
-		return propertiesEB;
+return propertiesEB;
 
-	}
+}
 
 \end{codigo}
-A verdade é que motivamos em tornar mais fácil a contribuição de novas variedades de carga de trabalho para outros desenvolvedores. Logo, as novas modulações a serem implementadas deve ser incluídas neste método, juntamente com o nome da nova carga na classe Enum \textit{TypeFrequency}.
 
+Novos tipos de modulações podem ser adicionadas a esta versão do Bench4Q. Isto é especialmente útil para \textit{benchmarks} que têm requisitos muito especiais para a sua validação e/ou análise de desempenho. Por isso, foi criamos a classe \textsf{FrequencySettings} para que todos tipos os modulações específicas sejam implementadas os cálculos necessários para a execução do novo tipo. A verdade é que motivamos em tornar mais fácil a contribuição de novas variedades de carga de trabalho para outros desenvolvedores. Logo, as novas modulações a serem implementadas deve ser incluídas neste método, juntamente com o nome do novo tipo de carga na classe Enum \textit{TypeFrequency}.
 
 \section{Geração da carga de trabalho}
-A princípio foi identificado o modulo de geração de carga do Bench4Q e este passou por alterações para gerar a carga de trabalho esperada. Logo, esta classe é nativa do \textit{benchmark}. O Bench4Q tem dois tipos de conexões, \textit{Open}(Aberta) e \textit{Close}(Fechada), consequentemente existem duas classes que tratam cada umas das conexões (\textit{WorkersOpen} e \textit{WorkersClose}) com o mesmo métodos, mas com programações diferentes.
+A princípio foi identificado o modulo de geração de carga do Bench4Q e este passou por alterações para gerar a carga de trabalho esperada. Logo, esta classe é nativa do \textit{benchmark}. O Bench4Q tem dois tipos de conexões, \textit{Open} (Aberta) e \textit{Close} (Fechada), e estas são as responsáveis por gerar a carga. Consequentemente existem duas classes que tratam cada umas das conexões (\textit{WorkersOpen} e \textit{WorkersClose}) com o mesmo métodos, mas com programações diferentes.
 O código-fonte \ref{code:modelworkload}, apresentado na integra, ilustra o \textit{core} da geração da carga referente a construção da modulação da carga já com as modificações da extensão, este método é o manipula as conexões geradas pelos clientes. Através dos parâmetros e dados calculados anteriormente é possível controlar as requisições afim de gerar as modulação deseja.
 
+O código-fonte \ref{code:modelworkload} é extenso, aqui iremos descrever somente os trecho de interesse a modulação da carga de trabalho. O loop nativo \textit{while} repete em quanto o valor \textsf{maxTrans} for -1 ou maior que 0 (\textsf{maxTrans}, é o número de transações a serem efetuadas). A primeira condicional IF verifica se o tempo corrente é maior que o tempo de experimento, compreendendo assim a finalização do experimento a interrupção de novas requisições, assim a variável nativa \textit{test} é atribuída com o valor false encerrando as execução (código-fonte \ref{code:modelworkload}: linha 37). Já na segunda condicional IF, é verificado se o tempo corrente é maior que o tempo final de execução do EB somente para os EBs que são moduláveis. Neste caso é verificado, na sub-condicional IF, se existem pausa programadas e calculados novos tempos de execução e interrupção do EB, caso contrário é encerrado a execução do EB com a atribuição false para a variável \textit{test} (código-fonte \ref{code:modelworkload}: linha 31). A terceira condicional IF (código-fonte \ref{code:modelworkload}: linha 36), trata se o tempo corrente é maior ou igual ao tempo de início de execução do EB; para este caso será gerado uma requisição, caso a sub-condicional IF (código-fonte \ref{code:modelworkload}: linha 37) não seja verdadeira, pois esta encerra a execução do EB.
+
+
 \begin{codigo}[caption={Algoritmo de geração de carga modificado para modulação}, label={code:modelworkload}, breaklines=true]
-public void test() {
-	long tt = 0L; // Think Time.
-	boolean sign = true;
-	long startGet = System.currentTimeMillis();
-	long currentTimeMillis = System.currentTimeMillis();
-	this.sessionStart = startGet;
+	public void test() {
+		long tt = 0L; // Think Time.
+		boolean sign = true;
+		long startGet = System.currentTimeMillis();
+		long currentTimeMillis = System.currentTimeMillis();
+		this.sessionStart = startGet;
 		
 		
-	while ((this.maxTrans == -1) || (this.maxTrans > 0)) {
+		while ((this.maxTrans == -1) || (this.maxTrans > 0)) {
 			
-		//avaliando o EB segundo o tempo percorrido do experimento
-		currentTimeMillis = System.currentTimeMillis();
-		
-		if (currentTimeMillis > this.propertiesEB.getEndExperimentTime()){
-			Logger.getLogger().debug(propertiesEB.getIndexEB() + " is stopping ... " + (currentTimeMillis - startExp)/1000);
-			this.test = false;
-		}
+			//avaliando o EB segundo o tempo percorrido do experimento
+			currentTimeMillis = System.currentTimeMillis();
 			
-		if (currentTimeMillis > this.propertiesEB.getEndTime() && this.propertiesEB.isFrenquency()) {
-			//desactivado = -1
-			if(this.propertiesEB.getPauseTime() > 0){
-				long newInit = this.propertiesEB.getEndTime() + this.propertiesEB.getPauseTime();
-				long period = this.propertiesEB.getEndTime() - this.propertiesEB.getStartTime();
-				
-				this.propertiesEB.setStartTime(newInit);
-				this.propertiesEB.setEndTime(period + newInit);
-				
-				Logger.getLogger().debug(propertiesEB.getIndexEB() + " was restarted  ... ");
-			}else{
+			if (currentTimeMillis > this.propertiesEB.getEndExperimentTime()){
+				Logger.getLogger().debug(propertiesEB.getIndexEB() + " is stopping ... " + (currentTimeMillis - startExp)/1000);
+				this.test = false;
+			}
+			
+			if (currentTimeMillis > this.propertiesEB.getEndTime() && this.propertiesEB.isFrenquency()) {
+				//desactivado = -1
+				if(this.propertiesEB.getPauseTime() > 0){
+					long newInit = this.propertiesEB.getEndTime() + this.propertiesEB.getPauseTime();
+					long period = this.propertiesEB.getEndTime() - this.propertiesEB.getStartTime();
+					
+					this.propertiesEB.setStartTime(newInit);
+					this.propertiesEB.setEndTime(period + newInit);
+					
+					Logger.getLogger().debug(propertiesEB.getIndexEB() + " was restarted  ... ");
+				}else{
 				Logger.getLogger().debug(propertiesEB.getIndexEB() + " is ending ... " + (currentTimeMillis - startExp)/1000);
 				this.test = false;
 			}
@@ -131,7 +136,7 @@ public void test() {
 				this.Ordered, this.isVIP);
 				return;
 			}
-				
+			
 			long endGet;
 			if (this.nextReq != null) {
 				// Check if user session is finished.
@@ -154,101 +159,102 @@ public void test() {
 						if (this.nextReq.contains("?")) {
 							this.nextReq += "&bench4q_session_priority=10";
 						} else {
-							this.nextReq += "?bench4q_session_priority=10";
-						}
-					} else if (this.nextReq.contains("?")) {
-						this.nextReq += "&bench4q_session_priority=1";
-					} else {
-						this.nextReq += "?bench4q_session_priority=1";
+						this.nextReq += "?bench4q_session_priority=10";
 					}
-				}
-
-			// additional load
-			if(this.addLoad > 0 && this.addLoadOpt >= 0) {
-				if (this.nextReq.contains("?")) {
-					this.nextReq += "&bench4q_add_load=" + this.addLoad + "&bench4q_add_load_opt=" +this.addLoadOpt;
-				} else {
-					this.nextReq += "?bench4q_add_load=" + this.addLoad + "&bench4q_add_load_opt=" +this.addLoadOpt;
-				}
+				} else if (this.nextReq.contains("?")) {
+				this.nextReq += "&bench4q_session_priority=1";
 			} else {
-				if (this.nextReq.contains("?")) {
-					this.nextReq += "&bench4q_add_load=0&bench4q_add_load_opt=0";
-				} else {
-					this.nextReq += "?bench4q_add_load=0&bench4q_add_load_opt=0";
-				}
-			}
-
-			if (this.first) {
-				this.m_Client = HttpClientFactory.getInstance();
-				this.m_Client.getParams().setCookiePolicy(CookiePolicy.RFC_2965);
-			}
-
-			startGet = System.currentTimeMillis();
-			sign = getHTML(this.curState, this.nextReq, (currentTimeMillis - startExp)/1000);	
-
-			endGet = System.currentTimeMillis();
-
-			if (!sign) {
-				EBStats.getEBStats().addErrorSession(this.curState, this.isVIP);
-				initialize();
-				
-				continue;
-			}
-			this.first = false;
-
-			// Compute and store Web Interaction Response Time (WIRT)
-			EBStats.getEBStats().interaction(this.curState, startGet, endGet, tt, this.isVIP);
-			this.sessionLen++;
-			if (this.curState == 4) {
-				this.Ordered = true;
-			}
-			this.curTrans.postProcess(this, this.html);
-			} else {
-				this.html = null;
-				endGet = startGet;
-			}
-
-			if (!nextState()) {
-				return;
-			}
-			if (this.nextReq != null) {
-				// Pick think time (TT), and compute absolute request time
-				tt = MAP();
-				startGet = endGet + tt;
-				if ((this.terminate) || (!this.test)) {
-					return;
-				}
-				try {
-					sleep(tt);
-				} catch (InterruptedException inte) {
-					Thread.currentThread().interrupt();
-					return;
-				}
-				if (this.maxTrans > 0) {
-					this.maxTrans--;
-				}
-			} else {
-				EBStats.getEBStats().addErrorSession(this.curState, this.isVIP);
-				initialize();
-			}
-		} else {
-			try {
-				// libera de sobrecarga
-				Thread.sleep(500L);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			this.nextReq += "?bench4q_session_priority=1";
 		}
-
 	}
+	
+	// additional load
+	if(this.addLoad > 0 && this.addLoadOpt >= 0) {
+		if (this.nextReq.contains("?")) {
+			this.nextReq += "&bench4q_add_load=" + this.addLoad + "&bench4q_add_load_opt=" +this.addLoadOpt;
+		} else {
+		this.nextReq += "?bench4q_add_load=" + this.addLoad + "&bench4q_add_load_opt=" +this.addLoadOpt;
+	}
+} else {
+if (this.nextReq.contains("?")) {
+	this.nextReq += "&bench4q_add_load=0&bench4q_add_load_opt=0";
+} else {
+this.nextReq += "?bench4q_add_load=0&bench4q_add_load_opt=0";
+}
+}
+
+if (this.first) {
+	this.m_Client = HttpClientFactory.getInstance();
+	this.m_Client.getParams().setCookiePolicy(CookiePolicy.RFC_2965);
+}
+
+startGet = System.currentTimeMillis();
+sign = getHTML(this.curState, this.nextReq, (currentTimeMillis - startExp)/1000);	
+
+endGet = System.currentTimeMillis();
+
+if (!sign) {
+	EBStats.getEBStats().addErrorSession(this.curState, this.isVIP);
+	initialize();
+	
+	continue;
+}
+this.first = false;
+
+// Compute and store Web Interaction Response Time (WIRT)
+EBStats.getEBStats().interaction(this.curState, startGet, endGet, tt, this.isVIP);
+this.sessionLen++;
+if (this.curState == 4) {
+	this.Ordered = true;
+}
+this.curTrans.postProcess(this, this.html);
+} else {
+this.html = null;
+endGet = startGet;
+}
+
+if (!nextState()) {
+	return;
+}
+if (this.nextReq != null) {
+	// Pick think time (TT), and compute absolute request time
+	tt = MAP();
+	startGet = endGet + tt;
+	if ((this.terminate) || (!this.test)) {
+		return;
+	}
+	try {
+		sleep(tt);
+	} catch (InterruptedException inte) {
+	Thread.currentThread().interrupt();
+	return;
+}
+if (this.maxTrans > 0) {
+	this.maxTrans--;
+}
+} else {
+EBStats.getEBStats().addErrorSession(this.curState, this.isVIP);
+initialize();
+}
+} else {
+try {
+	// libera de sobrecarga
+	Thread.sleep(500L);
+} catch (InterruptedException e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+}
+}
+
+}
 }
 \end{codigo}
 
+Modelagem de carga de trabalho é uma tentativa de criar um modelo simples, que pode então ser utilizada para gerar cargas sintéticas. O objetivo é de ser capaz de criar cargas de trabalho que podem ser utilizados em estudos de avaliação de desempenho, e esta carga é supostamente semelhante às que se verificam na prática em sistemas reais. 
 
 \section{\textit{Interface} gráfica}
 
-No console principal do Bench4Q, onde configura-se a execução do experimento, foi incluída uma nova opção \textit{LoadFrequency} referente ao parâmetros da extensão da geração da carga modulada. Por esta opção, \textit{LoadFrequency}, deve-se preencher os campos (\textit{Start Time}, \textit{Duration Step}, \textit{Pause} e \textit{Quantity}) que irão gerar a carga modulada conforme a programação. O código fonte \ref{code:panel} apresenta o método \textit{private} presente na classe \textit{MLoadFrequencyPanel} que cria a \textit{interface} gráfica gerada com a biblioteca \textit{Swing} do Java, toda a parte gráfica do Bench4Q utiliza da mesma biblioteca. Todos os resultados de desempenho de cada agente de carga são agregados no console de carga para análise e demonstração, conforme a versão original.
+No console principal do Bench4Q, onde configura-se a execução do experimento, foi incluída uma nova opção \textit{LoadFrequency}, referente aos parâmetros da extensão da geração da carga modulada. Por esta opção, \textit{LoadFrequency}, deve-se preencher os campos (\textit{Start Time}, \textit{Duration Step}, \textit{Pause} e \textit{Quantity}) que irão gerar a carga modulada conforme a programação. O código fonte \ref{code:panel} apresenta o método \textit{private} presente na classe \textit{MLoadFrequencyPanel} que cria a \textit{interface} gráfica gerada com a biblioteca \textit{Swing} do Java, toda a parte gráfica do Bench4Q utiliza da mesma biblioteca. Todos os resultados de desempenho de cada agente de carga são agregados no console de carga para análise e demonstração, conforme a versão original.
 
 \begin{codigo}[caption={Código para gerar a os parâmetros para a modulação}, label={code:panel}, breaklines=true]
 	private void createPanelFunction(final TypeFrequency type) {

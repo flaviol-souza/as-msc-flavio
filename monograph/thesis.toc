@@ -14,8 +14,8 @@
 \contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Desenvolvimento}}{29}{chapter.4}
 \contentsline {section}{\numberline {4.1}Configura\IeC {\c c}\IeC {\~a}o da carga de trabalho}{32}{section.4.1}
 \contentsline {section}{\numberline {4.2}Gera\IeC {\c c}\IeC {\~a}o da carga de trabalho}{33}{section.4.2}
-\contentsline {section}{\numberline {4.3}\textit {Interface} gr\IeC {\'a}fica}{37}{section.4.3}
-\contentsline {section}{\numberline {4.4}Teste de modula\IeC {\c c}\IeC {\~a}o}{39}{section.4.4}
+\contentsline {section}{\numberline {4.3}\textit {Interface} gr\IeC {\'a}fica}{38}{section.4.3}
+\contentsline {section}{\numberline {4.4}Teste de modula\IeC {\c c}\IeC {\~a}o}{41}{section.4.4}
 \contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Resultados}}{43}{chapter.5}
 \contentsline {section}{\numberline {5.1}Contribui\IeC {\c c}\IeC {\~a}o}{46}{section.5.1}
 \contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase {Conclus\IeC {\~a}o}}{51}{chapter.6}
