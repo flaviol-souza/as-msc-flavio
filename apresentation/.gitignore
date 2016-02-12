@@ -1,0 +1,23 @@
+
+# LaTeX stuff
+*.aux
+*.bbl
+*.blg
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+main.pdf
+
+# Temporary
+\#*
+*.\#*
+*~
+
+# Vim swap files
+*.swp
+
+# Other stuff
+main.synctex.gz
+

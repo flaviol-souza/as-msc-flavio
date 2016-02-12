@@ -1,0 +1,118 @@
+\documentclass{beamer}
+%\begin{document}
+\usepackage[utf8]{inputenc} % codificacao de caracteres
+\usepackage[T1]{fontenc}    % codificacao de fontes
+\usepackage[brazil]{babel}  % idioma
+\usetheme{CambridgeUS}         % tema
+\usecolortheme{orchid}      % cores
+\usefonttheme[onlymath]{serif} % fonte modo matematico
+
+
+% Set Color ==============================
+
+% Custom colors
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+% http://www.computerhope.com/htmcolor.htm
+\definecolor{gold}{HTML}{FDB525}
+\definecolor{darkblue}{HTML}{294A75}
+\definecolor{lightblue}{HTML}{62C7D1}
+\definecolor{blue}{HTML}{0F96AC}
+
+\makeatletter
+\definecolor{mybackground}{HTML}{294A75}
+\definecolor{myforeground}{HTML}{0000A0}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+%\setbeamercolor{alerted text}{fg=red}
+%\setbeamercolor{example text}{fg=black}
+
+%\setbeamercolor{background canvas}{fg=myforeground, bg=white}
+%\setbeamercolor{background}{fg=myforeground, bg=mybackground}
+
+\setbeamercolor{title}{bg=darkblue, fg=white}
+\setbeamercolor{frametitle}{bg=darkblue, fg=white}
+
+\setbeamercolor{palette primary}{fg=white, bg=blue}
+\setbeamercolor{palette secondary}{fg=white, bg=lightblue}
+\setbeamercolor{palette tertiary}{fg=black, bg=gold}
+\setbeamercolor{palette quaternary}{fg=black, bg=darkblue}
+\makeatother
+% Set Color ==============================
+
+\newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
+
+% Titulo
+\title[Defesa de Mestrado]{Extensão do Bench4Q para \textit{benchmark} de desempenho em regime transiente}
+
+\author[Flavio Souza]{Aluno: Flavio Luiz dos Santos de Souza \\ \and Prof. Dr. Francisco José Monaco}
+\institute[ICMC-USP]{Instituto de Ciências Matemáticas e de Computação \\ Universidade de São Paulo} % opcional
+\date{\today}
+%============================================================================================
+
+\begin{document}
+ 
+\begin{frame}
+  \titlepage
+  
+  \putat{195}{7}{
+  	\includegraphics[scale=0.37]{images/lasdpc.png}
+  }
+  \includegraphics[scale=0.2]{images/USP_logo_icmc.jpg}
+
+\end{frame}
+ 
+ 
+\begin{frame}[allowframebreaks]{Sumário}
+	\tableofcontents
+\end{frame} 
+
+
+%==================== INTRO
+\section{Introdução}
+\input{content/introducao}
+
+%==================== REVISAO 
+\section{Revisão}
+\input{content/revisao}
+
+%==================== MEDC
+\section{MEDC}
+\input{content/medc}
+
+%==================== BENCH4Q
+\section{Bench4Q}
+\input{content/bench4q}
+
+%==================== Metodologia
+\section{Metodologia}
+\input{content/metodologia}
+
+%==================== Desenvolvimento
+\section{Desenvolvimento}
+\input{content/desenvolvimento}
+
+%==================== Resultados
+\section{Resultados}
+\input{content/resultados}
+\input{content/resultados-contribuicao}
+
+%==================== Conclusao
+\section{Conclusão}
+\input{content/conclusao}
+
+\begin{frame}
+    \begin{center}
+        \textbf{Obrigado!}
+    \end{center}   
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]{Bibliografia}
+	\bibliographystyle{icmc}
+	\bibliography{content/bibliografia}
+\end{frame}
+
+
+\end{document}
