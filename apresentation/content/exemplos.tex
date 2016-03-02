@@ -1,0 +1,138 @@
+\begin{frame}
+	\frametitle{Sample frame title}
+	This is a text in second frame. 
+	For the sake of showing an example.
+	
+	\begin{itemize}
+		\item<1-> Text visible on slide 1
+		\item<2-> Text visible on slide 2
+		\item<3> Text visible on slide 3
+		\item<4-> Text visible on slide 4
+	\end{itemize}
+	
+\end{frame}
+
+\begin{slide}{Slide Title}
+	You can see a list of items below. \pause \\
+	There are commands to make them appear sequentially
+	\begin{itemize}[type=1]
+		\item<2> This is an item
+		\item<3> Second item
+		\item<4> Third item
+	\end{itemize}
+\end{slide}
+
+\begin{frame}
+	\frametitle{Sample frame title}
+ 
+	In this slide, some important text will be \alert{highlighted} beause it's important. Please, don't abuse it.
+ 
+	\begin{block}{Remark}
+		Sample text
+	\end{block}
+	 
+	\begin{alertblock}{Important theorem}
+		Sample text in red box
+	\end{alertblock}
+ 
+	\begin{examples}
+		Sample text in green box. "Examples" is fixed as block title.
+	\end{examples}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Two-column slide}
+	
+	\begin{columns}
+		
+		\column{0.5\textwidth}
+		This is a text in first column.
+		$$E=mc^2$$
+		\begin{itemize}
+			\item First item
+			\item Second item
+		\end{itemize}
+		
+		\column{0.5\textwidth}
+		This text will be in the second column
+		and on a second tought this is a nice looking
+		layout in some cases.
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Linguagem de programa\c c\~ao}
+	Para mostrar c\'odigos de linguagem de programa\c c\~ao use o pacote \verb|minted|.
+	
+	Exemplo de c\'odigo Java.
+	
+	\begin{javacode}
+		public class HelloWorldApp {
+			public static void main (String args[])
+			{
+				System.out.println("Hello World!");
+			}
+		}
+	\end{javacode}
+	
+	Para compilar com o pacote \verb|minted| \'e necess\'ario usar o comando \verb|-shell-escape| pelo terminal.
+	
+	\begin{minted}[bgcolor=lightgray!20]{bash}
+		pdflatex -shell-escape minted01.tex
+		ou
+		latexmk -pdf -shell-escape minted01.tex
+	\end{minted}
+\end{frame}
+
+\begin{frame}\frametitle{Inserindo figuras}
+	Figuras devem ser inseridas no formato PNG, JPG ou PDF.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[height=0.6\paperheight]{figuras/figCoordEsf02}
+		%\includegraphics[height=6cm]{figCoordEsf02}
+		\caption{Sistema de coordenadas esf\'ericas.}\label{figCoordEsf02}
+	\end{figure}
+\end{frame}
+Com o pacote TikZ podemos inserir figuras desenhadas em TikZ.
+% Frame 10: figuras TikZ
+\begin{frame}\frametitle{Figuras TikZ}
+	Figuras feitas com TikZ.
+	
+	\begin{figure}[h]
+		\centering
+		\input{figuras/integral}
+		\caption{Integral.}\label{figintegral}
+	\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Tabelas}
+	\begin{table}
+		\centering
+		\begin{tabular}{cclrr}
+			\toprule
+			ID & Quant & Produto & Unit & Total\\
+			\midrule
+			1 & 2 & manga     & 3,00 & 6,00\\
+			2 & 7 & laranja   & 1,20 & 8,40\\
+			3 & 5 & banana    & 3,50 & 17,50\\
+			4 & 3 & melancia  & 8,00 & 24,00\\
+			5 & 4 & abacaxi   & 4,00 & 16,00\\
+			\midrule
+			Total &   &      &      & 71,90\\
+			\bottomrule
+		\end{tabular}
+		\caption{Lista de compras}
+	\end{table}
+\end{frame}
+
+\begin{frame}\frametitle{Transi\c c\~ao}
+	Um pequeno exemplo de transi\c c\~ao.
+	
+	\pause
+	
+	\begin{enumerate}[a)]
+		\item<2-< primeiro;
+		\item<3-< segundo;
+		\item<4-< terceiro.
+	\end{enumerate}
+\end{frame}

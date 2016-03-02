@@ -1,0 +1,21 @@
+\frametitle{Linguagem de programa\c c\~ao}
+	Para mostrar c\'odigos de linguagem de programa\c c\~ao use o pacote \verb|minted|.
+
+	Exemplo de c\'odigo Java.
+
+	\begin{javacode}
+		public class HelloWorldApp {
+			public static void main (String args[])
+			{
+				System.out.println("Hello World!");
+			}
+		}
+	\end{javacode}
+
+	Para compilar com o pacote \verb|minted| \'e necess\'ario usar o comando \verb|-shell-escape| pelo terminal.
+
+	\begin{minted}[bgcolor=lightgray!20]{bash}
+		pdflatex -shell-escape minted01.tex
+		ou
+		latexmk -pdf -shell-escape minted01.tex
+	\end{minted}
