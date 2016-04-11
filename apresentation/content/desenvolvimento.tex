@@ -1,27 +1,91 @@
-\begin{frame}{Métricas disponíveis no Bench4Q}
-	Nesta seção é descrito de maneira detalhada a implementação realizada no \textit{benchmark} Bench4Q e a abordagem utilizada no processo. Descrevemos também as implementações das distribuições de carga de trabalho e as disponibilizamos sob uma licença de código aberto, com o intuito de que outros possam reutilizar a plataforma desenvolvida e estender o \textit{benchmark} segundo as suas necessidades para contribuir com outros tipos de modulação de cargas de trabalho num ambiente de experimentos controlado~\footnote{O código fonte está disponível em \href{URL}{http://gitlab.lasdpc.icmc.usp.br/edwin/bench4q}}.
+\begin{frame}{Informações do desenvolvimento}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{minipage}[c][0.4\textheight][c]{\linewidth}
+			\centering
+			\includegraphics[scale=0.45]{images/project-bench4Q2.png}
+		\end{minipage}
+		\column{0.6\textwidth}
+		\begin{minipage}[c][0.4\textheight][c]{\linewidth}
+			\begin{itemize}
+				\item O projeto original do Bench4Q é codificado em Java
+				\begin{itemize}
+					\item contêm 473 classes Java, com 46.029 linhas de código
+					\item A extensão impacta todos os módulos, exceto o SUT
+				\end{itemize}
+				\item Extensão foi feita no IDE Eclipse
+				\item A versão do Java utilizado foi a 1.6
+				\item O código fonte está disponível em \footnote{\href{URL}{http://gitlab.lasdpc.icmc.usp.br/edwin/bench4q}}
+			\end{itemize}
+		\end{minipage}		
+	\end{columns}
 	
-	Dentro do processo de experimentos de sistemas de computação em nuvem onde é analisado o comportamento da resposta a uma perturbação no regime transiente, foram identificadas algumas faltas de funcionalidades fundamentais, principalmente na geração da carga de trabalho. Especificamente, o Bench4Q possui algumas limitações na sua versão original, principalmente pela definição do próprio projeto de \textit{software} para avaliação de desempenho no regime estacionário. Esta limitação foi uma barreira que dificultou a experimentação e analise nos trabalhos relacionados com o presente projeto de \cite{Edwin2015} e \cite{Lourenco2015}.
 \end{frame}
 
-\begin{frame}{Métricas disponíveis no Bench4Q}
-	O Console do Bench4Q é o módulo que gerencia EBs para gerar uma série sequencial programada de requisições que são submetidas para o SUT. O tópico aqui é controlar a taxa em que os EBs geram as requisições, para que seja possível controlar diretamente e de forma programada a carga de trabalho. Nativamente o Bench4Q, coleta informações sobre a taxa requisições e o comportamento do SUT, e relata esses dados no final da experimento. A Figura \ref{fig:experimental-setup} ilustra de maneira geral o fluxo desse contexto.
-	
-	\begin{figure}[htb]
-		\centering
-		\includegraphics[scale=0.2]{../monograph/images/experimental-setup.png}	
-		\label{fig:cps-resp60}
-	\end{figure}
-	
-\end{frame}
-
-	
-\begin{frame}{Métricas disponíveis no Bench4Q}
+\begin{frame}{Classes adicionadas e modificadas pela extensão}
 	\begin{figure}[htb]
 		\centering
 		\includegraphics[scale=0.3]{../monograph/images/diagrama-classes-beanch4Q.png}	
 	\end{figure}
 \end{frame}
+
+\begin{frame}{Implementação da carga de trabalho}
+	\begin{figure}
+		\centering
+		\begin{minipage}{.3\textwidth}
+			\centering
+			\includegraphics[scale=0.23]{images/diagram-code1.png}	
+		\end{minipage}
+		\begin{minipage}{.6\textwidth}
+			\centering
+			\includegraphics[scale=0.35]{images/code1.png} 
+			%\caption{A subfigure}
+		\end{minipage}
+		\caption{Classe criada para a extensão}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}{Implementação da carga de trabalho}
+	\begin{figure}[htb]
+		\centering
+		\includegraphics[scale=0.38]{images/diagram-code2.png}	
+	\end{figure}
+	\begin{figure}
+		\centering
+		\begin{minipage}{.45\textwidth}
+			\centering
+			\includegraphics[scale=0.2]{images/code2-1.png}	
+			%\caption{A subfigure}
+		\end{minipage}
+		\begin{minipage}{.45\textwidth}
+			\centering
+			\includegraphics[scale=0.2]{images/code2-2.png}	
+			%\caption{A subfigure}
+		\end{minipage}
+		\caption{Alteração em um método nativo do \textit{benchmark}}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}{Implementação da carga de trabalho}
+	\begin{figure}
+		\centering
+		\begin{minipage}{.3\textwidth}
+			\centering
+			\includegraphics[scale=0.35]{images/diagram-code3.png}	
+			%\caption{A subfigure}
+		\end{minipage}
+		\begin{minipage}{.6\textwidth}
+			\centering
+			\includegraphics[scale=0.3]{images/code3.png}	
+			%\caption{A subfigure}
+		\end{minipage}
+		\caption{Método de criação da interface gráfica para a modulação da carga}
+	\end{figure}
+	
+\end{frame}
+
 
 \begin{frame}{Teste de modulação}
 	\begin{figure}[!htb]
@@ -32,23 +96,20 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Teste de modulação}
-
-\end{frame}
-
-\begin{frame}{Teste de modulação}
-	\begin{figure}[!htb]		
-		\begin{subfigure}{\linewidth}
+\begin{frame}{Teste de implementação}
+	\begin{figure}
+		\centering
+		\begin{minipage}{.35\textwidth}
 			\centering
-			\includegraphics[scale=0.35]{../monograph/images/condiguracao-carga-modulada1.png}
-			\label{fig:configuracao-carga-modulada-teste}
-		\end{subfigure}\\[1ex]
-		\begin{subfigure}{\linewidth}
+			\includegraphics[scale=0.37]{../monograph/images/condiguracao-carga-modulada1.png}
+		\end{minipage}
+		\begin{minipage}{.45\textwidth}
 			\centering
-			\includegraphics[scale=0.25]{../monograph/images/grafico-carga-modulada-teste.png}
-			\label{fig:grafico-carga-modulada-teste}
-		\end{subfigure}
-		\label{fig:carga-modulada-teste}
+			\includegraphics[scale=0.27]{../monograph/images/grafico-carga-modulada-teste.png}			
+		\end{minipage}
+		\caption{ensaios realizados para verificação da modulação}
 	\end{figure}
 \end{frame}
+
+
 

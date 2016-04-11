@@ -1,3 +1,4 @@
+
 \documentclass{beamer}
 %\begin{document}
 \usepackage[utf8]{inputenc} % codificacao de caracteres
@@ -13,6 +14,11 @@
 % Custom colors
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{listings}
+\lstset{language=Java,
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\footnotesize\color{blue}\ttfamily,
+}
 
 % http://www.computerhope.com/htmcolor.htm
 \definecolor{gold}{HTML}{FDB525}
@@ -75,14 +81,10 @@
 
 %==================== REVISAO 
 \section{Revisão}
-\input{content/revisao}
-
-%==================== MEDC
-\section{MEDC}
+\subsection{MEDC}
 \input{content/medc}
 
-%==================== BENCH4Q
-\section{Bench4Q}
+\subsection{Bench4Q}
 \input{content/bench4q}
 
 %==================== Metodologia
@@ -109,7 +111,7 @@
 \end{frame}
 
 %==================== Exemplos
-%\section{Exemplos}
+%=\section{Exemplos}
 %\input{content/exemplos}
 
 \begin{frame}\frametitle{Bibliografia}

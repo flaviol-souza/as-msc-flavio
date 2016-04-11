@@ -8,7 +8,9 @@
 
 \item Código fonte disponível~\footnote{http://www.trustie.net/projects/project/show/Bench4Q}.
 
-\item Amplamente utilizado na literatura~\footnote{\cite{Wang2012b,Zhang2012a,Gao2013}}.
+%\item Amplamente utilizado na literatura~\footnote{\cite{Wang2012b,Zhang2012a,Gao2013}}.
+
+\item Fornece uma plataforma configurável e extensível para a execução de \textit{benchmarks}.
 \end{itemize}
 
 
@@ -18,14 +20,17 @@
 
 Bench4Q:
 \begin{itemize}
-	\item É uma extensão do \textit{benchmark} \textbf{TPC-W} \cite{Garcia2003}.
+	\item É uma extensão do \textit{benchmark} \textbf{TPC-W} %\cite{Garcia2003}.
 	\item Suporta analise de métricas baseadas em sessões.
 	\item A geração de carga é baseada em agentes:
 	\begin{itemize}
 		\item Cada agente disponibiliza vários \textit{Workers} ou EBs (\textit{Emulate Browsers}).
 		\item Agentes locais ou remotos.
 	\end{itemize}
-	\item Utiliza uma loja de livros: \textit{Software Under Test} (\textbf{SUT}).
+	\item Utiliza uma loja de livros: \textit{System Under Test} (\textbf{SUT}).
+	\begin{itemize}
+		\item Simula um sistema \textit{e-commerce}, multicamada (Web e banco de dados);
+	\end{itemize}
 \end{itemize}
 
 \end{frame}
@@ -44,10 +49,10 @@ Bench4Q:
 \begin{frame}{Métricas disponíveis no Bench4Q}
 %Métricas de interesse disponíveis no Bench4Q:
 \begin{itemize}
-	\item WIRT (\textit{Web Interaction Response Time})
-	\item WIPS (\textit{Web Interacton Per Second})
-	\item VSPS (\textit{Valid Sessions Per Second})
-	\item VSR (\textit{Valid Sessions Ratio})	
+	\item WIRT (\textit{Web Interaction Response Time}) - TPC-W
+	\item WIPS (\textit{Web Interacton Per Second}) - TPC-W
+	\item VSPS (\textit{Valid Sessions Per Second}) - Bench4Q
+	\item VSR (\textit{Valid Sessions Ratio}) - Bench4Q	
 \end{itemize}
 
 \end{frame}
@@ -74,11 +79,11 @@ Bench4Q:
 \end{frame}
 
 \begin{frame}{Gerador de carga}
-  \putat{150}{-120,5}{
+  \putat{120}{-100,5}{
   	\includegraphics[scale=0.4]{images/console-bench4Q.png}
   }
 \begin{itemize}
-\item Tipos de navegação:
+\item Tipos de carga:
 \begin{enumerate}
 	\item \textit{Browsing}
 	\item \textit{Ordering}
@@ -100,3 +105,4 @@ CBMG (\textit{Customer Behavior Model Graph}) é um grafo estatístico que model
 		\label{fig:CBMG}
 	\end{figure}
 \end{frame}
+

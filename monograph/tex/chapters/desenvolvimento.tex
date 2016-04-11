@@ -40,7 +40,7 @@ O código \ref{code:createProperties} apresentado na integra, refere-se a classe
 
 No princípio um conjunto de variáveis ( \textsf{timeStart}, \textsf{timeEnd}, \textsf{timePause} e \textsf{timeExperiment}) são inicializadas, em geral com valores informados previamente e mesurados em milesegundos. A condição IF verifica o tipo de modulação a ser gerada. Em seguida, outra condicional IF verifica, através do index, se o EBs é configurável para a modulação e calculando os tempos de inicializações e interrupções de cada EBs.
 
-\begin{codigo}[caption={Algoritmo calcula os tempos de iniciaçização e termino para cada um dos Clientes}, label={code:createProperties}, breaklines=true]
+\begin{codigo}[caption={Algoritmo calcula os tempos de inicialização e termino para cada um dos Clientes}, label={code:createProperties}, breaklines=true]
 	public static PropertiesEB createProperties(int index, TestPhase testPhase, TypeFrequency type, long beginTime) {
 		
 		PropertiesEB propertiesEB = new PropertiesEB();
