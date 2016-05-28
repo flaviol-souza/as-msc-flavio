@@ -1,4 +1,4 @@
-As análises apresentadas nessa seção resumem os resultados dos apenas executado na extensão feita no Bench4Q. Os resultados aqui mostrados são proporcionados como exemplos de aplicação da metodologia. Dessa forma, para uma melhor abordagem, divide-se os exemplos em  partes:
+As análises apresentadas nessa seção resumem os resultados experimentos executados na extensão feita no Bench4Q. Os resultados aqui mostrados são proporcionados como exemplos de aplicação da metodologia. Dessa forma, para uma melhor abordagem, divide-se os exemplos em partes:
 \begin{itemize}
 	\item Configuração da carga no Bench4Q;
 	\item Configuração para modular a carga;
@@ -21,7 +21,7 @@ As análises apresentadas nessa seção resumem os resultados dos apenas executa
 	\begin{subfigure}{\linewidth}
 		\centering
 		\includegraphics[scale=0.6]{grafico-carga-modulada1.png}
-		\caption{Carga gerada com base nas configuração}
+		\caption{Carga gerada com base nas configurações}
 		\label{fig:grafico-carga-modulada1}
 	\end{subfigure}
 	\caption{Carga gerada com base na configuração: Degrau Positivo}
@@ -29,7 +29,7 @@ As análises apresentadas nessa seção resumem os resultados dos apenas executa
 	\fautor
 \end{figure}
 
-A Figura \ref{fig:carga-modulada1} apresenta a primeira exemplificação gerada com o Bench4Q já com a extensão desenvolvida neste trabalho. A figura \ref{fig:condiguracao-carga-bench4q1} demonstra os parâmetros de configuração utilizados para gerar a carga. Dois são os principiais: \textit{Base Load} e \textit{Duration}. O primeiro define a quantidade e EBs envolvidos no experimento, neste caso 30 EBs; já o segundo define o tempo de duração do experimento em segundos, neste caso 100 segundos. Na Figura \ref{fig:condiguracao-carga-modulada1} são apresentados os parâmetros para modular a carga \textit{Start Time} de valor 20, referindo-se ao tempo de espera para o início do restante da carga que se mostra presente e ativa na modulação. Decorrido 20 segundos, 20, dos 30 EBs, definido pelo campo \textit{Quantity} iniciam a geração de carga para o sistema. Essa carga se manterá ativa durante 60 segundos conforme fixado no parâmetro \textit{Duration Step}. Nesse exemplo, o parâmetro \textit{Pause} não apresenta influencia devido ao seu valor 0.
+A Figura \ref{fig:carga-modulada1} apresenta a primeira exemplificação gerada com o Bench4Q já com a extensão desenvolvida neste trabalho. A figura \ref{fig:condiguracao-carga-bench4q1} demonstra os parâmetros de configuração utilizados para gerar a carga. Dois são os principiais: \textit{Base Load} e \textit{Duration}. O primeiro define a quantidade e EBs envolvidos no experimento, neste caso 30 EBs; já o segundo define o tempo de duração do experimento em segundos, neste caso 100 segundos. Na Figura \ref{fig:condiguracao-carga-modulada1} são apresentados os parâmetros para modular a carga \textit{Start Time} de valor 20, referindo-se ao tempo de espera para o início do restante da carga que se mostra presente e ativa na modulação. De corrido 20 segundos, 20, dos 30 EBs, definido pelo campo \textit{Quantity} iniciam a geração de carga para o sistema. Essa carga se manterá ativa durante 60 segundos conforme fixado no parâmetro \textit{Duration Step}. Nesse exemplo, o parâmetro \textit{Pause} não apresenta influência devido ao seu valor 0.
 O resultado pode ser analisado através da Figura \ref{fig:grafico-carga-modulada1}. Esse gráfico é nativo do próprio Bench4Q, que demonstra o comportamento da carga no decorrer do tempo. Apesar da estocasticidade a carga, essa modulou-se conforme programado. Essa estocasticidade é característica do Bench4Q, afim de manter reproduzir comportamento realístico como os de clientes acessando um \textit{e-commerce}.
 
 \begin{figure}[!htb]
@@ -48,7 +48,7 @@ O resultado pode ser analisado através da Figura \ref{fig:grafico-carga-modulad
 	\begin{subfigure}{\linewidth}
 		\centering
 		\includegraphics[scale=0.6]{grafico-carga-modulada2.png}
-		\caption{Carga gerada com base nas configuração}
+		\caption{Carga gerada com base nas configurações}
 		\label{fig:grafico-carga-modulada2}
 	\end{subfigure}
 	\caption{Carga gerada com base na configuração: Degrau Negativo}
@@ -56,7 +56,7 @@ O resultado pode ser analisado através da Figura \ref{fig:grafico-carga-modulad
 	\fautor
 \end{figure}
 
-A Figura \ref{fig:carga-modulada2} apresenta os resultados dos parâmetros para o objetivo do Degrau Negativo. Os parâmetros de \textit{Base Load} e \textit{Duration} são os mesmos do experimento anterior: 30 EBs e 100 segundos de execução respectivamente, conforme apresentado na Figura \ref{fig:condiguracao-carga-bench4q2}. Já na \ref{fig:condiguracao-carga-modulada3} que demonstra os parâmetros utilizados para modular a carga, o \textit{Start Time} recebe o valor 0, assim a carga modulado iniciar com potência máxima utilizando os 30 EBs sendo 20 EBs setado no \textit{Quantity} para reservá-los para a modulação, o tempo de carga máxima é de 30 segundos como é possível ver no parâmetro \textit{Duration Step}, neste caso o \textit{Pause} é parametrizado com 40 segundos, este valor é o que fará a interrupção brusca dos 20 EBs caindo o nível da geração de carga, gerando o degrau negativo. Passado esse período \textit{Pause}, a carga retorna ao seu nível máximo e atua por mais 30 segundos, o resultado final pode ser visto na Figura \ref{fig:grafico-carga-modulada2}. 
+A Figura \ref{fig:carga-modulada2} apresenta os resultados dos parâmetros para o objetivo do Degrau Negativo. Os parâmetros de \textit{Base Load} e \textit{Duration} são os mesmos do experimento anterior: 30 EBs e 100 segundos de execução respectivamente, conforme apresentado na Figura \ref{fig:condiguracao-carga-bench4q2}. Já na \ref{fig:condiguracao-carga-modulada3} que demonstra os parâmetros utilizados para modular a carga, o \textit{Start Time} recebe o valor 0, assim a carga modulado iniciar com potência máxima utilizando os 30 EBs sendo 20 EBs atribuído no \textit{Quantity} para reservá-los para a modulação, o tempo de carga máxima é de 30 segundos como é possível ver no parâmetro \textit{Duration Step}, neste caso o \textit{Pause} é parametrizado com 40 segundos, este valor é o que fará a interrupção brusca dos 20 EBs caindo o nível da geração de carga, gerando o degrau negativo. Passado esse período \textit{Pause}, a carga retorna ao seu nível máximo e atua por mais 30 segundos, o resultado final pode ser visto na Figura \ref{fig:grafico-carga-modulada2}. 
 %vale chamar a atenção para a dinâmica apresentada pela geração da carga sempre ao atingir o nivel maximo
 
 \begin{figure}[!htb]
@@ -75,7 +75,7 @@ A Figura \ref{fig:carga-modulada2} apresenta os resultados dos parâmetros para 
 	\begin{subfigure}{\linewidth}
 		\centering
 		\includegraphics[scale=0.6]{grafico-carga-modulada3.png}
-		\caption{Carga gerada com base nas configuração}
+		\caption{Carga gerada com base nas configurações}
 		\label{fig:grafico-carga-modulada3}
 	\end{subfigure}
 	\caption{Carga gerada com base na configuração: Onda Quadrada}
@@ -85,9 +85,9 @@ A Figura \ref{fig:carga-modulada2} apresenta os resultados dos parâmetros para 
 
 A Figura \ref{fig:carga-modulada3} apresenta o resultado da modulação de uma Onda Quadrada. Os parâmetros iniciais do Bench4Q referente a Figura \ref{fig:condiguracao-carga-bench4q3} são os mesmos valores dos outros dois exemplos anteriores. Para gerar uma carga modulada com comportamento oscilatório como a de uma onda quadrada, os parâmetros \ref{fig:condiguracao-carga-modulada3} são definidos com 10 segundos para \textit{Start Time}, 10 segundo de duração para \textit{Duration Step} e 10 para o \textit{Pause}, também configurado com 20 EBs. Para este exemplo vale salientar que para modular a carga como uma onda quadrada dois parâmetros são importantes. \textit{Duration Step} e \textit{Pause}. Esses devem ter os mesmos valores, pois são eles que manterão durante o período definido a carga em níveis baixos e alto. 
 
-\section{Contribuição}
+\section{Impacto da Carga Modulada no ambiente}
 Com a possibilidade da modulação de carga, conforme apresentado na seção anterior, é possível verificar o impacto da carga modulada no ambiente projetado para o trabalho de \citeonline{Edwin2015}. Seguindo o planejamento de experimento apresentado no Capítulo \ref{chapter:metodologia} foi possível coletar dos dados que geram os gráficos a seguir.
-Vale lembrar, que foram utilizada dois níveis de cargas de trabalho, 20 e 60 EBs com um unico degrau positivo. Em ambos os casos, foi inicialmente utilizado 40\% da carga até o instante de 30 segundos de experimentação, quando ocorre um crescimento brusco na carga utilizando os 60\% restante da carga, e gerando um degrau positivo. A carga mantém-se máxima, em 100\%, durante 40 segundos (decorridos 70 segundo de experimentação), quando tem uma queda súbita voltando a trabalhar com 40\% da carga até o final do experimento. O objetivo é poder identificar a relação de transformação da entrada na saída, mediante a variação degrau gerada pela carga de trabalho aplicada no sistema.
+Vale lembrar que a cargas de trabalho utilizada, com 60 EBs e um único degrau positivo, que inicialmente utiliza 40\% da carga até o instante de 30 segundos de experimentação, quando ocorre um crescimento brusco na carga utilizando os 60\% restantes da carga, e gerando um degrau positivo. A carga mantém-se máxima, em 100\%, durante 40 segundos (decorridos 70 segundos de experimentação), quando tem uma queda súbita voltando a trabalhar com 40\% da carga até o final do experimento. O objetivo é poder identificar a relação de transformação da entrada na saída, mediante a variação degrau gerada pela carga de trabalho aplicada no sistema.
 
 \begin{figure}[htb]
 	\centering
@@ -97,8 +97,9 @@ Vale lembrar, que foram utilizada dois níveis de cargas de trabalho, 20 e 60 EB
 	\fdadospesquisa
 \end{figure}
 
-É possível observar a Figura \ref{fig:cps-resp60}, onde são comparados os desempenhos da conexão por segundo e Tempo de resposta. O Bench4Q monitora os tempos de resposta e, no \textit{LoadBalance}, as conexões por segundo. Ao iniciar o experimento é possível verificar a dinâmica da carga em ambas as métricas, seguida por, um assentamento e uma estabilização o instante de 30 segundo de experimentação, neste instante um aumento de carga é aplicado elevando o tempo de resposta e o número de conexões por segundo. Nesse instante é possível verificar novamente a dinâmica do aumento carga no sistema seguido por um assentamento. Essa elevação das métricas se mantem aproximadamente por 70 segundos de experimento quando uma queda acentuada ocorre baixando de desempenho da métrica que se mantem até o final da execução. 
-Na Figura \ref{fig:cps-resp60} é possível perceber, em ambas as elevações, que o Tempo de Resposta reage primeiro em comparação ao número de conexões. Isso ocorre devido aos níveis da arquitetura da solução. Esse atraso é referente a dinâmica inerente ao sistema \textit{mult-tiers}. Entretanto, na queda do volume de carga, no intervalo de 70 a 75 segundos, o Tempo de Resposta reage primeiro a queda de carga, quando comparado ao número de conexões por segundo. O tempo de resposta não se apresenta como uma boa métrica de comparação. 
+É possível observar a Figura \ref{fig:cps-resp60}, onde são comparados os desempenhos da conexão por segundo e Tempo de resposta. O Bench4Q monitora os tempos de resposta e, no \textit{LoadBalance}, as conexões por segundo. Ao iniciar o experimento é possível verificar a dinâmica da carga em ambas as métricas, seguida por, um assentamento e uma estabilização o instante de 30 segundos de experimentação, neste instante um aumento de carga é aplicado elevando o tempo de resposta e o número de conexões por segundo. Nesse instante é possível verificar novamente a dinâmica do aumento carga no sistema seguido por um assentamento. Essa elevação das métricas se mantem aproximadamente por 70 segundos de experimento quando uma queda acentuada baixando o nível de operação das métricas que se mantem constantes até o final da execução. 
+
+%Na Figura \ref{fig:cps-resp60} é possível perceber, em ambas as elevações, que o Tempo de Resposta reage primeiro em comparação ao número de conexões. Isso ocorre devido aos níveis da arquitetura da solução. Esse atraso é referente a dinâmica inerente ao sistema \textit{mult-tiers}. Entretanto, na queda do volume de carga, no intervalo de 70 a 75 segundos, o Tempo de Resposta reage primeiro a queda de carga, quando comparado ao número de conexões por segundo. O tempo de resposta não se apresenta como uma boa métrica de comparação. 
 
 \begin{figure}[htb]
 	\centering
@@ -108,7 +109,7 @@ Na Figura \ref{fig:cps-resp60} é possível perceber, em ambas as elevações, q
 	\fdadospesquisa
 \end{figure}
 
-A Figura \ref{fig:cps-vmcpu60} ilustra as conexões por segundos junto com a média da taxa de utilização de CPU nas VMs. No início dos experimentos a utilização de CPU apresenta uma dinâmica acentuada, estacionando em seguida próximo a 13\%. Esse aumento transiente é tão significativo que neste instante chega a atinge a maior média da CPU em todo o experimento, ultrapassando os 40\% de utilização da CPU. Da mesma maneira que o volume de conexões por segundo, a média da taxa de utilização de CPU nas VMs sofre alteração no impacto com o aumento da carga de trabalho próximo aos 30 segundos de experimentação. Decorrido 40 segundos de carga máxima a utilização inicia de maneira mais enfática, atingindo os 30\%. Com o decorrer do período de máximo da carga, a taxa de CPU de maneira tênue a atingir os 23\% aproximadamente. O que chama a atenção na Figura \ref{fig:cps-vmcpu60}, são os trechos de mudança no volume de carga, 0-7, 30-35 e 70-75 segundos aproximadamente. No primeiro instante, de 0 a 7 segundos iniciais, a taxa de utilização sob de maneira busca apresentando uma dinâmica mais acentuada em comparação com o número de conexões por segundo, mesmo que proporcionalmente. Isso é decorrente da inicialização do SUT em cada um dos servidores. A quantidade de tarefas ao iniciar uma aplicação pela primeira vez é maior quando a mesma aplicação é iniciada nas vezes seguinte, devido a inúmeras iterações com outras aplicações para que o serviço fique disponível. Já no intervalo, de 30 a 35 segundos aproximadamente, é possível observar a dinâmica inerente em sistemas multicamadas. O número de conexões por segundo reage a alteração de carga primeiro quando comparada a taxa de utilização sob mesma linha do tempo. Por fim, o trecho de 70 a 75 segundos, o cenário se inverte quando há uma redução na carga de trabalho. A taxa de utilização da CPU reage primeiro a mudança quando comparada com o número de conexões por segundo.
+A Figura \ref{fig:cps-vmcpu60} ilustra as conexões por segundos junto com a média da taxa de utilização de CPU nas VMs. No início dos experimentos a utilização de CPU apresenta uma dinâmica acentuada, estacionando em seguida próximo a 13\%. Esse aumento transiente é tão significativo que neste instante chega a atinge a maior média da CPU em todo o experimento, ultrapassando os 40\% de utilização da CPU. Da mesma maneira que o volume de conexões por segundo, a média da taxa de utilização de CPU nas VMs sofre alteração no impacto com o aumento da carga de trabalho próximo aos 30 segundos de experimentação. De corrido 40 segundos de carga máxima a utilização inicia de maneira mais enfática, atingindo os 30\%. Com o de correr do período de máximo da carga, a taxa de CPU diminui a atingir aproximadamente os 23\%. O que chama a atenção na Figura \ref{fig:cps-vmcpu60}, são os trechos de mudança de carga, 0-7, 30-35 e 70-75 segundos aproximadamente. No primeiro instante, de 0 a 7 segundos iniciais, a taxa de utilização sob de maneira busca apresentando uma dinâmica mais acentuada em comparação com o número de conexões por segundo, mesmo que proporcionalmente. Isso é decorrente da inicialização do SUT em cada um dos servidores. A quantidade de tarefas ao iniciar uma aplicação pela primeira vez é maior quando a mesma aplicação é iniciada nas vezes seguinte, devido a inúmeras iterações com outras aplicações para que o serviço fique disponível. Já no intervalo, de 30 a 35 segundos aproximadamente, é possível observar a dinâmica inerente em sistemas multicamadas. O número de conexões por segundo reage a alteração de carga primeiro quando comparada a taxa de utilização da CPU reage primeiro a mudança quando comparada com o número de conexões por segundo.
 
 \begin{figure}[htb]
 	\centering
@@ -118,14 +119,77 @@ A Figura \ref{fig:cps-vmcpu60} ilustra as conexões por segundos junto com a mé
 	\fdadospesquisa
 \end{figure}
 
-Referente a Figura \ref{fig:cps-dbcpu60}, onde se compara o número de conexões por segundo com a Taxa de utilização da CPU no banco de dados, podemos observar uma estocasticidade na taxa de utilização da CPU no banco de dados que está relacionada ao ser o gargalo do sistema. É possível observar a dinâmica de um sistema \textit{multi-tiers}. Do instante 0 até a metade do experimento, o comportamento foi semelhante ao apresentado pela Figura \ref{fig:cps-vmcpu60}, onde o número de conexões por segundo corresponde a taxa de utilização de CPU no banco de dados. Entretanto existe uma convergência no instante da redução da carga de trabalho. Isso se deve ao fato de o banco de dados ter operações em execução mesmo quando foram finalizadas, as consultas por exemplo o encerramento de transações e \textit{commits}. 
+Referente a Figura \ref{fig:cps-dbcpu60}, onde se compara o número de conexões por segundo com a Taxa de utilização da CPU no banco de dados, podemos observar uma estocásticidade na taxa de utilização da CPU no banco de dados que está relacionada ao ser o gargalo do sistema. É possível observar a dinâmica de um sistema \textit{multi-tiers}. Do instante 0 até a metade do experimento, o comportamento foi semelhante ao apresentado pela Figura \ref{fig:cps-vmcpu60}, onde o número de conexões por segundo corresponde a taxa de utilização de CPU no banco de dados. Entretanto existe uma convergência no instante da redução da carga de trabalho. %Isso se deve ao fato de o banco de dados ter operações em execução mesmo quando foram finalizadas, as consultas por exemplo o encerramento de transações e \textit{commits}. 
+
+%\begin{figure}[htb]
+%	\centering
+%	\includegraphics[scale=0.7]{resp-dbcpu60.pdf}
+%	\caption{Tempo de Resposta vs. Utilização de CPU no banco de dados}
+%	\label{fig:resp-dbcpu60}
+%	\fdadospesquisa
+%\end{figure}
+
+%A Figura \ref{fig:resp-dbcpu60} apresenta as duas métricas considerando o ambiente utilizado do experimento. Nela é possível observar novamente a falha gerada pela dinâmica intrínseca quando se lida com sistema \textit{mult-tiers}. O tempo de resposta apresentado é medido no cliente pelo Bench4Q, sendo a camada superior da arquitetura. Já a taxa de utilização da CPU é coletada no banco de dados, estando na camada inferior da arquitetura. Na primeira metade do gráfico, de 0 a 50 segundos, é possível observar o atraso das requisições mediante a transação entre todas as camadas da solução. Já na segunda metade, entre 50 segundos até o final do experimento, podemos observar o atraso novamente, porém este tem um impacto negativo para a métrica de Tempo de Resposta. No trecho de aproximadamente 75 segundos, quando há uma queda na carga de trabalho, o Tempo de Resposta reage primeiro que o consumo de CPU do banco de dados, mascarando o real desempenho da aplicação.
+
+\section{Contribuições}
+Nesta seção são apresentados resultados indiretos as este trabalho. Resultados que só foram possiveis mediante a extensão desenvolvida por este trabalho e que demonstram uma aplicação e necessidade real da modulação da carga de trabalho.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{subfigure}[b]{0.7\textwidth}
+		\includegraphics[width=\textwidth]{../../apresentation/images/tempo-resposta-postgres-crop.png}
+		\caption{Tempo de resposta das requisições utilizando o banco de dados PostgreSQL}
+		\label{fig:edwin-postgres}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.7\textwidth}
+		\includegraphics[width=\textwidth]{../../apresentation/images/tempo-resposta-db2-crop.png}
+		\caption{Tempo de resposta das requisições utilizando o banco de dados DB2}
+		\label{fig:edwin-db2}
+	\end{subfigure}
+	\caption{Comparação da dinâmica entre Postgres e DB2}
+	\label{fig:edwin-comparacao-bd}
+	\fdireta{Edwin2015}
+\end{figure}
+
+A Figura \ref{fig:edwin-comparacao-bd} apresenta resultados dos experimentos realizados no trabalho do \citeonline{Edwin2015} que representam a comparação da métrica do tempo de resposta em dois bancos de dados (PostgreSQL \ref{fig:edwin-postgres} e DB2 \ref{fig:edwin-db2}). Na realização deste experimento foi utilizado a extensão no Bench4Q que este trabalho desenvolveu. Desta forma, permite-se compara a dinâmica entre banco de dados. Em ambos foi aplicado a mesma carga modulada, contudo cada banco de dados teve uma resposta diferente. 
+
+O PostgreSQL apresentou, conforme a Figura \ref{fig:edwin-postgres}, uma reação a mudança abrupta da carga de trabalho elevando o tempo de resposta de 150 milissegundos para 280 milissegundos aproximadamente. Isto indica que a versão do PostgreSQL usada não apresenta um comportamento adaptativo para mudanças abruptas. 
+
+Na Figura \ref{fig:edwin-db2} mostra o comportamento do tempo de resposta do DB2. Aplicando a mesma carga de trabalho do experimento no PostgreSQL com o mesmo nível de carga e durante o mesmo tempo, podemos observar um primeiro nível estacionário em torno de 87 milissegundos passando para um novo patamar em torno de 142 milissegundos.
+
+Como afirmado por \citeonline{Edwin2015}, este experimento evidencia a utilidade de um \textit{benchmark} em regime não-estacionário, permitindo o desenvolvimento de um modulo adaptativo na camada de aplicação. Principalmente este é um caso comum na Computação em Nuvem, onde existem diversos comportamentos dinâmicos.
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[scale=0.7]{resp-dbcpu60.pdf}
-	\caption{Tempo de Resposta vs. Utilização de CPU no banco de dados}
-	\label{fig:resp-dbcpu60}
-	\fdadospesquisa
+	\includegraphics[scale=0.6]{../../apresentation/images/resultado_edwin_identificao_sys.png}
+	\caption{Utilização da metodologia de avaliação de desempenho não-estacionário}
+	\label{fig:edwin-identificao}
+	\fdireta{Edwin2015}
 \end{figure}
 
-A Figura \ref{fig:resp-dbcpu60} apresenta as duas métricas considerando o ambiente utilizado do experimento. Nela é possível observar novamente a falha gerada pela dinâmica intrínseca quando se lida com sistema \textit{mult-tiers}. O tempo de resposta apresentado é medido no cliente pelo Bench4Q, sendo a camada superior da arquitetura. Já a taxa de utilização da CPU é coletada no banco de dados, estando na camada inferior da arquitetura. Na primeira metade do gráfico, de 0 a 50 segundos, é possível observar o atraso das requisições mediante a transação entre todas as camadas da solução. Já na segunda metade, entre 50 segundos até o final do experimento, podemos observar o atraso novamente, porém este tem um impacto negativo para a métrica de Tempo de Resposta. No trecho de aproximadamente 75 segundos, quando há uma queda na carga de trabalho, o Tempo de Resposta reage primeiro que o consumo de CPU do banco de dados, mascarando o real desempenho da aplicação.
+O resultado do experimento também apresentado por \citeonline{Edwin2015} demostra a aplicação real da extensão do Bencha4Q em um ambiente típico de Computação em Nuvem, o que foi possível medir o desempenho que varia ao longo do tempo, utilizando a metodologia de \textit{benchmarking} de desempenho não-estacionário proposto por \citeonline{Edwin2015}.
+
+A Figura \ref{fig:edwin-identificao} apresenta as taxas de utilização do sistema real com base nos valores da entrada (carga de trabalho), coletadas em requisições por segundo, juntamente com a saída simulada do modelo extraído no sistema real. 
+A carga de trabalho utilizada no experimento é do tipo degrau, no instante inicial a execução do experimento, a carga está próximo a 1376 requisições por segundo, no instante zero, quando inicia o degrau da carga, o número de requisições por segundo aumenta de maneira brusca chegando a 2153 em 1 segundo, um aumento superior a 50\% da carga inicial. 
+
+A métrica de desempenho a essa carga é a taxa de utilização da CPU, em preto no gráfico da Figura \ref{fig:edwin-identificao}. Inicialmente a taxa de utilização está abaixo de 40\% antes do instante zero da execução do experimento. Instantes seguintes após a perturbação da carga a taxa de utilização apresenta um comportamento transiente chegando a ultrapassar os 80\%. 
+
+\begin{equation} \label{eq:dominio-frequencia-1}
+G(z) = \frac{b}{z - a}
+\end{equation}
+\begin{equation} \label{eq:dominio-frequencia-2}
+G(z) = \frac{0.002682}{z - 0.9057}
+\end{equation}
+
+A partir dos dados produzidos no sistema real, é possível fazer uma identificação do sistema atrás de técnicas de modelagem de sistemas. Estima-se os parâmetros a e b para o modelo ARX da equação \ref{eq:dominio-frequencia-1} e derivar uma função de transferência equivalente G. A função transferência é uma aproximação analítica empírica da dinâmica do sistema que pode ser validada por comparação com a saída do sistema (simulação) conforme observado na Figura \ref{fig:edwin-identificao} pela linha em azul. As saídas simulada mostraram-se bem aproximadas e representam bem o desempenho do sistema.
+
+\begin{equation} \label{eq:dominio-tempo-1}
+y(k) = -ay(k-1) + bu(k-1)
+\end{equation}
+\begin{equation} \label{eq:dominio-tempo-2}
+y(k) = -0.9057y(k-1) + 0.002682u(k-1)
+\end{equation}
+
+Este exemplo de utilidade ilustra a realização de um \textit{benchmarking} não estacionário e seu uso na modelagem das características dinâmicas de desempenho de um sistema computacional em nuvem.
+

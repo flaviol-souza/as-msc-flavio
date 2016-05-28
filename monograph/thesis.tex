@@ -16,7 +16,7 @@
 %spanish,			% idioma adicional para hifenização
 %english,			% idioma adicional para hifenização
 %brazil				% o último idioma é o principal do documento
-\documentclass[mestrado, pre-defesa, spanish, english, brazil]{packages/icmc}
+\documentclass[mestrado, pos-defesa, spanish, english, brazil]{packages/icmc}
 
 % ---
 % Pacotes Opcionais
@@ -57,7 +57,7 @@
 % conter no máximo 500 palavras
 % conter no mínimo 1 e no máximo 5 palavras-chave
 \textoresumo[brazil]{
-	Este trabalho de mestrado apresenta o desenvolvimento de uma extensão no \textit{benchmark} Bench4Q. O referido \textit{framework} \textit{benchmark} é utilizado para gerar carga sintética para um sistema \textit{e-commerce} acoplado ao \textit{benchmark}. Seu principal emprego na literatura tem sido em avaliação de desempenho sob carga estacionária.  Contudo, recentes pesquisas  tem apresentado interesse no estudo de arquiteturas adaptativas de autogerenciamento de recursos, o que implica em responder à perturbações e atender a requisitos de desempenho em regime transiente.  No entanto, este \textit{benchmark} não abrange os estados transiente do sistema. O presente trabalho tem por objetivo estender o \textit{benchmark} Bench4Q acrescentando-lhe capacidades de excitar a resposta transiente do sistema mediante a perturbações da carga de trabalho.  Para isso, o \textit{software} foi acrescido de funcionalidade capaz de gerenciar a modulação da carga de trabalho. E experimentos foram executados em um ambiente multicamadas que apresentou resultados compatíveis ao objetivo, representando contribuições para a área de avaliação de desempenho. A motivação da pesquisa, inserção em outros trabalhos em andamento e direções futuras são introduzidas.
+	Este trabalho de mestrado apresenta o desenvolvimento de uma extensão no \textit{benchmark} Bench4Q. A extensão proposta são novas funcionalidades para o \textit{benchmark}. O referido \textit{framework} \textit{benchmark} é utilizado para gerar carga sintética para um sistema \textit{e-commerce} acoplado ao \textit{benchmark}. Seu principal emprego na literatura tem sido em avaliação de desempenho sob carga estacionária.  Contudo, recentes pesquisas  tem apresentado interesse no estudo de arquiteturas adaptativas de autogerenciamento de recursos, o que implica em responder às perturbações e atender os requisitos de desempenho em regime transiente.  No entanto, este \textit{benchmark} não abrange os estados transiente do sistema. O presente trabalho tem por objetivo estender o \textit{benchmark} Bench4Q acrescentando-lhe capacidades de excitar a resposta transientes do sistema mediante as perturbações da carga de trabalho.  Para isso, o \textit{software} foi acrescido de funcionalidade capaz de gerenciar a modulação da carga de trabalho. Os experimentos foram executados em um ambiente multicamadas que apresentou resultados compatíveis ao objetivo, representando contribuições para a área de avaliação de desempenho. A motivação da pesquisa, inserção em outros trabalhos em andamento e direções futuras são introduzidas.
 }{Avaliação de Desempenho, \textit{Benchmark}, Computação em Nuvem, Modelagem}
 
 
@@ -65,7 +65,7 @@
 % conter no máximo 500 palavras
 % conter no mínimo 1 e no máximo 5 palavras-chave
 \textoresumo[english]{
-	This master thesis introduces the development of an extension for the Bench4Q benchmark. The referred framwork is utilized to generate sinthetic workload for a companion e-commerce benchmark. The software package Bench4q is a benchmark for cloud computing applications which simulates various aspects of conventional architectures and workloads in this kind of environment. It is mainly referenced in the literature in works on performance evaluation under stationary load.  Recent research works have broaden its interest to the study of adaptive architectures of resource self-management, what implies in responding to disturbances and meeting performance requirements in transient regime.  This work aims at extending Bench4q adding it capabilities to excite the transient response of the system by means of applying disturbances during execution time. To this end, the piece of software shall be enriched with functionalities for generating non-stationary workload and programmed disturbances. Experients have  been carried out in a multi-layer enviroment and have  yielded positive result, representing contributions to the state of the art. The motivation of this piece of work, insertion in other ongoing research and directions are introduced. 
+	This master thesis introduces the development of an extension for the Bench4Q benchmark. The referred framework is utilized to generate sinthetic workload for a companion e-commerce benchmark. The software package Bench4q is a benchmark for cloud computing applications which simulates various aspects of conventional architectures and workloads in this kind of environment. It is mainly referenced in the literature in works on performance evaluation under stationary load.  Recent research works have broaden its interest to the study of adaptive architectures of resource self-management, what implies in responding to disturbances and meeting performance requirements in transient regime.  This work aims at extending Bench4q adding it capabilities to excite the transient response of the system by means of applying disturbances during execution time. To this end, the piece of software shall be enriched with functionalities for generating non-stationary workload and programmed disturbances. Experients have  been carried out in a multi-layer enviroment and have  yielded positive result, representing contributions to the state of the art. The motivation of this piece of work, insertion in other ongoing research and directions are introduced. 
 }{Performance Evaluation, Benchmark, Cloud Computing, Model}
 
 % ---
@@ -197,9 +197,13 @@
 	% ---
 	\begin{apendicesenv}
 		
+		\chapter{Códigos da extensão}
+		\label{chapter:codigo}
+		\input{tex/appendix/codigos}
 		\chapter{Documentação da extensão do Bench4Q}
 		\label{chapter:documentacao}
 		\input{tex/appendix/documentacao}
+		
 		
 	\end{apendicesenv}
 	% ---
